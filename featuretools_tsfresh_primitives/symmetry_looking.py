@@ -6,7 +6,7 @@ from featuretools.variable_types import Numeric
 
 class SymmetryLooking(AggregationPrimitive):
     '''
-    Boolean variable denoting if the distribution of x looks symmetric.
+    Boolean variable denoting if the distribution looks symmetric.
 
     Args:
         r (float) : Percentage of the range to compare with.
