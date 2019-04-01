@@ -22,6 +22,11 @@ def parameters():
             'f_agg': 'mean',
             'maxlag': 3,
         },
+        'AggLinearTrend': {
+            'attr': 'slope',
+            'chunk_len': 4,
+            'f_agg': 'mean',
+        },
         'SpktWelchDensity': {
             'coeff': 5,
         }
