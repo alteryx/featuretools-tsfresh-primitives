@@ -29,6 +29,9 @@ def parameters():
         },
         'SpktWelchDensity': {
             'coeff': 5,
+        },
+        'SymmetryLooking': {
+            'r': .5,
         }
     }
 
