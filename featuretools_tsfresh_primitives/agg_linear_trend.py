@@ -33,6 +33,6 @@ class AggLinearTrend(AggregationPrimitive):
 
     def generate_name(self, base_feature_names, child_entity_id, parent_entity_id, where_str, use_prev_str):
         names = ", ".join(base_feature_names)
-        string_parameter = lambda parameter: '{}={}'.format(parameter, getattr(self, parameter))
-        parameters = ', '.join(map(string_parameter, ['attr', 'chunk_len', 'f_agg']))
-        return u"%s(%s.%s%s%s,%s)" % (self.name.upper(), child_entity_id, names, where_str, use_prev_str, parameters)
+        parameter_to_string = lambda parameter: '{}={}'.format(parameter, getattr(self, parameter))
+        parameters = ', '.join(map(parameter_to_string, ['attr', 'chunk_len', 'f_agg']))
+        return u"%s(%s.%s%s%s, %s)" % (self.name.upper(), child_entity_id, names, where_str, use_prev_str, parameters)
