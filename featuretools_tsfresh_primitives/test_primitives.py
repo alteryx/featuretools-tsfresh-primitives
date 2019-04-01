@@ -27,6 +27,10 @@ def parameters():
             'chunk_len': 4,
             'f_agg': 'mean',
         },
+        'EnergyRatioByChunks': {
+            'num_segments': 10,
+            'segment_focus': 5,
+        },
         'SpktWelchDensity': {
             'coeff': 5,
         },
