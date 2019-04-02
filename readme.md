@@ -49,7 +49,7 @@ session_id
 4                           64.557200                                          -0.034542
 5                           70.638182                                          -0.100571
 ```
-Notice that tsfresh primtives are applied across relationships in an entityset generating features that is otherwise not possible.
+Notice that tsfresh primtives are applied across relationships in an entityset generating many features that are otherwise not possible.
 
 ```python
 feature_matrix[['customers.AGG_AUTOCORRELATION(transactions.amount, f_agg=mean, maxlag=5)']].head()
