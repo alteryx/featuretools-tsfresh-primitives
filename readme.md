@@ -29,21 +29,25 @@ AggAutocorrelation(f_agg='mean', maxlag=5)(data)
 In featuretools, this is how to combine tsfresh primitives with built-in or other installed primitives.
 ```python
 import featuretools as ft
-from featuretools.primitives import AggAutocorrelation, AvgTimeBetween
+from featuretools.primitives import AggAutocorrelation, Mean
 
 entityset = ft.demo.load_mock_customer(return_entityset=True)
-agg_primitives = [AvgTimeBetween, AggAutocorrelation(f_agg='mean', maxlag=5)]
+agg_primitives = [Mean, AggAutocorrelation(f_agg='mean', maxlag=5)]
 feature_matrix, features = ft.dfs(entityset=entityset, target_entity='sessions', agg_primitives=agg_primitives)
-feature_matrix[['AVG_TIME_BETWEEN(transactions.transaction_time)', 'AGG_AUTOCORRELATION(transactions.amount, f_agg=mean, maxlag=5)']].head()
+
+feature_matrix[[
+    'MEAN(transactions.amount)',
+    'AGG_AUTOCORRELATION(transactions.amount, f_agg=mean, maxlag=5)',
+]].head()
 ```
 ```
-            AVG_TIME_BETWEEN(transactions.transaction_time)  AGG_AUTOCORRELATION(transactions.amount, f_agg=mean, maxlag=5)
+            MEAN(transactions.amount)  AGG_AUTOCORRELATION(transactions.amount, f_agg=mean, maxlag=5)
 session_id
-1                                                      65.0                                           0.044268
-2                                                      65.0                                          -0.053110
-3                                                      65.0                                           0.007520
-4                                                      65.0                                          -0.034542
-5                                                      65.0                                          -0.100571
+1                           76.813125                                           0.044268
+2                           74.696000                                          -0.053110
+3                           88.600000                                           0.007520
+4                           64.557200                                          -0.034542
+5                           70.638182                                          -0.100571
 ```
 Notice that tsfresh primtives are applied across relationships in an entityset generating features that would otherwise not be possible.
 
