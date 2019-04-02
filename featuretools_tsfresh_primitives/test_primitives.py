@@ -1,18 +1,12 @@
+import featuretools as ft
 from pytest import fixture
 
-import featuretools as ft
+from . import primitives
 
 
 @fixture
 def entityset():
     return ft.demo.load_mock_customer(return_entityset=True)
-
-
-@fixture
-def primitives():
-    module = __import__(__name__)
-    primitives = {primitive: getattr(module, primitive) for primitive in module.__all__}
-    return primitives
 
 
 @fixture
@@ -40,7 +34,7 @@ def parameters():
     }
 
 
-def test_all_primitives(entityset, primitives, parameters):
+def test_all_primitives(entityset, parameters):
     is_agg_primitive = lambda name: issubclass(primitives[name], ft.primitives.AggregationPrimitive)
     construct_primitive = lambda name: primitives[name](**parameters.get(name, {}))
     agg_primitives = [construct_primitive(name) for name in primitives if is_agg_primitive(name)]

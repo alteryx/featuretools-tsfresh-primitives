@@ -5,10 +5,10 @@ from .energy_ratio_by_chunks import EnergyRatioByChunks
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
-__all__ = [
-    'AggAutocorrelation',
-    'AggLinearTrend',
-    'EnergyRatioByChunks',
-    'SpktWelchDensity',
-    'SymmetryLooking',
-]
+primitives = {
+    'AggAutocorrelation': AggAutocorrelation,
+    'AggLinearTrend': AggLinearTrend,
+    'EnergyRatioByChunks': EnergyRatioByChunks,
+    'SpktWelchDensity': SpktWelchDensity,
+    'SymmetryLooking': SymmetryLooking,
+}
