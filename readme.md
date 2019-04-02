@@ -26,7 +26,7 @@ AggAutocorrelation(f_agg='mean', maxlag=5)(data)
 0.1717171717171717
 ```
 ## Combining Primitives
-In featuretools, this is how to combine tsfresh primitives with built-in or other installed primitives.
+In `featuretools`, this is how to combine tsfresh primitives with built-in or other installed primitives.
 ```python
 import featuretools as ft
 from featuretools.primitives import AggAutocorrelation, Mean
