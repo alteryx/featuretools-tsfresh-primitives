@@ -30,9 +30,3 @@ class AggLinearTrend(AggregationPrimitive):
             return list(agg_linear_trend(x, param))[0][1]
 
         return function
-
-    def generate_name(self, base_feature_names, child_entity_id, parent_entity_id, where_str, use_prev_str):
-        names = ", ".join(base_feature_names)
-        parameter_to_string = lambda parameter: '{}={}'.format(parameter, getattr(self, parameter))
-        parameters = ', '.join(map(parameter_to_string, ['attr', 'chunk_len', 'f_agg']))
-        return u"%s(%s.%s%s%s, %s)" % (self.name.upper(), child_entity_id, names, where_str, use_prev_str, parameters)
