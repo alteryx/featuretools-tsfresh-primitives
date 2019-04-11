@@ -1,5 +1,9 @@
-import featuretools as ft
+import json
+import os
+
 from pytest import fixture
+
+import featuretools as ft
 
 from . import primitives
 
@@ -11,27 +15,9 @@ def entityset():
 
 @fixture
 def parameters():
-    return {
-        'AggAutocorrelation': {
-            'f_agg': 'mean',
-            'maxlag': 3,
-        },
-        'AggLinearTrend': {
-            'attr': 'slope',
-            'chunk_len': 4,
-            'f_agg': 'mean',
-        },
-        'EnergyRatioByChunks': {
-            'num_segments': 10,
-            'segment_focus': 5,
-        },
-        'SpktWelchDensity': {
-            'coeff': 5,
-        },
-        'SymmetryLooking': {
-            'r': .5,
-        }
-    }
+    dirname = os.path.dirname(__file__)
+    file = os.path.join(dirname, 'test_primitives.json')
+    return json.load(open(file, 'r'))
 
 
 def test_all_primitives(entityset, parameters):
