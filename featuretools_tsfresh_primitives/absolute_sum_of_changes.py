@@ -5,9 +5,9 @@ from featuretools.variable_types import Numeric
 
 
 class AbsoluteSumOfChanges(AggregationPrimitive):
-    '''
+    """
     Returns the absolute energy of the time series which is the sum over the squared values.
-    '''
+    """
     name = "absolute_sum_of_changes"
     input_types = [Numeric]
     return_type = Numeric

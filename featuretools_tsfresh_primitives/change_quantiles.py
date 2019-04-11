@@ -5,7 +5,7 @@ from featuretools.variable_types import Numeric
 
 
 class ChangeQuantiles(AggregationPrimitive):
-    '''
+    """
     First fixes a corridor given by the quantiles ql and qh of the distribution of x.
     Then calculates the average, absolute value of consecutive changes of the series x inside this corridor.
 
@@ -14,7 +14,7 @@ class ChangeQuantiles(AggregationPrimitive):
         qh (float) : The higher quantile of the corridor.
         isabs (bool) : Should the absolute differences be taken?
         f_agg (str) : The numpy function that aggregates (e.g. mean, var, std, median) the differences in the bin.
-    '''
+    """
     name = "change_quantiles"
     input_types = [Numeric]
     return_type = Numeric

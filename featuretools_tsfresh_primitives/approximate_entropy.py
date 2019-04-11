@@ -5,13 +5,13 @@ from featuretools.variable_types import Numeric
 
 
 class ApproximateEntropy(AggregationPrimitive):
-    '''
+    """
     Implements a vectorized Approximate entropy algorithm.
 
     Args:
         m (int) : Length of compared run of data.
         r (float) : Filtering level, must be positive.
-    '''
+    """
     name = "approximate_entropy"
     input_types = [Numeric]
     return_type = Numeric

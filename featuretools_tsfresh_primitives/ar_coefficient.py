@@ -5,13 +5,13 @@ from featuretools.variable_types import Numeric
 
 
 class ArCoefficient(AggregationPrimitive):
-    '''
+    """
     This feature calculator fits the unconditional maximum likelihood of an autoregressive AR(k) process.
 
     Args:
         coeff (int) : Index of returned coefficient.
         k (int) : Maximum lag of the process.
-    '''
+    """
     name = "ar_coefficient"
     input_types = [Numeric]
     return_type = Numeric

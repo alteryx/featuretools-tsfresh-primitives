@@ -5,7 +5,7 @@ from featuretools.variable_types import Numeric
 
 
 class BinnedEntropy(AggregationPrimitive):
-    '''
+    """
     First bins the values of x into max_bins equidistant bins. Then calculates the value of
 
     .. math::
@@ -16,7 +16,7 @@ class BinnedEntropy(AggregationPrimitive):
 
      Args:
         max_bins (int) : The maximal number of bins.
-    '''
+    """
     name = "binned_entropy"
     input_types = [Numeric]
     return_type = Numeric

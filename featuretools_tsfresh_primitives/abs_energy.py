@@ -5,9 +5,9 @@ from featuretools.variable_types import Numeric
 
 
 class AbsEnergy(AggregationPrimitive):
-    '''
+    """
     Returns the absolute energy of the time series which is the sum over the squared values.
-    '''
+    """
     name = "abs_energy"
     input_types = [Numeric]
     return_type = Numeric

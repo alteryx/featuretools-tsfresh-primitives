@@ -5,7 +5,7 @@ from featuretools.variable_types import Numeric
 
 
 class CidCe(AggregationPrimitive):
-    '''
+    """
     This function calculator is an estimate for a time series complexity [1] (A more complex time series has more peaks,
     valleys etc.). It calculates the value of
 
@@ -21,7 +21,7 @@ class CidCe(AggregationPrimitive):
 
     Args:
         normalize (bool) : Should the time series be z-transformed?
-    '''
+    """
     name = "cid_ce"
     input_types = [Numeric]
     return_type = Numeric

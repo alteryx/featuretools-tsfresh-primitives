@@ -5,13 +5,13 @@ from featuretools.variable_types import Numeric
 
 
 class AggAutocorrelation(AggregationPrimitive):
-    '''
+    """
     Calculates the value of an aggregation function (e.g. the variance or the mean) over the autocorrelation for different lags.
 
     Args:
         f_agg (str) : Name of a numpy function (e.g. "mean", "var", "std", "median"), its the name of the aggregator function that is applied to the autocorrelations.
         maxlag (int) : Maximal number of lags to consider.
-    '''
+    """
     name = "agg_autocorrelation"
     input_types = [Numeric]
     return_type = Numeric

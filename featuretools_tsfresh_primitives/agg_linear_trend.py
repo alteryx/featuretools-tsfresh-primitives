@@ -5,7 +5,7 @@ from featuretools.variable_types import Numeric
 
 
 class AggLinearTrend(AggregationPrimitive):
-    '''
+    """
     Calculates a linear least-squares regression for values of the time series that were aggregated over chunks versus the sequence from 0 up to the number of chunks minus one.
 
     Args:
@@ -13,7 +13,7 @@ class AggLinearTrend(AggregationPrimitive):
             Possible extracted attributes are: ['pvalue', 'rvalue', 'intercept', 'slope', 'stderr'].
         chunk_len (int) : Specifies how many time series values are in each chunk.
         f_agg (str) : Name of the aggregator function. Possible values are: [ 'max', 'min' or , 'mean', 'median'].
-    '''
+    """
     name = "agg_linear_trend"
     input_types = [Numeric]
     return_type = Numeric

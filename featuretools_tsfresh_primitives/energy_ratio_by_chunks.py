@@ -5,13 +5,13 @@ from featuretools.variable_types import Numeric
 
 
 class EnergyRatioByChunks(AggregationPrimitive):
-    '''
+    """
     Calculates the sum of squares of chunk i out of N chunks expressed as a ratio with the sum of squares over the whole series.
 
     Args:
         num_segments (int) : Number of segments to divide the series into.
         segment_focus (int) : Segment number (starting at zero) to return a feature on.
-    '''
+    """
     name = "energy_ratio_by_chunks"
     input_types = [Numeric]
     return_type = Numeric

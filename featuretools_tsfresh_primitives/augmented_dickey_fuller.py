@@ -5,13 +5,13 @@ from featuretools.variable_types import Numeric
 
 
 class AugmentedDickeyFuller(AggregationPrimitive):
-    '''
+    """
     The Augmented Dickey-Fuller test is a hypothesis test which checks whether a unit root is present in a time series sample.
 
     Args:
         attr (str) : Controls which attribute is returned.
             Possible values are: ['pvalue', 'teststat', 'usedlag'].
-    '''
+    """
     name = "augmented_dickey_fuller"
     input_types = [Numeric]
     return_type = Numeric

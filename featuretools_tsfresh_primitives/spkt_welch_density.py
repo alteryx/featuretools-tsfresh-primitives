@@ -5,13 +5,13 @@ from featuretools.variable_types import Numeric
 
 
 class SpktWelchDensity(AggregationPrimitive):
-    '''
+    """
     This feature calculator estimates the cross power spectral density of the time series at different frequencies.
     To do so, the time series is first shifted from the time domain to the frequency domain.
 
     Args:
         coeff (int) : Value of coefficient.
-    '''
+    """
     name = "spkt_welch_density"
     input_types = [Numeric]
     return_type = Numeric

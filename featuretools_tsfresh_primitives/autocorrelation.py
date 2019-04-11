@@ -5,12 +5,12 @@ from featuretools.variable_types import Numeric
 
 
 class Autocorrelation(AggregationPrimitive):
-    '''
+    """
     Calculates the autocorrelation of the specified lag.
 
     Args:
         lag (int) : The lag.
-    '''
+    """
     name = "autocorrelation"
     input_types = [Numeric]
     return_type = Numeric
