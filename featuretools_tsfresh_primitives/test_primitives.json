@@ -19,6 +19,9 @@
     "AugmentedDickeyFuller": {
         "attr": "pvalue"
     },
+    "Autocorrelation": {
+        "lag": 5
+    },
     "EnergyRatioByChunks": {
         "num_segments": 10,
         "segment_focus": 5
