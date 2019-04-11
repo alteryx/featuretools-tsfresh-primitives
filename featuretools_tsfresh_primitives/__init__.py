@@ -17,6 +17,7 @@ from .cwt_coefficients import CwtCoefficients
 from .energy_ratio_by_chunks import EnergyRatioByChunks
 from .fft_aggregated import FftAggregated
 from .fft_coefficient import FftCoefficient
+from .first_location_of_maximum import FirstLocationOfMaximum
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -38,6 +39,7 @@ primitives = {
     'CwtCoefficients': CwtCoefficients,
     'EnergyRatioByChunks': EnergyRatioByChunks,
     'FftAggregated': FftAggregated,
+    'FirstLocationOfMaximum': FirstLocationOfMaximum,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
