@@ -8,6 +8,7 @@ from .ar_coefficient import ArCoefficient
 from .augmented_dickey_fuller import AugmentedDickeyFuller
 from .autocorrelation import Autocorrelation
 from .binned_entropy import BinnedEntropy
+from .c3 import C3
 from .energy_ratio_by_chunks import EnergyRatioByChunks
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
@@ -22,6 +23,7 @@ primitives = {
     'AugmentedDickeyFuller': AugmentedDickeyFuller,
     'Autocorrelation': Autocorrelation,
     'BinnedEntropy': BinnedEntropy,
+    'C3': C3,
     'EnergyRatioByChunks': EnergyRatioByChunks,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
