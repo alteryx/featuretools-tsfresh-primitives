@@ -22,6 +22,9 @@
     "Autocorrelation": {
         "lag": 5
     },
+    "BinnedEntropy": {
+        "max_bins": 5
+    },
     "EnergyRatioByChunks": {
         "num_segments": 10,
         "segment_focus": 5
