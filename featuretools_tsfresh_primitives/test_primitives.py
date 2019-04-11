@@ -24,5 +24,5 @@ def test_all_primitives(entityset, parameters):
     is_agg_primitive = lambda name: issubclass(primitives[name], ft.primitives.AggregationPrimitive)
     construct_primitive = lambda name: primitives[name](**parameters.get(name, {}))
     agg_primitives = [construct_primitive(name) for name in primitives if is_agg_primitive(name)]
-    feature_matrix, features = ft.dfs(entityset=entityset, target_entity='customers', agg_primitives=agg_primitives)
+    feature_matrix, features = ft.dfs(entityset=entityset, target_entity='sessions', agg_primitives=agg_primitives)
     assert not feature_matrix.empty

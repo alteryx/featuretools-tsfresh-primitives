@@ -12,6 +12,10 @@
         "m": 4,
         "r": 0.25
     },
+    "ArCoefficient": {
+        "coeff": 4,
+        "k": 4
+    },
     "EnergyRatioByChunks": {
         "num_segments": 10,
         "segment_focus": 5
