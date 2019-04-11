@@ -11,6 +11,7 @@ from .binned_entropy import BinnedEntropy
 from .c3 import C3
 from .cid_ce import CidCe
 from .change_quantiles import ChangeQuantiles
+from .count_above_mean import CountAboveMean
 from .count_below_mean import CountBelowMean
 from .energy_ratio_by_chunks import EnergyRatioByChunks
 from .spkt_welch_density import SpktWelchDensity
@@ -29,6 +30,7 @@ primitives = {
     'C3': C3,
     'CidCe': CidCe,
     'ChangeQuantiles': ChangeQuantiles,
+    'CountAboveMean': CountAboveMean,
     'CountBelowMean': CountBelowMean,
     'EnergyRatioByChunks': EnergyRatioByChunks,
     'SpktWelchDensity': SpktWelchDensity,
