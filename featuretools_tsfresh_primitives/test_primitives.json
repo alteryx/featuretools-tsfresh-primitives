@@ -49,6 +49,9 @@
         "num_segments": 10,
         "segment_focus": 5
     },
+    "FftAggregated": {
+        "aggtype": "centroid"
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },
