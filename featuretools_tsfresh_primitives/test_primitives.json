@@ -16,6 +16,9 @@
         "coeff": 4,
         "k": 4
     },
+    "AugmentedDickeyFuller": {
+        "attr": "pvalue"
+    },
     "EnergyRatioByChunks": {
         "num_segments": 10,
         "segment_focus": 5
