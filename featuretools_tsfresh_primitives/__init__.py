@@ -9,6 +9,7 @@ from .augmented_dickey_fuller import AugmentedDickeyFuller
 from .autocorrelation import Autocorrelation
 from .binned_entropy import BinnedEntropy
 from .c3 import C3
+from .cid_ce import CidCe
 from .change_quantiles import ChangeQuantiles
 from .energy_ratio_by_chunks import EnergyRatioByChunks
 from .spkt_welch_density import SpktWelchDensity
@@ -25,6 +26,7 @@ primitives = {
     'Autocorrelation': Autocorrelation,
     'BinnedEntropy': BinnedEntropy,
     'C3': C3,
+    'CidCe': CidCe,
     'ChangeQuantiles': ChangeQuantiles,
     'EnergyRatioByChunks': EnergyRatioByChunks,
     'SpktWelchDensity': SpktWelchDensity,

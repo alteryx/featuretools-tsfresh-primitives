@@ -28,6 +28,9 @@
     "C3": {
         "lag": 3
     },
+    "CidCe": {
+        "normalize": true
+    },
     "ChangeQuantiles": {
         "ql": 0.1,
         "qh": 0.9,
