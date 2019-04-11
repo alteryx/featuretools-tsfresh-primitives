@@ -8,6 +8,10 @@
         "chunk_len": 4,
         "f_agg": "mean"
     },
+    "ApproximateEntropy": {
+        "m": 4,
+        "r": 0.25
+    },
     "EnergyRatioByChunks": {
         "num_segments": 10,
         "segment_focus": 5
