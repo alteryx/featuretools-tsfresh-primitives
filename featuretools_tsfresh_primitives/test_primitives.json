@@ -52,6 +52,10 @@
     "FftAggregated": {
         "aggtype": "centroid"
     },
+    "FftCoefficient": {
+        "coeff": 4,
+        "attr": "real"
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },

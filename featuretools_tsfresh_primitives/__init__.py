@@ -16,6 +16,7 @@ from .count_below_mean import CountBelowMean
 from .cwt_coefficients import CwtCoefficients
 from .energy_ratio_by_chunks import EnergyRatioByChunks
 from .fft_aggregated import FftAggregated
+from .fft_coefficient import FftCoefficient
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
