@@ -28,6 +28,12 @@
     "C3": {
         "lag": 3
     },
+    "ChangeQuantiles": {
+        "ql": 0.1,
+        "qh": 0.9,
+        "isabs": true,
+        "f_agg": "mean"
+    },
     "EnergyRatioByChunks": {
         "num_segments": 10,
         "segment_focus": 5
