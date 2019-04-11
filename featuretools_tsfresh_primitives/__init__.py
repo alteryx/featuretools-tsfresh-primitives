@@ -13,6 +13,7 @@ from .cid_ce import CidCe
 from .change_quantiles import ChangeQuantiles
 from .count_above_mean import CountAboveMean
 from .count_below_mean import CountBelowMean
+from .cwt_coefficients import CwtCoefficients
 from .energy_ratio_by_chunks import EnergyRatioByChunks
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
@@ -32,6 +33,7 @@ primitives = {
     'ChangeQuantiles': ChangeQuantiles,
     'CountAboveMean': CountAboveMean,
     'CountBelowMean': CountBelowMean,
+    'CwtCoefficients': CwtCoefficients,
     'EnergyRatioByChunks': EnergyRatioByChunks,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,

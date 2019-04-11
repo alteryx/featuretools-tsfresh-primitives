@@ -37,6 +37,14 @@
         "isabs": true,
         "f_agg": "mean"
     },
+    "CwtCoefficients": {
+        "widths": [
+            2,
+            4
+        ],
+        "coeff": 2,
+        "w": 4
+    },
     "EnergyRatioByChunks": {
         "num_segments": 10,
         "segment_focus": 5
