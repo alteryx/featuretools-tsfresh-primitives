@@ -26,6 +26,7 @@ from .has_duplicate_min import HasDuplicateMin
 from .index_mass_quantile import IndexMassQuantile
 from .kurtosis import Kurtosis
 from .large_standard_deviation import LargeStandardDeviation
+from .last_location_of_maximum import LastLocationOfMaximum
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -56,6 +57,7 @@ primitives = {
     'IndexMassQuantile': IndexMassQuantile,
     'Kurtosis': Kurtosis,
     'LargeStandardDeviation': LargeStandardDeviation,
+    'LastLocationOfMaximum': LastLocationOfMaximum,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
