@@ -20,6 +20,7 @@ from .fft_coefficient import FftCoefficient
 from .first_location_of_maximum import FirstLocationOfMaximum
 from .first_location_of_minimum import FirstLocationOfMinimum
 from .friedrich_coefficients import FriedrichCoefficients
+from .has_duplicate import HasDuplicate
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -44,6 +45,7 @@ primitives = {
     'FirstLocationOfMaximum': FirstLocationOfMaximum,
     'FirstLocationOfMinimum': FirstLocationOfMinimum,
     'FriedrichCoefficients': FriedrichCoefficients,
+    'HasDuplicate': HasDuplicate,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
