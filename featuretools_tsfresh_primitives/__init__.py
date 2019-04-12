@@ -27,6 +27,7 @@ from .index_mass_quantile import IndexMassQuantile
 from .kurtosis import Kurtosis
 from .large_standard_deviation import LargeStandardDeviation
 from .last_location_of_maximum import LastLocationOfMaximum
+from .last_location_of_minimum import LastLocationOfMinimum
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -58,6 +59,7 @@ primitives = {
     'Kurtosis': Kurtosis,
     'LargeStandardDeviation': LargeStandardDeviation,
     'LastLocationOfMaximum': LastLocationOfMaximum,
+    'LastLocationOfMinimum': LastLocationOfMinimum,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
