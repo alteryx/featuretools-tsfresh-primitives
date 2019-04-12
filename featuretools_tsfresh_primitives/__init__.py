@@ -23,6 +23,7 @@ from .friedrich_coefficients import FriedrichCoefficients
 from .has_duplicate import HasDuplicate
 from .has_duplicate_max import HasDuplicateMax
 from .has_duplicate_min import HasDuplicateMin
+from .index_mass_quantile import IndexMassQuantile
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -50,6 +51,7 @@ primitives = {
     'HasDuplicate': HasDuplicate,
     'HasDuplicateMax': HasDuplicateMax,
     'HasDuplicateMin': HasDuplicateMin,
+    'IndexMassQuantile': IndexMassQuantile,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
