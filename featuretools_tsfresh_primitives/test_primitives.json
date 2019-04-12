@@ -56,6 +56,11 @@
         "coeff": 4,
         "attr": "real"
     },
+    "FriedrichCoefficients": {
+        "m": 5,
+        "r": 3,
+        "coeff": 5
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },
