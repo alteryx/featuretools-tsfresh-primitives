@@ -64,6 +64,9 @@
     "IndexMassQuantile": {
         "q": 0.5
     },
+    "LargeStandardDeviation": {
+        "r": 0.5
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },
