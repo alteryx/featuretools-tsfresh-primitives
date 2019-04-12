@@ -24,6 +24,7 @@ from .has_duplicate import HasDuplicate
 from .has_duplicate_max import HasDuplicateMax
 from .has_duplicate_min import HasDuplicateMin
 from .index_mass_quantile import IndexMassQuantile
+from .kurtosis import Kurtosis
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -52,6 +53,7 @@ primitives = {
     'HasDuplicateMax': HasDuplicateMax,
     'HasDuplicateMin': HasDuplicateMin,
     'IndexMassQuantile': IndexMassQuantile,
+    'Kurtosis': Kurtosis,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
