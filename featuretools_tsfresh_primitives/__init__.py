@@ -31,6 +31,7 @@ from .last_location_of_minimum import LastLocationOfMinimum
 from .length import Length
 from .linear_trend import LinearTrend
 from .longest_strike_above_mean import LongestStrikeAboveMean
+from .longest_strike_below_mean import LongestStrikeBelowMean
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -66,6 +67,7 @@ primitives = {
     'Length': Length,
     'LinearTrend': LinearTrend,
     'LongestStrikeAboveMean': LongestStrikeAboveMean,
+    'LongestStrikeBelowMean': LongestStrikeBelowMean,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
