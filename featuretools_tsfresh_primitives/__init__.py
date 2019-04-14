@@ -39,6 +39,7 @@ from .mean_abs_change import MeanAbsChange
 from .mean_change import MeanChange
 from .mean_second_derivative_central import MeanSecondDerivativeCentral
 from .median import Median
+from .minimum import Minimum
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -82,6 +83,7 @@ primitives = {
     'MeanChange': MeanChange,
     'MeanSecondDerivativeCentral': MeanSecondDerivativeCentral,
     'Median': Median,
+    'Minimum': Minimum,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
