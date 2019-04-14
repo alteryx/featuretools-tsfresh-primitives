@@ -30,6 +30,7 @@ from .last_location_of_maximum import LastLocationOfMaximum
 from .last_location_of_minimum import LastLocationOfMinimum
 from .length import Length
 from .linear_trend import LinearTrend
+from .max_langevin_fixed_point import MaxLangevinFixedPoint
 from .longest_strike_above_mean import LongestStrikeAboveMean
 from .longest_strike_below_mean import LongestStrikeBelowMean
 from .spkt_welch_density import SpktWelchDensity
@@ -68,6 +69,7 @@ primitives = {
     'LinearTrend': LinearTrend,
     'LongestStrikeAboveMean': LongestStrikeAboveMean,
     'LongestStrikeBelowMean': LongestStrikeBelowMean,
+    'MaxLangevinFixedPoint': MaxLangevinFixedPoint,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
