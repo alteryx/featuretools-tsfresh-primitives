@@ -36,6 +36,7 @@ from .max_langevin_fixed_point import MaxLangevinFixedPoint
 from .maximum import Maximum
 from .mean import Mean
 from .mean_abs_change import MeanAbsChange
+from .mean_change import MeanChange
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -76,6 +77,7 @@ primitives = {
     'Maximum': Maximum,
     'Mean': Mean,
     'MeanAbsChange': MeanAbsChange,
+    'MeanChange': MeanChange,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
