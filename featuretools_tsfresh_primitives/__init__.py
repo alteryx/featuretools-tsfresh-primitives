@@ -28,6 +28,7 @@ from .kurtosis import Kurtosis
 from .large_standard_deviation import LargeStandardDeviation
 from .last_location_of_maximum import LastLocationOfMaximum
 from .last_location_of_minimum import LastLocationOfMinimum
+from .length import Length
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -60,6 +61,7 @@ primitives = {
     'LargeStandardDeviation': LargeStandardDeviation,
     'LastLocationOfMaximum': LastLocationOfMaximum,
     'LastLocationOfMinimum': LastLocationOfMinimum,
+    'Length': Length,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
