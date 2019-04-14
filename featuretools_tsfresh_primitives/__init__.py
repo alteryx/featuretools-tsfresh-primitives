@@ -37,6 +37,7 @@ from .maximum import Maximum
 from .mean import Mean
 from .mean_abs_change import MeanAbsChange
 from .mean_change import MeanChange
+from .mean_second_derivative_central import MeanSecondDerivativeCentral
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -78,6 +79,7 @@ primitives = {
     'Mean': Mean,
     'MeanAbsChange': MeanAbsChange,
     'MeanChange': MeanChange,
+    'MeanSecondDerivativeCentral': MeanSecondDerivativeCentral,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
