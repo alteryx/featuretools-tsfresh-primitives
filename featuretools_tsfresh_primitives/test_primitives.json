@@ -67,6 +67,9 @@
     "LargeStandardDeviation": {
         "r": 0.5
     },
+    "LinearTrend": {
+        "attr": "slope"
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },

@@ -29,6 +29,7 @@ from .large_standard_deviation import LargeStandardDeviation
 from .last_location_of_maximum import LastLocationOfMaximum
 from .last_location_of_minimum import LastLocationOfMinimum
 from .length import Length
+from .linear_trend import LinearTrend
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -62,6 +63,7 @@ primitives = {
     'LastLocationOfMaximum': LastLocationOfMaximum,
     'LastLocationOfMinimum': LastLocationOfMinimum,
     'Length': Length,
+    'LinearTrend': LinearTrend,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
