@@ -53,6 +53,7 @@ from .ratio_value_number_to_time_series_length import RatioValueNumberToTimeSeri
 from .sample_entropy import SampleEntropy
 from .skewness import Skewness
 from .spkt_welch_density import SpktWelchDensity
+from .standard_deviation import StandardDeviation
 from .symmetry_looking import SymmetryLooking
 
 primitives = {
@@ -109,5 +110,6 @@ primitives = {
     'SampleEntropy': SampleEntropy,
     'Skewness': Skewness,
     'SpktWelchDensity': SpktWelchDensity,
+    'StandardDeviation': StandardDeviation,
     'SymmetryLooking': SymmetryLooking,
 }
