@@ -51,6 +51,7 @@ from .range_count import RangeCount
 from .ratio_beyond_r_sigma import RatioBeyondRSigma
 from .ratio_value_number_to_time_series_length import RatioValueNumberToTimeSeriesLength
 from .sample_entropy import SampleEntropy
+from .skewness import Skewness
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -106,6 +107,7 @@ primitives = {
     'RatioBeyondRSigma': RatioBeyondRSigma,
     'RatioValueNumberToTimeSeriesLength': RatioValueNumberToTimeSeriesLength,
     'SampleEntropy': SampleEntropy,
+    'Skewness': Skewness,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
