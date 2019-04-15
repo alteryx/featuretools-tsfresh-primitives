@@ -101,5 +101,8 @@
     },
     "SymmetryLooking": {
         "r": 0.5
+    },
+    "TimeReversalAsymmetryStatistic": {
+        "lag": 4
     }
 }
