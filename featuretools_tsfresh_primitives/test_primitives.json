@@ -86,6 +86,9 @@
     "PartialAutocorrelation": {
         "lag": 3
     },
+    "Quantile": {
+        "q": 0.5
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },
