@@ -83,6 +83,9 @@
     "NumberPeaks": {
         "n": 4
     },
+    "PartialAutocorrelation": {
+        "lag": 3
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },

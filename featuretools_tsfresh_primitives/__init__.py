@@ -43,6 +43,7 @@ from .minimum import Minimum
 from .number_crossing_m import NumberCrossingM
 from .number_cwt_peaks import NumberCwtPeaks
 from .number_peaks import NumberPeaks
+from .partial_autocorrelation import PartialAutocorrelation
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -90,6 +91,7 @@ primitives = {
     'NumberCrossingM': NumberCrossingM,
     'NumberCwtPeaks': NumberCwtPeaks,
     'NumberPeaks': NumberPeaks,
+    'PartialAutocorrelation': PartialAutocorrelation,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
