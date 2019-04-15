@@ -104,5 +104,8 @@
     },
     "TimeReversalAsymmetryStatistic": {
         "lag": 4
+    },
+    "ValueCount": {
+        "value": 1
     }
 }

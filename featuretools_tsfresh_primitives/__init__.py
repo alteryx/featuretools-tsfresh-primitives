@@ -59,6 +59,7 @@ from .sum_of_reoccurring_values import SumOfReoccurringValues
 from .sum_values import SumValues
 from .symmetry_looking import SymmetryLooking
 from .time_reversal_asymmetry_statistic import TimeReversalAsymmetryStatistic
+from .value_count import ValueCount
 
 primitives = {
     'AbsEnergy': AbsEnergy,
@@ -120,4 +121,5 @@ primitives = {
     'SumValues': SumValues,
     'SymmetryLooking': SymmetryLooking,
     'TimeReversalAsymmetryStatistic': TimeReversalAsymmetryStatistic,
+    'ValueCount': ValueCount,
 }
