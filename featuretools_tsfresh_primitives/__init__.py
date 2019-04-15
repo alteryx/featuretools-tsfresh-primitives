@@ -45,6 +45,7 @@ from .number_cwt_peaks import NumberCwtPeaks
 from .number_peaks import NumberPeaks
 from .partial_autocorrelation import PartialAutocorrelation
 from .percentage_of_reoccurring_datapoints_to_all_datapoints import PercentageOfReoccurringDatapointsToAllDatapoints
+from .percentage_of_reoccurring_values_to_all_values import PercentageOfReoccurringValuesToAllValues
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -94,6 +95,7 @@ primitives = {
     'NumberPeaks': NumberPeaks,
     'PartialAutocorrelation': PartialAutocorrelation,
     'PercentageOfReoccurringDatapointsToAllDatapoints': PercentageOfReoccurringDatapointsToAllDatapoints,
+    'PercentageOfReoccurringValuesToAllValues': PercentageOfReoccurringValuesToAllValues,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
