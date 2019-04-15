@@ -93,6 +93,9 @@
         "min": 1,
         "max": 10
     },
+    "RatioBeyondRSigma": {
+        "r": 0.5
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },

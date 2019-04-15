@@ -48,6 +48,7 @@ from .percentage_of_reoccurring_datapoints_to_all_datapoints import PercentageOf
 from .percentage_of_reoccurring_values_to_all_values import PercentageOfReoccurringValuesToAllValues
 from .quantile import Quantile
 from .range_count import RangeCount
+from .ratio_beyond_r_sigma import RatioBeyondRSigma
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -100,6 +101,7 @@ primitives = {
     'PercentageOfReoccurringValuesToAllValues': PercentageOfReoccurringValuesToAllValues,
     'Quantile': Quantile,
     'RangeCount': RangeCount,
+    'RatioBeyondRSigma': RatioBeyondRSigma,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
