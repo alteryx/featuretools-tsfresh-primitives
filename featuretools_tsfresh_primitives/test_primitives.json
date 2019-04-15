@@ -78,7 +78,10 @@
         "m": 10
     },
     "NumberCwtPeaks": {
-        "n": 2
+        "n": 4
+    },
+    "NumberPeaks": {
+        "n": 4
     },
     "SpktWelchDensity": {
         "coeff": 5

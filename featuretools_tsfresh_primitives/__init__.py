@@ -42,6 +42,7 @@ from .median import Median
 from .minimum import Minimum
 from .number_crossing_m import NumberCrossingM
 from .number_cwt_peaks import NumberCwtPeaks
+from .number_peaks import NumberPeaks
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -88,6 +89,7 @@ primitives = {
     'Minimum': Minimum,
     'NumberCrossingM': NumberCrossingM,
     'NumberCwtPeaks': NumberCwtPeaks,
+    'NumberPeaks': NumberPeaks,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
