@@ -74,6 +74,9 @@
         "m": 4,
         "r": 8
     },
+    "NumberCrossingM": {
+        "m": 10
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },
