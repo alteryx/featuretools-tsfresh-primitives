@@ -54,6 +54,7 @@ from .sample_entropy import SampleEntropy
 from .skewness import Skewness
 from .spkt_welch_density import SpktWelchDensity
 from .standard_deviation import StandardDeviation
+from .sum_of_reoccurring_data_points import SumOfReoccurringDataPoints
 from .symmetry_looking import SymmetryLooking
 
 primitives = {
@@ -111,5 +112,6 @@ primitives = {
     'Skewness': Skewness,
     'SpktWelchDensity': SpktWelchDensity,
     'StandardDeviation': StandardDeviation,
+    'SumOfReoccurringDataPoints': SumOfReoccurringDataPoints,
     'SymmetryLooking': SymmetryLooking,
 }
