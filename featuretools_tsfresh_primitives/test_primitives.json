@@ -89,6 +89,10 @@
     "Quantile": {
         "q": 0.5
     },
+    "RangeCount": {
+        "min": 1,
+        "max": 10
+    },
     "SpktWelchDensity": {
         "coeff": 5
     },

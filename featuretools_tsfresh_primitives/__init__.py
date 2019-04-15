@@ -47,6 +47,7 @@ from .partial_autocorrelation import PartialAutocorrelation
 from .percentage_of_reoccurring_datapoints_to_all_datapoints import PercentageOfReoccurringDatapointsToAllDatapoints
 from .percentage_of_reoccurring_values_to_all_values import PercentageOfReoccurringValuesToAllValues
 from .quantile import Quantile
+from .range_count import RangeCount
 from .spkt_welch_density import SpktWelchDensity
 from .symmetry_looking import SymmetryLooking
 
@@ -98,6 +99,7 @@ primitives = {
     'PercentageOfReoccurringDatapointsToAllDatapoints': PercentageOfReoccurringDatapointsToAllDatapoints,
     'PercentageOfReoccurringValuesToAllValues': PercentageOfReoccurringValuesToAllValues,
     'Quantile': Quantile,
+    'RangeCount': RangeCount,
     'SpktWelchDensity': SpktWelchDensity,
     'SymmetryLooking': SymmetryLooking,
 }
