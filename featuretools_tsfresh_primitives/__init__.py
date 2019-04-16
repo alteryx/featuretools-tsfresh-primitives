@@ -60,6 +60,7 @@ from .sum_values import SumValues
 from .symmetry_looking import SymmetryLooking
 from .time_reversal_asymmetry_statistic import TimeReversalAsymmetryStatistic
 from .value_count import ValueCount
+from .variance import Variance
 
 primitives = {
     'AbsEnergy': AbsEnergy,
@@ -122,4 +123,5 @@ primitives = {
     'SymmetryLooking': SymmetryLooking,
     'TimeReversalAsymmetryStatistic': TimeReversalAsymmetryStatistic,
     'ValueCount': ValueCount,
+    'Variance': Variance,
 }
