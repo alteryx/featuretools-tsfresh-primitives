@@ -9,8 +9,8 @@ from .augmented_dickey_fuller import AugmentedDickeyFuller
 from .autocorrelation import Autocorrelation
 from .binned_entropy import BinnedEntropy
 from .c3 import C3
-from .cid_ce import CidCe
 from .change_quantiles import ChangeQuantiles
+from .cid_ce import CidCe
 from .count_above_mean import CountAboveMean
 from .count_below_mean import CountBelowMean
 from .cwt_coefficients import CwtCoefficients
