@@ -1,13 +1,12 @@
-from tsfresh.feature_extraction.feature_calculators import cid_ce
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import cid_ce
 
 
 class CidCe(AggregationPrimitive):
-    """
-    This function calculator is an estimate for a time series complexity [1] (A more complex time series has more peaks,
-    valleys etc.). It calculates the value of
+    """This function calculator is an estimate for a time series complexity [1]
+    (A more complex time series has more peaks, valleys etc.). It calculates
+    the value of
 
     .. math::
 
@@ -21,6 +20,9 @@ class CidCe(AggregationPrimitive):
 
     Args:
         normalize (bool) : Should the time series be z-transformed?
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.cid_ce
     """
     name = "cid_ce"
     input_types = [Numeric]
