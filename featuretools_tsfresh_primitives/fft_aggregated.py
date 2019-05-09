@@ -1,16 +1,18 @@
-from tsfresh.feature_extraction.feature_calculators import fft_aggregated
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import fft_aggregated
 
 
 class FftAggregated(AggregationPrimitive):
-    """
-    Returns the spectral centroid (mean), variance, skew, and kurtosis of the absolute fourier transform spectrum.
+    """Returns the spectral centroid (mean), variance, skew, and kurtosis of
+    the absolute fourier transform spectrum.
 
     Args:
-        aggtype (str) : Controls which aggregation is returned.
-            Possible values are: ["centroid", "variance", "skew", "kurtosis"]
+        aggtype (str) : Controls which aggregation is returned. Possible values
+            are: ["centroid", "variance", "skew", "kurtosis"]
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.fft_aggregated
     """
     name = "fft_aggregated"
     input_types = [Numeric]

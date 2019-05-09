@@ -1,12 +1,14 @@
-from tsfresh.feature_extraction.feature_calculators import absolute_sum_of_changes
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import absolute_sum_of_changes
 
 
 class AbsoluteSumOfChanges(AggregationPrimitive):
-    """
-    Returns the absolute energy of the time series which is the sum over the squared values.
+    """Returns the sum over the absolute value
+    of consecutive changes in the series x.
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.absolute_sum_of_changes
     """
     name = "absolute_sum_of_changes"
     input_types = [Numeric]

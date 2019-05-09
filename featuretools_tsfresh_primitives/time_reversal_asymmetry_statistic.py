@@ -1,12 +1,10 @@
-from tsfresh.feature_extraction.feature_calculators import time_reversal_asymmetry_statistic
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import time_reversal_asymmetry_statistic
 
 
 class TimeReversalAsymmetryStatistic(AggregationPrimitive):
-    """
-    This function calculates the value of
+    """This function calculates the value of
 
     .. math::
 
@@ -18,8 +16,8 @@ class TimeReversalAsymmetryStatistic(AggregationPrimitive):
 
         \\mathbb{E}[L^2(X)^2 \\cdot L(X) - L(X) \\cdot X^2]
 
-    where :math:`\\mathbb{E}` is the mean and :math:`L` is the lag operator. It was proposed in [1] as a
-    promising feature to extract from time series.
+    where :math:`\\mathbb{E}` is the mean and :math:`L` is the lag operator.
+    It was proposed in [1] as a promising feature to extract from time series.
 
     .. rubric:: References
 
@@ -29,6 +27,9 @@ class TimeReversalAsymmetryStatistic(AggregationPrimitive):
 
     Args:
         lag (int) : The lag that should be used in the calculation of the feature.
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.time_reversal_asymmetry_statistic
     """
     name = "time_reversal_asymmetry_statistic"
     input_types = [Numeric]

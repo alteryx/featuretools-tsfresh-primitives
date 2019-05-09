@@ -1,12 +1,10 @@
-from tsfresh.feature_extraction.feature_calculators import friedrich_coefficients
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import friedrich_coefficients
 
 
 class FriedrichCoefficients(AggregationPrimitive):
-    """
-    Coefficients of polynomial :math:`h(x)`, which has been fitted to
+    """Coefficients of polynomial :math:`h(x)`, which has been fitted to
     the deterministic dynamics of Langevin model
 
     .. math::
@@ -22,9 +20,13 @@ class FriedrichCoefficients(AggregationPrimitive):
     |  *Extracting model equations from experimental data*
 
     Args:
-        m (int) : The dynamics. Must be a positive integer.
+        m (int) : The order of polynom to fit for estimating fixed points of
+            dynamics. Must be a positive integer.
         r (float) : The number of quantiles to use for averaging.
-        coeff (int) : The coefficient.
+        coeff (int) : The coefficient. Must be a positive interger.
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.friedrich_coefficients
     """
     name = "friedrich_coefficients"
     input_types = [Numeric]
