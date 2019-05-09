@@ -1,19 +1,20 @@
-from tsfresh.feature_extraction.feature_calculators import symmetry_looking
-
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Numeric
+from featuretools.variable_types import Boolean, Numeric
+from tsfresh.feature_extraction.feature_calculators import symmetry_looking
 
 
 class SymmetryLooking(AggregationPrimitive):
-    """
-    Boolean variable denoting if the distribution looks symmetric.
+    """Boolean variable denoting if the distribution looks symmetric.
 
     Args:
         r (float) : Percentage of the range to compare with.
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.symmetry_looking
     """
     name = "symmetry_looking"
     input_types = [Numeric]
-    return_type = Numeric
+    return_type = Boolean
     stack_on_self = False
 
     def __init__(self, r):

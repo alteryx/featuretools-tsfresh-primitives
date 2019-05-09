@@ -1,12 +1,11 @@
-from tsfresh.feature_extraction.feature_calculators import binned_entropy
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import binned_entropy
 
 
 class BinnedEntropy(AggregationPrimitive):
-    """
-    First bins the values of x into max_bins equidistant bins. Then calculates the value of
+    """First bins the values of x into max_bins equidistant bins.
+    Then calculates the value of
 
     .. math::
 
@@ -16,6 +15,9 @@ class BinnedEntropy(AggregationPrimitive):
 
      Args:
         max_bins (int) : The maximal number of bins.
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.binned_entropy
     """
     name = "binned_entropy"
     input_types = [Numeric]

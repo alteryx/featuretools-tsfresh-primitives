@@ -1,12 +1,10 @@
-from tsfresh.feature_extraction.feature_calculators import c3
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import c3
 
 
 class C3(AggregationPrimitive):
-    """
-    This function calculates the value of
+    """This function calculates the value of
 
     .. math::
 
@@ -18,8 +16,8 @@ class C3(AggregationPrimitive):
 
         \\mathbb{E}[L^2(X)^2 \\cdot L(X) \\cdot X]
 
-    where :math:`\\mathbb{E}` is the mean and :math:`L` is the lag operator. It was proposed in [1] as a measure of
-    non linearity in the time series.
+    where :math:`\\mathbb{E}` is the mean and :math:`L` is the lag operator.
+    It was proposed in [1] as a measure of non linearity in the time series.
 
     .. rubric:: References
 
@@ -29,6 +27,9 @@ class C3(AggregationPrimitive):
 
     Args:
         lag (int) : The lag that should be used in the calculation of the feature.
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.c3
     """
     name = "c3"
     input_types = [Numeric]

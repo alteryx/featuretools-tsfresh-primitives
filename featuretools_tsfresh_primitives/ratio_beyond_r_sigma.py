@@ -1,15 +1,17 @@
-from tsfresh.feature_extraction.feature_calculators import ratio_beyond_r_sigma
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import ratio_beyond_r_sigma
 
 
 class RatioBeyondRSigma(AggregationPrimitive):
-    """
-    Ratio of values that are more than r*std(x) (so r sigma) away from the mean of x.
+    """Ratio of values that are more than r*std(x) (so r sigma) away from the
+    mean of x.
 
     Args:
         r (float) : Weight of sigma.
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.ratio_beyond_r_sigma
     """
     name = "ratio_beyond_r_sigma"
     input_types = [Numeric]

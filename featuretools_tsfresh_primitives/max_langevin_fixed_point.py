@@ -1,13 +1,12 @@
-from tsfresh.feature_extraction.feature_calculators import max_langevin_fixed_point
-
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from tsfresh.feature_extraction.feature_calculators import max_langevin_fixed_point
 
 
 class MaxLangevinFixedPoint(AggregationPrimitive):
-    """
-    Largest fixed point of dynamics  :math:argmax_x {h(x)=0}` estimated from polynomial :math:`h(x)`,
-    which has been fitted to the deterministic dynamics of Langevin model
+    """Largest fixed point of dynamics :math:argmax_x {h(x)=0}` estimated from
+    polynomial :math:`h(x)`, which has been fitted to the deterministic
+    dynamics of Langevin model
 
     .. math::
         \\dot(x)(t) = h(x(t)) + R \\mathcal(N)(0,1)
@@ -21,7 +20,10 @@ class MaxLangevinFixedPoint(AggregationPrimitive):
 
     Args:
         m (int) : Order of polynomial to fit for estimating fixed points of dynamics.
-        r (float) : Number of quantiles to use for averaging.
+        r (float) : Number of quantils to use for averaging.
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.max_langevin_fixed_point
     """
     name = "max_langevin_fixed_point"
     input_types = [Numeric]
