@@ -1,0 +1,4 @@
+include LICENSE
+include TSFRESH_LICENSE.txt
+include test-requirements.txt
+include featuretools_tsfresh_primitives/tests/test_primitives.json
