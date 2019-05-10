@@ -88,5 +88,15 @@ def test_all_primitives(entityset, parameters):
     is_agg_primitive = lambda name: issubclass(PRIMITIVES[name], ft.primitives.AggregationPrimitive)
     construct_primitive = lambda name: PRIMITIVES[name](**parameters.get(name, {}))
     agg_primitives = [construct_primitive(name) for name in PRIMITIVES if is_agg_primitive(name)]
+    assert len(agg_primitives) == len(PRIMITIVES)
     feature_matrix, features = ft.dfs(entityset=entityset, target_entity='sessions', agg_primitives=agg_primitives)
     assert not feature_matrix.empty
+    used_primitives = set({})
+
+    for feature in features:
+        prims = {type(base_feat.primitive) for base_feat in feature.base_features}
+        prims.add(type(feature.primitive))
+        used_primitives = used_primitives | prims
+
+    for primitive in PRIMITIVES.values():
+        assert primitive in used_primitives
