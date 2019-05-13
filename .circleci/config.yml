@@ -1,0 +1,13 @@
+version: 2
+
+jobs:
+  "python-36":
+    working_directory: ~/featuretools-tsfresh-primitives
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - checkout
+      - run: virtualenv venv
+      - run: source venv/bin/activate && pip install .
+      - run: source venv/bin/activate && pip install -r test-requirements.txt
+      - run: source venv/bin/activate && pytest
