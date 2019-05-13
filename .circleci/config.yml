@@ -11,9 +11,3 @@ jobs:
       - run: source venv/bin/activate && pip install .
       - run: source venv/bin/activate && pip install -r test-requirements.txt
       - run: source venv/bin/activate && pytest
-
-workflows:
-  version: 2
-  test:
-    jobs:
-      - "python-36"
