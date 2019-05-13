@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Clone featuretools-tsfresh-primitives repo
-git clone git@github.com:FeatureLabs/featuretools-tsfresh-primitives.git /home/circleci/featuretools-tsfresh-primitives
+git clone https://github.com/FeatureLabs/featuretools-tsfresh-primitives.git /home/circleci/featuretools-tsfresh-primitives
 # Checkout specified commit
 cd /home/circleci/featuretools-tsfresh-primitives
 git checkout "${1}"
