@@ -17,7 +17,7 @@ agg_autocorrelation(data, param=param)
 ```
 With tsfresh primtives in `featuretools`, this is how to calculate the same feature.
 ```python
-from featuretools.primitives import AggAutocorrelation
+from featuretools.tsfresh import AggAutocorrelation
 
 data = list(range(10))
 AggAutocorrelation(f_agg='mean', maxlag=5)(data)
@@ -29,7 +29,7 @@ AggAutocorrelation(f_agg='mean', maxlag=5)(data)
 In `featuretools`, this is how to combine tsfresh primitives with built-in or other installed primitives.
 ```python
 import featuretools as ft
-from featuretools.primitives import AggAutocorrelation, Mean
+from featuretools.tsfresh import AggAutocorrelation, Mean
 
 entityset = ft.demo.load_mock_customer(return_entityset=True)
 agg_primitives = [Mean, AggAutocorrelation(f_agg='mean', maxlag=5)]
