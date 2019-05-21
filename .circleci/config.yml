@@ -17,6 +17,16 @@ commands:
           source venv/bin/activate
           cd "featuretools_tsfresh_primitives-$(python setup.py --version)/"
           pytest
+  test_entry_point:
+    description: "install featuretools complete and test entry point"
+    steps:
+      - run: |
+          virtualenv venv_ft
+          source venv_ft/bin/activate
+          pip install "featuretools[complete]"
+          python -c "import featuretools_tsfresh_primitives"
+          python -c "import featuretools.tsfresh"
+
 
 jobs:
   "python-27":
