@@ -6,9 +6,6 @@ jobs:
       python_version:
         type: string
         default: "3.7"
-      codecov:
-        type: boolean
-        default: false
     working_directory: ~/featuretools-tsfresh-primitives
     docker:
         - image: circleci/python:<< parameters.python_version >>
