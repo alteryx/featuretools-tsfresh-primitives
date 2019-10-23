@@ -19,8 +19,8 @@ jobs:
           command: |
             virtualenv env -q
             source env/bin/activate
-            pip install -r test-requirements.txt
-            pip install .
+            pip install -r test-requirements.txt -q
+            pip install . -q
       - run:
           name: "Run Unit Tests"
           command: |
