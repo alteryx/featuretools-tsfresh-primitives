@@ -6,7 +6,7 @@ setup(
     author='Feature Labs, Inc.',
     author_email='support@featurelabs.com',
     license='MIT',
-    install_requires=['tsfresh>=0.11.2', 'featuretools>=0.7.0'],
+    install_requires=['tsfresh>=0.11.2', 'featuretools>=0.11.0'],
     packages=find_packages(),
     include_package_data=True,
     entry_points={
