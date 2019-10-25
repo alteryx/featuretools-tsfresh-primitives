@@ -62,7 +62,7 @@ jobs:
 
 workflows:
   version: 2
-  integration_test:
+  integration_tests:
     jobs:
       - unit_tests:
           name: "Unit Tests - Python 3.5"
