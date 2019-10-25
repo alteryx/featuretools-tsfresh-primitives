@@ -10,8 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: PyPI Upload
-      uses: FeatureLabs/gh-action-pypi-upload@venv
+      uses: FeatureLabs/gh-action-pypi-upload@master
       env:
         PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
         PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
+        TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
