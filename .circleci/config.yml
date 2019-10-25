@@ -21,6 +21,24 @@ commands:
             pip install . -q
 
 jobs:
+  lint_tests:
+    working_directory: ~/featuretools-tsfresh-primitives
+    parameters:
+      image_tag:
+        type: string
+        default: "python:3.7"
+    executor:
+      name: python
+      image_tag: << parameters.image_tag >>
+    steps:
+      - installation
+      - run:
+          name: "Run Lint Tests"
+          command: |
+            source env/bin/activate
+            make lint-tests
+
+
   unit_tests:
     working_directory: ~/featuretools-tsfresh-primitives
     parameters:
@@ -41,7 +59,7 @@ jobs:
           name: "Run Unit Tests"
           command: |
             source env/bin/activate
-            pytest --cache-clear --show-capture=stderr -vv
+            make unit-tests
 
   entry_point_test:
     working_directory: ~/featuretools-tsfresh-primitives
@@ -64,6 +82,15 @@ workflows:
   version: 2
   integration_tests:
     jobs:
+      - lint_tests:
+          name: "Lint Tests - Python 3.5"
+          image_tag: "python:3.5"
+      - lint_tests:
+          name: "Lint Tests - Python 3.6"
+          image_tag: "python:3.6"
+      - lint_tests:
+          name: "Lint Tests - Python 3.7"
+          image_tag: "python:3.7"
       - unit_tests:
           name: "Unit Tests - Python 3.5"
           image_tag: "python:3.5"

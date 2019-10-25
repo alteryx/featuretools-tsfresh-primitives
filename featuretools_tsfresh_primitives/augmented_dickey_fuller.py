@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
-from tsfresh.feature_extraction.feature_calculators import augmented_dickey_fuller
+from tsfresh.feature_extraction.feature_calculators import \
+    augmented_dickey_fuller
 
 
 class AugmentedDickeyFuller(AggregationPrimitive):
