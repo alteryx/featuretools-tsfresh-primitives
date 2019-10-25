@@ -1,28 +1,59 @@
 version: 2.1
 
-jobs:
-  test_python:
+executors:
+  python:
     parameters:
-      python_version:
+      image_tag:
         type: string
-        default: "3.7"
-    working_directory: ~/featuretools-tsfresh-primitives
+        default: "python:3.7"
     docker:
-        - image: circleci/python:<< parameters.python_version >>
+      - image: circleci/<< parameters.image_tag >>
+
+commands:
+  installation:
     steps:
       - checkout
       - run:
-          name: "Prepare Python Environemnt"
+          name: "Install Package in Virtual Environment"
           command: |
             virtualenv env -q
             source env/bin/activate
-            pip install -r test-requirements.txt -q
             pip install . -q
+
+jobs:
+  unit_tests:
+    working_directory: ~/featuretools-tsfresh-primitives
+    parameters:
+      image_tag:
+        type: string
+        default: "python:3.7"
+    executor:
+      name: python
+      image_tag: << parameters.image_tag >>
+    steps:
+      - installation
+      - run:
+          name: "Install Test Requirements"
+          command: |
+            source env/bin/activate
+            pip install -r test-requirements.txt -q
       - run:
           name: "Run Unit Tests"
           command: |
             source env/bin/activate
-            pytest --cache-clear --show-capture=stderr --disable-warnings -vv
+            pytest --cache-clear --show-capture=stderr -vv
+
+  entry_point_test:
+    working_directory: ~/featuretools-tsfresh-primitives
+    parameters:
+      image_tag:
+        type: string
+        default: "python:3.7"
+    executor:
+      name: python
+      image_tag: << parameters.image_tag >>
+    steps:
+      - installation
       - run:
           name: "Test Entry Point"
           command: |
@@ -31,14 +62,23 @@ jobs:
 
 workflows:
   version: 2
-  test_all_python_versions:
+  integration_test:
     jobs:
-      - test_python:
-          name: "python 3.5"
-          python_version: "3.5"
-      - test_python:
-          name: "python 3.6"
-          python_version: "3.6"
-      - test_python:
-          name: "python 3.7"
-          python_version: "3.7"
+      - unit_tests:
+          name: "Unit Tests - Python 3.5"
+          image_tag: "python:3.5"
+      - unit_tests:
+          name: "Unit Tests - Python 3.6"
+          image_tag: "python:3.6"
+      - unit_tests:
+          name: "Unit Tests - Python 3.7"
+          image_tag: "python:3.7"
+      - entry_point_test:
+          name: "Entry Point Test - Python 3.5"
+          image_tag: "python:3.5"
+      - entry_point_test:
+          name: "Entry Point Test - Python 3.6"
+          image_tag: "python:3.6"
+      - entry_point_test:
+          name: "Entry Point Test - Python 3.7"
+          image_tag: "python:3.7"
