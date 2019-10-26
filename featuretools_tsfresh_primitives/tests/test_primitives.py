@@ -1,10 +1,15 @@
 import json
 import os
 
-from pytest import fixture
 import featuretools as ft
-
 import featuretools_tsfresh_primitives
+import numpy.testing
+import pandas as pd
+import pytest
+from pytest import fixture
+
+from tsfresh.feature_extraction import extract_features
+from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
 PRIMITIVES = {
     "AbsEnergy" : featuretools_tsfresh_primitives.AbsEnergy,
@@ -72,7 +77,7 @@ PRIMITIVES = {
     "VarianceLargerThanStandardDeviation" : featuretools_tsfresh_primitives.VarianceLargerThanStandardDeviation,
 }
 
-@fixture
+@fixture(scope='session')
 def entityset():
     return ft.demo.load_mock_customer(return_entityset=True)
 
@@ -100,3 +105,42 @@ def test_all_primitives(entityset, parameters):
 
     for primitive in PRIMITIVES.values():
         assert primitive in used_primitives
+
+
+@fixture(scope='session')
+def df(entityset):
+    df = pd.merge(entityset['sessions'].df, entityset['transactions'].df, on='session_id')
+    return df[['session_id', 'transaction_time', 'amount']]
+
+
+def _comprehensive_fc_prims():
+    """Yield a tuple (fc_setting, primitive, id)"""
+    fc_params = ComprehensiveFCParameters()
+    fc_params.pop('linear_trend_timewise')  # not supported by featuretools-tsfresh-primitives atm
+
+    for fc_name, params_list in fc_params.items():
+        primitives = featuretools_tsfresh_primitives.primitives_from_fc_settings({fc_name: params_list})
+        if not isinstance(params_list, list):
+            params_list = [params_list]
+        for params, primitive in zip(params_list, primitives):
+            fc_setting = {fc_name: [params] if params else None}
+            yield (fc_setting, primitive, str(fc_setting))
+
+
+@pytest.mark.parametrize('fc_setting,primitive',
+                         [(x[0], x[1]) for x in _comprehensive_fc_prims()],
+                         ids=[x[2] for x in _comprehensive_fc_prims()])
+def test_primitive(entityset, df, fc_setting, primitive):
+    expected = extract_features(df,
+                                column_id='session_id',
+                                column_sort='transaction_time',
+                                default_fc_parameters=fc_setting)
+    actual, _ = ft.dfs(entityset=entityset,
+                       max_depth=1,
+                       target_entity='sessions',
+                       trans_primitives=[],
+                       where_primitives=[],
+                       agg_primitives=[primitive])
+    actual = actual.filter(regex='transactions.amount')
+
+    numpy.testing.assert_almost_equal(expected.values, actual.values)
