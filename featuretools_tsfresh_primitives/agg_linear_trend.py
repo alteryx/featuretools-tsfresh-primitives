@@ -2,6 +2,8 @@ from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import agg_linear_trend
 
+from .utils import to_array
+
 
 class AggLinearTrend(AggregationPrimitive):
     """Calculates a linear least-squares regression for values of the time
@@ -31,6 +33,7 @@ class AggLinearTrend(AggregationPrimitive):
 
     def get_function(self):
         def function(x):
+            x = to_array(x)
             param = [{'attr': self.attr, 'f_agg': self.f_agg, 'chunk_len': self.chunk_len}]
             return list(agg_linear_trend(x, param))[0][1]
 
