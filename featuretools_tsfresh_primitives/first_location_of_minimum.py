@@ -2,6 +2,8 @@ from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import first_location_of_minimum
 
+from .utils import to_array
+
 
 class FirstLocationOfMinimum(AggregationPrimitive):
     """Returns the first location of the minimal value of x. The position is
@@ -16,4 +18,7 @@ class FirstLocationOfMinimum(AggregationPrimitive):
     stack_on_self = False
 
     def get_function(self):
-        return first_location_of_minimum
+        def function(x):
+            return first_location_of_minimum(to_array(x))
+
+        return function

@@ -1,5 +1,8 @@
 import importlib
 
+import numpy as np
+import pandas as pd
+
 
 def _camel_case(snake_str):
     words = snake_str.split('_')
@@ -34,3 +37,10 @@ def primitives_from_fc_settings(fc_settings):
         fc_primitives = [primitive_cls(**params or {}) for params in params_list]
         primitives.extend(fc_primitives)
     return primitives
+
+
+def to_array(x):
+    """Convert the input to a numpy array"""
+    if isinstance(x, pd.Series):
+        return x.values
+    return np.asarray(x)
