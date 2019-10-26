@@ -62,3 +62,5 @@ from .time_reversal_asymmetry_statistic import TimeReversalAsymmetryStatistic
 from .value_count import ValueCount
 from .variance import Variance
 from .variance_larger_than_standard_deviation import VarianceLargerThanStandardDeviation
+
+from .utils import primitives_from_fc_settings
