@@ -1,9 +1,9 @@
 import json
 import os
 
-import featuretools as ft
 from pytest import fixture
 
+import featuretools as ft
 import featuretools_tsfresh_primitives
 
 PRIMITIVES = {
