@@ -1,6 +1,5 @@
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
-
 from tsfresh.feature_extraction.feature_calculators import \
     percentage_of_reoccurring_datapoints_to_all_datapoints
 
