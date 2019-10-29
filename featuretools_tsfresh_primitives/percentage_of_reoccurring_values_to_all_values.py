@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
-from tsfresh.feature_extraction.feature_calculators import percentage_of_reoccurring_values_to_all_values
+from tsfresh.feature_extraction.feature_calculators import \
+    percentage_of_reoccurring_values_to_all_values
 
 
 class PercentageOfReoccurringValuesToAllValues(AggregationPrimitive):

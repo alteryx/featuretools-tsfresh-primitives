@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
-from tsfresh.feature_extraction.feature_calculators import max_langevin_fixed_point
+from tsfresh.feature_extraction.feature_calculators import \
+    max_langevin_fixed_point
 
 
 class MaxLangevinFixedPoint(AggregationPrimitive):
