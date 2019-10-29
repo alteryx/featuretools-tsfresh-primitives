@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
-from tsfresh.feature_extraction.feature_calculators import sum_of_reoccurring_values
+from tsfresh.feature_extraction.feature_calculators import \
+    sum_of_reoccurring_values
 
 
 class SumOfReoccurringValues(AggregationPrimitive):

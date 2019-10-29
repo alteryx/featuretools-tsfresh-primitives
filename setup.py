@@ -7,6 +7,9 @@ setup(
     author_email='support@featurelabs.com',
     license='MIT',
     install_requires=['tsfresh>=0.11.2', 'featuretools>=0.7.0'],
+    tests_require=open('test-requirements.txt').readlines(),
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     packages=find_packages(),
     include_package_data=True,
     entry_points={

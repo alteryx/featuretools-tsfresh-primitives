@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Numeric, Boolean
-from tsfresh.feature_extraction.feature_calculators import large_standard_deviation
+from featuretools.variable_types import Boolean, Numeric
+from tsfresh.feature_extraction.feature_calculators import \
+    large_standard_deviation
 
 
 class LargeStandardDeviation(AggregationPrimitive):
