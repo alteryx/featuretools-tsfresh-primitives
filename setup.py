@@ -5,6 +5,7 @@ setup(
     version='0.1.0',
     author='Feature Labs, Inc.',
     author_email='support@featurelabs.com',
+    description='TSFresh primitives for featuretools',
     license='MIT',
     install_requires=['tsfresh>=0.11.2', 'featuretools>=0.7.0'],
     tests_require=open('test-requirements.txt').readlines(),
