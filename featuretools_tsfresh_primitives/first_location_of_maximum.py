@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
-from tsfresh.feature_extraction.feature_calculators import first_location_of_maximum
+from tsfresh.feature_extraction.feature_calculators import \
+    first_location_of_maximum
 
 from .utils import to_array
 

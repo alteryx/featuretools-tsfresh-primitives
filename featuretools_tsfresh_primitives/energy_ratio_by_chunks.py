@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
-from tsfresh.feature_extraction.feature_calculators import energy_ratio_by_chunks
+from tsfresh.feature_extraction.feature_calculators import \
+    energy_ratio_by_chunks
 
 
 class EnergyRatioByChunks(AggregationPrimitive):
