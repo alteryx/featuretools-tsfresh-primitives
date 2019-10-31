@@ -2,14 +2,14 @@ import json
 import os
 
 import featuretools as ft
-import featuretools_tsfresh_primitives
 import numpy.testing
 import pandas as pd
 import pytest
 from pytest import fixture
-
 from tsfresh.feature_extraction import extract_features
 from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
+
+import featuretools_tsfresh_primitives
 
 PRIMITIVES = {
     "AbsEnergy": featuretools_tsfresh_primitives.AbsEnergy,
@@ -76,6 +76,7 @@ PRIMITIVES = {
     "Variance": featuretools_tsfresh_primitives.Variance,
     "VarianceLargerThanStandardDeviation": featuretools_tsfresh_primitives.VarianceLargerThanStandardDeviation,
 }
+
 
 @fixture(scope='session')
 def entityset():
