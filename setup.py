@@ -7,7 +7,7 @@ setup(
     author_email='support@featurelabs.com',
     description='TSFresh primitives for featuretools',
     license='MIT',
-    install_requires=['tsfresh>=0.11.2', 'featuretools>=0.7.0,<0.12.0', 'pandas>=0.23.0,<0.24.0', 'python-dateutil>=2.6.1,<2.8.1'],
+    install_requires=open('requirements.txt').readlines(),
     tests_require=open('test-requirements.txt').readlines(),
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
