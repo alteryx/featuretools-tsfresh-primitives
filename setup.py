@@ -7,7 +7,7 @@ setup(
     author_email='support@featurelabs.com',
     description='TSFresh primitives for featuretools',
     license='MIT',
-    install_requires=open('requirements.txt').readlines()
+    install_requires=open('requirements.txt').readlines(),
     tests_require=open('test-requirements.txt').readlines(),
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
