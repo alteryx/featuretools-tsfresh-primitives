@@ -108,6 +108,12 @@ def test_all_primitives(entityset, parameters):
         assert primitive in used_primitives
 
 
+@pytest.mark.parametrize('x,expected',
+                         [('ab_ab_ab', 'AbAbAb'), ('c3', 'C3'), ('c_3', 'C3')])
+def test_camel_case(x, expected):
+    assert featuretools_tsfresh_primitives.utils._camel_case(x) == expected
+
+
 @fixture(scope='session')
 def df(entityset):
     df = pd.merge(entityset['sessions'].df, entityset['transactions'].df, on='session_id')
