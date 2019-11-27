@@ -1,7 +1,7 @@
-import importlib
-
 import numpy as np
 import pandas as pd
+
+import featuretools_tsfresh_primitives
 
 
 def _camel_case(snake_str):
@@ -11,8 +11,7 @@ def _camel_case(snake_str):
 
 
 def _tsfresh_to_featuretools(fc_name):
-    module = importlib.import_module('featuretools_tsfresh_primitives')
-    return getattr(module, _camel_case(fc_name))
+    return getattr(featuretools_tsfresh_primitives, _camel_case(fc_name))
 
 
 def primitives_from_fc_settings(fc_settings):
