@@ -4,14 +4,14 @@ import pandas as pd
 import featuretools_tsfresh_primitives
 
 
-def _camel_case(snake_str):
+def _pascal_case(snake_str):
     words = snake_str.split('_')
     titled_words = map(str.title, words)
     return ''.join(titled_words)
 
 
 def _tsfresh_to_featuretools(fc_name):
-    return getattr(featuretools_tsfresh_primitives, _camel_case(fc_name))
+    return getattr(featuretools_tsfresh_primitives, _pascal_case(fc_name))
 
 
 def primitives_from_fc_settings(fc_settings):
