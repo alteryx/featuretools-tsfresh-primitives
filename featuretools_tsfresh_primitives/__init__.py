@@ -62,6 +62,7 @@ from .sum_of_reoccurring_values import SumOfReoccurringValues
 from .sum_values import SumValues
 from .symmetry_looking import SymmetryLooking
 from .time_reversal_asymmetry_statistic import TimeReversalAsymmetryStatistic
+from .utils import primitives_from_fc_settings
 from .value_count import ValueCount
 from .variance import Variance
 from .variance_larger_than_standard_deviation import \
