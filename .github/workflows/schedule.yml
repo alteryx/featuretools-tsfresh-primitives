@@ -10,7 +10,7 @@ on:
         - uses: actions/checkout@master
         - uses: FeatureLabs/circleci-scheduler@dev
             env:
-            REPOSITORY: featurelabs/featuretools
-            EVENT: Latest Commit to Master
-            WITHIN: 'days=1'
-            #   TOKEN : ${{ secrets.TOKEN }}
+                REPOSITORY: featurelabs/featuretools
+                EVENT: Latest Commit to Master
+                WITHIN: 'days=1'
+                TOKEN : ${{ secrets.TOKEN }}
