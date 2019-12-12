@@ -13,4 +13,4 @@ jobs:
       REPOSITORY: featurelabs/featuretools
       EVENT: Latest Commit to Master
       WITHIN: 'days=1'
-      TOKEN : ${{ secrets.TOKEN }}
+      # TOKEN : ${{ secrets.TOKEN }}
