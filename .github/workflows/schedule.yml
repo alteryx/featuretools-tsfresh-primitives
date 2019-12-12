@@ -7,7 +7,7 @@ jobs:
   Featuretools:
     runs-on: ubuntu-latest
     steps:
-    - uses: FeatureLabs/circleci-scheduler@dev
+    - uses: ./.github/circleci-scheduler
     env:
       REPOSITORY: featurelabs/featuretools
       EVENT: Latest Commit to Master
