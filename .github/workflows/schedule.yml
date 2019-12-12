@@ -4,13 +4,13 @@ on:
 
 name: CircleCI Scheduler
 jobs:
-  Featuretools:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Variables
-      env:
-        REPOSITORY: featurelabs/featuretools
-        EVENT: Latest Commit to Master
-        WITHIN: 'days=1'
-      run: |
-        echo $REPOSITORY $EVENT $WITHIN
+Featuretools:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Echo
+    env:
+      REPOSITORY: featurelabs/featuretools
+      EVENT: Latest Commit to Master
+      WITHIN: 'days=1'
+    run: |
+      echo $REPOSITORY $EVENT $WITHIN

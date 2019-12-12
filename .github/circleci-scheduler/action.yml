@@ -1,4 +1,0 @@
-name: 'CircleCI Schdeuler'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
