@@ -7,7 +7,6 @@ jobs:
   Featuretools:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
     - uses: FeatureLabs/circleci-scheduler@dev
     env:
       REPOSITORY: featurelabs/featuretools
