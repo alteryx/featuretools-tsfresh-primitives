@@ -7,9 +7,10 @@ jobs:
   Featuretools:
     runs-on: ubuntu-latest
     steps:
-    - uses: ./.github/circleci-scheduler
-    env:
-      REPOSITORY: featurelabs/featuretools
-      EVENT: Latest Commit to Master
-      WITHIN: 'days=1'
-      # TOKEN : ${{ secrets.TOKEN }}
+    - name: Variables
+      env:
+        REPOSITORY: featurelabs/featuretools
+        EVENT: Latest Commit to Master
+        WITHIN: 'days=1'
+      run: |
+        echo $REPOSITORY $EVENT $WITHIN
