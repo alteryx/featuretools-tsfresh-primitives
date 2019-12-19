@@ -1,16 +1,11 @@
-on:
-  schedule:
-    - cron:  '*/5 * * * *'
+on: push
 
 name: CircleCI Scheduler
 jobs:
 Featuretools:
   runs-on: ubuntu-latest
   steps:
-  - name: Echo
-    env:
-      REPOSITORY: featurelabs/featuretools
-      EVENT: Latest Commit to Master
-      WITHIN: 'days=1'
-    run: |
-      echo $REPOSITORY $EVENT $WITHIN
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
