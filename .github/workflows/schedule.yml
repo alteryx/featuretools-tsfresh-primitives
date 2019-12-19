@@ -8,9 +8,8 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Display the path
-        run: |
-          import os
-          print(os.environ['PATH'])
-        shell: python
-  
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      - run: python my_script.py
+      
