@@ -1,4 +1,7 @@
-on: push
+on:
+  push:
+    branches:    
+      - circleci-scheduler
 
 name: CircleCI Scheduler
 jobs:
