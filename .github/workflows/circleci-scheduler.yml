@@ -8,8 +8,8 @@ jobs:
       - name: Checkout GitHub Action for CircleCI.
         uses: actions/checkout@v2
         with:
-          repository: featurelabs/circleci-api@master
-          path: ./circleci-api
+          repository: featurelabs/circleci-api
+          path: circleci-api
 
       - name: Check for successful workflow status in CircleCI.
         uses: ./circleci-api
