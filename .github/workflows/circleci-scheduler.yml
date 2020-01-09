@@ -5,16 +5,12 @@ jobs:
   Featuretools:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          path: main
-
       - name: Checkout GitHub Action for CircleCI.
         uses: actions/checkout@v2
         with:
-          repository: FeatureLabs/circleci-api
+          repository: featurelabs/circleci-api
           path: circleci-api
+          token: ${{ secrets.GitHub_PAT }}
 
       - name: Check for successful workflow status in CircleCI.
         uses: ./circleci-api
