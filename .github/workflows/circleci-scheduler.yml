@@ -1,0 +1,37 @@
+on: push
+
+name: CircleCI Scheduler
+jobs:
+  Featuretools:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub Action for CircleCI
+        uses: actions/checkout@v2
+        with:
+          repository: featurelabs/circleci-api@master
+          path: circleci-api
+
+      - name: Check for successful workflow status in CircleCI.
+        uses: ./circleci-api
+        id: is_workflow_success
+        with:
+          task: is_workflow_success
+          repository: ${{ github.repository }}
+          circle-token: ${{ secrets.CIRCLE_TOKEN }}
+
+      - if: contains(steps.is_workflow_success.outputs.value, 'True')
+        name: Check for recent commit to Featuretools.
+        uses: ./circleci-api
+        id: is_recent_commit
+        with:
+          task: is_recent_commit
+          repository: featurelabs/featuretools
+          recent: days=7
+
+      - if: contains(steps.is_recent_commit.outputs.value, 'True')
+        name: Trigger project build in CircleCI.
+        uses: ./circleci-api
+        with:
+          task: project_build
+          repository: ${{ github.repository }}
+          circle-token: ${{ secrets.CIRCLE_TOKEN }}
