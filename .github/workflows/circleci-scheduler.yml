@@ -1,0 +1,34 @@
+on:
+  schedule:
+    # Everday at 9:00 AM
+    - cron:  '0 9 * * *'
+
+name: CircleCI Scheduler
+jobs:
+  Featuretools:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for successful workflow status in CircleCI.
+        uses: featurelabs/gh-action-circleci@v1
+        id: is_workflow_success
+        with:
+          task: is_workflow_success
+          repository: ${{ github.repository }}
+          circle-token: ${{ secrets.CIRCLE_TOKEN }}
+
+      - if: contains(steps.is_workflow_success.outputs.value, 'True')
+        name: Check for recent commit to Featuretools.
+        uses: featurelabs/gh-action-circleci@v1
+        id: is_recent_commit
+        with:
+          task: is_recent_commit
+          repository: featurelabs/featuretools
+          recent: hours=25
+
+      - if: contains(steps.is_recent_commit.outputs.value, 'True')
+        name: Trigger project build in CircleCI.
+        uses: featurelabs/gh-action-circleci@v1
+        with:
+          task: project_build
+          repository: ${{ github.repository }}
+          circle-token: ${{ secrets.CIRCLE_TOKEN }}
