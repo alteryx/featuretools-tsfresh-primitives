@@ -5,15 +5,8 @@ jobs:
   Featuretools:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout GitHub Action for CircleCI.
-        uses: actions/checkout@v2
-        with:
-          repository: featurelabs/circleci-api
-          path: circleci-api
-          token: ${{ secrets.GitHub_PAT }}
-
       - name: Check for successful workflow status in CircleCI.
-        uses: ./circleci-api
+        uses: featurelabs/gh-action-circleci@v1
         id: is_workflow_success
         with:
           task: is_workflow_success
@@ -22,7 +15,7 @@ jobs:
 
       - if: contains(steps.is_workflow_success.outputs.value, 'True')
         name: Check for recent commit to Featuretools.
-        uses: ./circleci-api
+        uses: featurelabs/gh-action-circleci@v1
         id: is_recent_commit
         with:
           task: is_recent_commit
@@ -31,7 +24,7 @@ jobs:
 
       - if: contains(steps.is_recent_commit.outputs.value, 'True')
         name: Trigger project build in CircleCI.
-        uses: ./circleci-api
+        uses: featurelabs/gh-action-circleci@v1
         with:
           task: project_build
           repository: ${{ github.repository }}
