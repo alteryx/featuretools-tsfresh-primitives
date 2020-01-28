@@ -20,7 +20,7 @@ jobs:
         with:
           task: is_recent_commit
           repository: featurelabs/featuretools
-          recent: days=7
+          recent: hours=25
 
       - if: contains(steps.is_recent_commit.outputs.value, 'True')
         name: Trigger project build in CircleCI.
