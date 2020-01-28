@@ -1,7 +1,7 @@
 on:
   schedule:
-    # Monday through Friday at 9:00 AM
-    - cron:  '0 9 * * 1-5'
+    # Everday at 9:00 AM
+    - cron:  '0 9 * * *'
 
 name: CircleCI Scheduler
 jobs:
