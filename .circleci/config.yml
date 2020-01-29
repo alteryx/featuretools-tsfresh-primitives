@@ -80,7 +80,9 @@ jobs:
       - installation
       - run:
           name: "Verify installed packages have compatible dependencies."
-          command: pip check
+          command: |
+            source env/bin/activate
+            pip check
       - run:
           name: "Test Entry Point"
           command: |
