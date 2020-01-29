@@ -80,8 +80,8 @@ jobs:
       - run:
           name: "Verify installed packages have compatible dependencies."
           command: |
-            check=$(pip check)
-            if [ "$check" != "No broken requirements found." ]; then echo $check; exit 1; fi
+            check=$(pip check); echo $check
+            if [ "$check" != "No broken requirements found." ]; then exit 1; fi
       - run:
           name: "Test Entry Point"
           command: |
