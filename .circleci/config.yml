@@ -44,7 +44,6 @@ jobs:
             source env/bin/activate
             make lint-tests
 
-
   unit_tests:
     working_directory: ~/featuretools-tsfresh-primitives
     parameters:
@@ -78,6 +77,11 @@ jobs:
       image_tag: << parameters.image_tag >>
     steps:
       - installation
+      - run:
+          name: "Verify installed packages have compatible dependencies."
+          command: |
+            check=$(pip check)
+            if [ "$check" != "No broken requirements found." ]; then echo $check; exit 1; fi
       - run:
           name: "Test Entry Point"
           command: |
