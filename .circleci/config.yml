@@ -18,8 +18,9 @@ commands:
           command: |
             virtualenv env -q
             source env/bin/activate
-            pip install . --progress-bar off
-            pip install git+https://github.com/FeatureLabs/featuretools.git@master#egg=featuretools --ignore-installed --progress-bar off
+            pip config --site set global.progress_bar off
+            pip install .
+            pip install git+https://github.com/FeatureLabs/featuretools.git@master#egg=featuretools --upgrade
 
 jobs:
   lint_tests:
@@ -37,7 +38,7 @@ jobs:
           name: "Install Test Requirements"
           command: |
             source env/bin/activate
-            pip install -r test-requirements.txt --progress-bar off
+            pip install -r test-requirements.txt
       - run:
           name: "Run Lint Tests"
           command: |
@@ -59,7 +60,7 @@ jobs:
           name: "Install Test Requirements"
           command: |
             source env/bin/activate
-            pip install -r test-requirements.txt --progress-bar off
+            pip install -r test-requirements.txt
       - run:
           name: "Run Unit Tests"
           command: |
