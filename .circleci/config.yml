@@ -47,8 +47,7 @@ commands:
                 name: "Install the latest Featuretools from master branch."
                 command: |
                   source env/bin/activate
-                  url=https://github.com/FeatureLabs/featuretools.git@master#egg=featuretools
-                  pip install git+${url} --upgrade
+                  pip install git+https://github.com/FeatureLabs/featuretools.git@master#egg=featuretools --upgrade
 
 jobs:
   lint_tests:
@@ -109,13 +108,18 @@ jobs:
         type: string
         default: "python:3.7"
 
+      latest_featuretools:
+        type: boolean
+        default: false
+
+
     executor:
       name: python
       image_tag: << parameters.image_tag >>
 
     steps:
       - installation:
-          latest_featuretools: true
+          latest_featuretools: << parameters.latest_featuretools >>
 
       - run:
           name: "Verify installed packages have compatible dependencies."
@@ -146,40 +150,55 @@ workflows:
           image_tag: "python:3.7"
 
       - unit_tests:
-          name: "Featuretools Release - Unit Tests - Python 3.5"
+          name: "Unit Tests - Python 3.5 - Featuretools Release"
           image_tag: "python:3.5"
 
       - unit_tests:
-          name: "Featuretools Release - Unit Tests - Python 3.6"
+          name: "Unit Tests - Python 3.6 - Featuretools Release"
           image_tag: "python:3.6"
 
       - unit_tests:
-          name: "Featuretools Release - Unit Tests - Python 3.7"
+          name: "Unit Tests - Python 3.7 - Featuretools Release"
           image_tag: "python:3.7"
 
       - unit_tests:
-          name: "Featuretools Master - Unit Tests - Python 3.5"
+          name: "Unit Tests - Python 3.5 - Featuretools Master"
           image_tag: "python:3.5"
           latest_featuretools: true
 
       - unit_tests:
-          name: "Featuretools Master - Unit Tests - Python 3.6"
+          name: "Unit Tests - Python 3.6 - Featuretools Master"
           image_tag: "python:3.6"
           latest_featuretools: true
 
       - unit_tests:
-          name: "Featuretools Master - Unit Tests - Python 3.7"
+          name: "Unit Tests - Python 3.7 - Featuretools Master"
           image_tag: "python:3.7"
           latest_featuretools: true
 
       - entry_point_test:
-          name: "Entry Point Test - Python 3.5"
+          name: "Entry Point Test - Python 3.5 - Featuretools Release"
           image_tag: "python:3.5"
 
       - entry_point_test:
-          name: "Entry Point Test - Python 3.6"
+          name: "Entry Point Test - Python 3.6 - Featuretools Release"
           image_tag: "python:3.6"
 
       - entry_point_test:
-          name: "Entry Point Test - Python 3.7"
+          name: "Entry Point Test - Python 3.7 - Featuretools Release"
           image_tag: "python:3.7"
+
+      - entry_point_test:
+          name: "Entry Point Test - Python 3.5 - Featuretools Master"
+          image_tag: "python:3.5"
+          latest_featuretools: true
+
+      - entry_point_test:
+          name: "Entry Point Test - Python 3.6 - Featuretools Master"
+          image_tag: "python:3.6"
+          latest_featuretools: true
+
+      - entry_point_test:
+          name: "Entry Point Test - Python 3.7 - Featuretools Master"
+          image_tag: "python:3.7"
+          latest_featuretools: true
