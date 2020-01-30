@@ -6,21 +6,49 @@ executors:
       image_tag:
         type: string
         default: "python:3.7"
+
     docker:
       - image: circleci/<< parameters.image_tag >>
 
 commands:
   installation:
+    parameters:
+      test_requirements:
+        type: boolean
+        default: false
+
+      latest_featuretools:
+        type: boolean
+        default: false
+
     steps:
       - checkout
       - run:
-          name: "Install Package in Virtual Environment"
+          name: "Install the requirements in a virtual environment."
           command: |
             virtualenv env -q
             source env/bin/activate
             pip config --site set global.progress_bar off
             pip install .
-            pip install git+https://github.com/FeatureLabs/featuretools.git@master#egg=featuretools --upgrade
+
+      - when:
+          condition: << parameters.test_requirements >>
+          steps:
+            - run:
+                name: "Install the test requirements."
+                command: |
+                  source env/bin/activate
+                  pip install -r test-requirements.txt
+
+      - when:
+          condition: << parameters.latest_featuretools >>
+          steps:
+            - run:
+                name: "Install the latest Featuretools from master branch."
+                command: |
+                  source env/bin/activate
+                  url=https://github.com/FeatureLabs/featuretools.git@master#egg=featuretools
+                  pip install git+${url} --upgrade
 
 jobs:
   lint_tests:
@@ -29,9 +57,11 @@ jobs:
       image_tag:
         type: string
         default: "python:3.7"
+
     executor:
       name: python
       image_tag: << parameters.image_tag >>
+
     steps:
       - installation
       - run:
@@ -39,6 +69,7 @@ jobs:
           command: |
             source env/bin/activate
             pip install -r test-requirements.txt
+
       - run:
           name: "Run Lint Tests"
           command: |
@@ -51,16 +82,20 @@ jobs:
       image_tag:
         type: string
         default: "python:3.7"
+
+      latest_featuretools:
+        type: boolean
+        default: false
+
     executor:
       name: python
       image_tag: << parameters.image_tag >>
+
     steps:
-      - installation
-      - run:
-          name: "Install Test Requirements"
-          command: |
-            source env/bin/activate
-            pip install -r test-requirements.txt
+      - installation:
+          test_requirements: true
+          latest_featuretools: << parameters.latest_featuretools >>
+
       - run:
           name: "Run Unit Tests"
           command: |
@@ -73,16 +108,21 @@ jobs:
       image_tag:
         type: string
         default: "python:3.7"
+
     executor:
       name: python
       image_tag: << parameters.image_tag >>
+
     steps:
-      - installation
+      - installation:
+          latest_featuretools: true
+
       - run:
           name: "Verify installed packages have compatible dependencies."
           command: |
             source env/bin/activate
             pip check
+
       - run:
           name: "Test Entry Point"
           command: |
@@ -96,27 +136,50 @@ workflows:
       - lint_tests:
           name: "Lint Tests - Python 3.5"
           image_tag: "python:3.5"
+
       - lint_tests:
           name: "Lint Tests - Python 3.6"
           image_tag: "python:3.6"
+
       - lint_tests:
           name: "Lint Tests - Python 3.7"
           image_tag: "python:3.7"
+
       - unit_tests:
-          name: "Unit Tests - Python 3.5"
+          name: "Featuretools Release - Unit Tests - Python 3.5"
           image_tag: "python:3.5"
+
       - unit_tests:
-          name: "Unit Tests - Python 3.6"
+          name: "Featuretools Release - Unit Tests - Python 3.6"
           image_tag: "python:3.6"
+
       - unit_tests:
-          name: "Unit Tests - Python 3.7"
+          name: "Featuretools Release - Unit Tests - Python 3.7"
           image_tag: "python:3.7"
+
+      - unit_tests:
+          name: "Featuretools Master - Unit Tests - Python 3.5"
+          image_tag: "python:3.5"
+          latest_featuretools: true
+
+      - unit_tests:
+          name: "Featuretools Master - Unit Tests - Python 3.6"
+          image_tag: "python:3.6"
+          latest_featuretools: true
+
+      - unit_tests:
+          name: "Featuretools Master - Unit Tests - Python 3.7"
+          image_tag: "python:3.7"
+          latest_featuretools: true
+
       - entry_point_test:
           name: "Entry Point Test - Python 3.5"
           image_tag: "python:3.5"
+
       - entry_point_test:
           name: "Entry Point Test - Python 3.6"
           image_tag: "python:3.6"
+
       - entry_point_test:
           name: "Entry Point Test - Python 3.7"
           image_tag: "python:3.7"
