@@ -112,7 +112,6 @@ jobs:
         type: boolean
         default: false
 
-
     executor:
       name: python
       image_tag: << parameters.image_tag >>
