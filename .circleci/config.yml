@@ -130,7 +130,8 @@ jobs:
           name: "Load plugin directly."
           command: >
             source env/bin/activate;
-            python -c "from pkg_resources import load_entry_point;
+            python -c "import featuretools;
+            from pkg_resources import load_entry_point;
             module = load_entry_point('featuretools_tsfresh_primitives', 'featuretools_plugin', 'tsfresh');
             print(module);"
 
