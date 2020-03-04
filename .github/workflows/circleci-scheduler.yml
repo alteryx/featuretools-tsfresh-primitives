@@ -1,7 +1,7 @@
 on:
   schedule:
-    # Every day at 2 p.m. UTC (9 a.m. EST)
-    - cron:  '0 14 * * *'
+    # Hourly
+    - cron:  '0 * * * *'
 
 name: CircleCI Scheduler
 jobs:
@@ -23,7 +23,7 @@ jobs:
         with:
           task: is_recent_commit
           repository: featurelabs/featuretools
-          recent: hours=25
+          recent: minutes=65
 
       - if: contains(steps.is_recent_commit.outputs.value, 'True')
         name: Trigger project build in CircleCI.
