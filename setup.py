@@ -15,7 +15,7 @@ setup(
     include_package_data=True,
     entry_points={
         'featuretools_plugin': [
-            'tsfresh = featuretools_tsfresh_primitives',
+            'tsfresh = featuretools_tsfresh_primitives.__init__',
         ],
     },
 )
