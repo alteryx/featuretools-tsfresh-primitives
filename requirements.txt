@@ -1,4 +1,3 @@
 featuretools>=0.13.0
 pandas>=0.25.0
 tsfresh>=0.13.0
-dask[dataframe]>=1.1.0
