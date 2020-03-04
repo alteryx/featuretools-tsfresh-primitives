@@ -68,4 +68,4 @@ from .variance import Variance
 from .variance_larger_than_standard_deviation import \
     VarianceLargerThanStandardDeviation
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
