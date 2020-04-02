@@ -121,9 +121,10 @@ def _comprehensive_fc_prims():
     primitives, parameters = PRIMITIVES.values(), PARAMETERS.items()
     supported = {primitive.name for primitive in primitives}
     parameters = {key: value for key, value in parameters if key in supported}
+
     # lag 0 on its own doesn't make sense
     parameters['partial_autocorrelation'] = [x for x in parameters['partial_autocorrelation'] if
-                                            x['lag'] != 0]
+                                             x['lag'] != 0]
 
     for fc_name, params_list in parameters.items():
         primitives = featuretools_tsfresh_primitives.primitives_from_fc_settings({fc_name: params_list})
