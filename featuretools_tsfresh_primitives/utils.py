@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 
 import featuretools_tsfresh_primitives
+from featuretools.primitives import AggregationPrimitive, TransformPrimitive
+from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
 
 def _pascal_case(snake_str):
@@ -43,3 +45,23 @@ def to_array(x):
     if isinstance(x, pd.Series):
         return x.values
     return np.asarray(x)
+
+
+def is_primitive(value):
+    is_object = isinstance(value, type)
+    types = AggregationPrimitive, TransformPrimitive
+    return is_object and issubclass(value, types)
+
+
+def comprehensive_primitives():
+    primitives, parameters = [], ComprehensiveFCParameters()
+
+    for key in dir(featuretools_tsfresh_primitives):
+        primitive = getattr(featuretools_tsfresh_primitives, key)
+        if not is_primitive(primitive): continue
+        inputs = parameters[primitive.name] or [{}]
+
+        for values in inputs:
+            primitives.append(primitive(**values))
+
+    return primitives
