@@ -122,6 +122,10 @@ def _comprehensive_fc_prims():
     supported = {primitive.name for primitive in primitives}
     parameters = {key: value for key, value in parameters if key in supported}
 
+    # An error is raised from `extract_featres` when partial autocorrelation has zero lag.
+    parameters['partial_autocorrelation'] = [x for x in parameters['partial_autocorrelation'] if
+                                            x['lag'] != 0]
+
     for fc_name, params_list in parameters.items():
         primitives = featuretools_tsfresh_primitives.primitives_from_fc_settings({fc_name: params_list})
         if not isinstance(params_list, list):
