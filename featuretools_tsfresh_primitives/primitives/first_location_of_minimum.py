@@ -3,7 +3,7 @@ from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     first_location_of_minimum
 
-from .utils import to_array
+from ..utils import to_array
 
 
 class FirstLocationOfMinimum(AggregationPrimitive):

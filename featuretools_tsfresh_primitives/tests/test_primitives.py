@@ -81,6 +81,14 @@ PRIMITIVES = {
 PARAMETERS = ComprehensiveFCParameters()
 
 
+
+@fixture(scope='session')
+def df():
+    df = ft.demo.load_mock_customer(return_single_table=True)
+    df = df.filter(regex='session_id|transaction_time|amount')
+    return df
+
+
 @fixture(scope='session')
 def entityset():
     return ft.demo.load_mock_customer(return_entityset=True)
@@ -137,25 +145,24 @@ def _comprehensive_fc_prims():
 
 
 @pytest.mark.parametrize(
-    'fc_setting,primitive',
+    'parameters,primitive',
     [(x[0], x[1]) for x in _comprehensive_fc_prims()],
     ids=[x[2] for x in _comprehensive_fc_prims()],
 )
-def test_primitive(entityset, df, fc_setting, primitive):
+def test_primitive(entityset, df, parameters, primitive):
     expected = extract_features(
-        df,
+        timeseries_container=df,
         column_id='session_id',
         column_sort='transaction_time',
-        default_fc_parameters=fc_setting,
+        default_fc_parameters=parameters,
     )
 
     actual, _ = ft.dfs(
         entityset=entityset,
-        max_depth=1,
         target_entity='sessions',
         trans_primitives=[],
-        where_primitives=[],
         agg_primitives=[primitive],
+        max_depth=1,
     )
 
     actual = actual.filter(regex='transactions.amount')
