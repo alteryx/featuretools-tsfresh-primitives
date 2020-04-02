@@ -57,7 +57,8 @@ PRIMITIVES = {
     "NumberCwtPeaks": featuretools_tsfresh_primitives.NumberCwtPeaks,
     "NumberPeaks": featuretools_tsfresh_primitives.NumberPeaks,
     "PartialAutocorrelation": featuretools_tsfresh_primitives.PartialAutocorrelation,
-    "PercentageOfReoccurringDatapointsToAllDatapoints": featuretools_tsfresh_primitives.PercentageOfReoccurringDatapointsToAllDatapoints,
+    "PercentageOfReoccurringDatapointsToAllDatapoints":
+    featuretools_tsfresh_primitives.PercentageOfReoccurringDatapointsToAllDatapoints,
     "PercentageOfReoccurringValuesToAllValues": featuretools_tsfresh_primitives.PercentageOfReoccurringValuesToAllValues,
     "Quantile": featuretools_tsfresh_primitives.Quantile,
     "RangeCount": featuretools_tsfresh_primitives.RangeCount,
@@ -76,6 +77,8 @@ PRIMITIVES = {
     "Variance": featuretools_tsfresh_primitives.Variance,
     "VarianceLargerThanStandardDeviation": featuretools_tsfresh_primitives.VarianceLargerThanStandardDeviation,
 }
+
+PARAMETERS = ComprehensiveFCParameters()
 
 
 @fixture(scope='session')
@@ -116,14 +119,11 @@ def df(entityset):
 
 def _comprehensive_fc_prims():
     """Yield a tuple (fc_setting, primitive, id)"""
-    fc_params = ComprehensiveFCParameters()
-    # linear_trend_timewise not supported by featuretools-tsfresh-primitives atm
-    fc_params.pop('linear_trend_timewise')
-    # lag 0 on its own doesn't make sense
-    fc_params['partial_autocorrelation'] = [x for x in fc_params['partial_autocorrelation'] if
-                                            x['lag'] != 0]
+    primitives, parameters = PRIMITIVES.values(), PARAMETERS.items()
+    supported = {primitive.name for primitive in primitives}
+    parameters = {key: value for key, value in parameters if key in supported}
 
-    for fc_name, params_list in fc_params.items():
+    for fc_name, params_list in parameters.items():
         primitives = featuretools_tsfresh_primitives.primitives_from_fc_settings({fc_name: params_list})
         if not isinstance(params_list, list):
             params_list = [params_list]
@@ -132,20 +132,30 @@ def _comprehensive_fc_prims():
             yield (fc_setting, primitive, str(fc_setting))
 
 
-@pytest.mark.parametrize('fc_setting,primitive',
-                         [(x[0], x[1]) for x in _comprehensive_fc_prims()],
-                         ids=[x[2] for x in _comprehensive_fc_prims()])
+@pytest.mark.parametrize(
+    'fc_setting,primitive',
+    [(x[0], x[1]) for x in _comprehensive_fc_prims()],
+    ids=[x[2] for x in _comprehensive_fc_prims()],
+)
 def test_primitive(entityset, df, fc_setting, primitive):
-    expected = extract_features(df,
-                                column_id='session_id',
-                                column_sort='transaction_time',
-                                default_fc_parameters=fc_setting)
-    actual, _ = ft.dfs(entityset=entityset,
-                       max_depth=1,
-                       target_entity='sessions',
-                       trans_primitives=[],
-                       where_primitives=[],
-                       agg_primitives=[primitive])
-    actual = actual.filter(regex='transactions.amount')
+    expected = extract_features(
+        df,
+        column_id='session_id',
+        column_sort='transaction_time',
+        default_fc_parameters=fc_setting,
+    )
 
+    actual, _ = ft.dfs(
+        entityset=entityset,
+        max_depth=1,
+        target_entity='sessions',
+        trans_primitives=[],
+        where_primitives=[],
+        agg_primitives=[primitive],
+    )
+
+    actual = actual.filter(regex='transactions.amount')
     numpy.testing.assert_almost_equal(expected.values, actual.values)
+
+
+names = {primitive.name for primitive in PRIMITIVES.values()}
