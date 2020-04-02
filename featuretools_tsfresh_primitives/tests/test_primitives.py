@@ -122,7 +122,7 @@ def _comprehensive_fc_prims():
     supported = {primitive.name for primitive in primitives}
     parameters = {key: value for key, value in parameters if key in supported}
 
-    # An error is raised from `extract_featres` when partial autocorrelation has zero lag.
+    # An error is raised from `extract_features` when partial autocorrelation has zero lag.
     parameters['partial_autocorrelation'] = [x for x in parameters['partial_autocorrelation'] if
                                             x['lag'] != 0]
 
