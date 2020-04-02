@@ -124,8 +124,8 @@ def _comprehensive_fc_prims():
     parameters = {key: value for key, value in parameters if key in supported}
 
     # An error is raised from `extract_features` when partial autocorrelation has zero lag.
-    parameters['partial_autocorrelation'] = [x for x in parameters['partial_autocorrelation'] if
-                                            x['lag'] != 0]
+    parameters['partial_autocorrelation'] = [parameter for parameter in \
+    parameters['partial_autocorrelation'] if parameter['lag'] != 0]
 
     for fc_name, params_list in parameters.items():
         primitives = featuretools_tsfresh_primitives.primitives_from_fc_settings({fc_name: params_list})
@@ -146,10 +146,7 @@ def test_primitive(entityset, df, fc_setting, primitive):
         df,
         column_id='session_id',
         column_sort='transaction_time',
-        # default_fc_parameters=fc_setting,
-        default_fc_parameters={'partial_autocorrelation': [{
-            'lag': 0
-        }]},
+        default_fc_parameters=fc_setting,
     )
 
     actual, _ = ft.dfs(
