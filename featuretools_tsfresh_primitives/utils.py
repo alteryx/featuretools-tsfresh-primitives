@@ -5,7 +5,7 @@ import featuretools_tsfresh_primitives
 
 
 def supported_primitives():
-    """Generates the currenlty supported primitives.
+    """Generates the currently supported primitives.
 
         Returns:
             generator: primitive classes
