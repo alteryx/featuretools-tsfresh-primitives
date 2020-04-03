@@ -37,31 +37,38 @@ from .primitives.maximum import Maximum
 from .primitives.mean import Mean
 from .primitives.mean_abs_change import MeanAbsChange
 from .primitives.mean_change import MeanChange
-from .primitives.mean_second_derivative_central import MeanSecondDerivativeCentral
+from .primitives.mean_second_derivative_central import \
+    MeanSecondDerivativeCentral
 from .primitives.median import Median
 from .primitives.minimum import Minimum
 from .primitives.number_crossing_m import NumberCrossingM
 from .primitives.number_cwt_peaks import NumberCwtPeaks
 from .primitives.number_peaks import NumberPeaks
 from .primitives.partial_autocorrelation import PartialAutocorrelation
-from .primitives.percentage_of_reoccurring_datapoints_to_all_datapoints import PercentageOfReoccurringDatapointsToAllDatapoints
-from .primitives.percentage_of_reoccurring_values_to_all_values import PercentageOfReoccurringValuesToAllValues
+from .primitives.percentage_of_reoccurring_datapoints_to_all_datapoints import \
+    PercentageOfReoccurringDatapointsToAllDatapoints
+from .primitives.percentage_of_reoccurring_values_to_all_values import \
+    PercentageOfReoccurringValuesToAllValues
 from .primitives.quantile import Quantile
 from .primitives.range_count import RangeCount
 from .primitives.ratio_beyond_r_sigma import RatioBeyondRSigma
-from .primitives.ratio_value_number_to_time_series_length import RatioValueNumberToTimeSeriesLength
+from .primitives.ratio_value_number_to_time_series_length import \
+    RatioValueNumberToTimeSeriesLength
 from .primitives.sample_entropy import SampleEntropy
 from .primitives.skewness import Skewness
 from .primitives.spkt_welch_density import SpktWelchDensity
 from .primitives.standard_deviation import StandardDeviation
-from .primitives.sum_of_reoccurring_data_points import SumOfReoccurringDataPoints
+from .primitives.sum_of_reoccurring_data_points import \
+    SumOfReoccurringDataPoints
 from .primitives.sum_of_reoccurring_values import SumOfReoccurringValues
 from .primitives.sum_values import SumValues
 from .primitives.symmetry_looking import SymmetryLooking
-from .primitives.time_reversal_asymmetry_statistic import TimeReversalAsymmetryStatistic
+from .primitives.time_reversal_asymmetry_statistic import \
+    TimeReversalAsymmetryStatistic
 from .primitives.value_count import ValueCount
 from .primitives.variance import Variance
-from .primitives.variance_larger_than_standard_deviation import VarianceLargerThanStandardDeviation
-from .utils import primitives_from_fc_settings
+from .primitives.variance_larger_than_standard_deviation import \
+    VarianceLargerThanStandardDeviation
+from .utils import comprehensive_primitives
 
 __version__ = '0.2.1'

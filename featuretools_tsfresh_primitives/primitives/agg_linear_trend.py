@@ -1,8 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
+from numpy import asarray
 from tsfresh.feature_extraction.feature_calculators import agg_linear_trend
-
-from ..utils import to_array
 
 
 class AggLinearTrend(AggregationPrimitive):
@@ -33,8 +32,8 @@ class AggLinearTrend(AggregationPrimitive):
 
     def get_function(self):
         def function(x):
-            x = to_array(x)
             param = [{'attr': self.attr, 'f_agg': self.f_agg, 'chunk_len': self.chunk_len}]
-            return list(agg_linear_trend(x, param))[0][1]
+            values = list(agg_linear_trend(asarray(x), param))
+            return values[0][1]
 
         return function
