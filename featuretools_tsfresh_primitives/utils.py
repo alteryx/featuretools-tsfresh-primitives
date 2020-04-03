@@ -24,7 +24,7 @@ def comprehensive_primitives(fc_parameters=None):
             fc_parameters (ComprehensiveFCParameters): An instance of :class:`ComprehensiveFCParameters`
 
         Returns:
-            dict: A dictionary where the keys are the names of the primitives
+            agg_primitives (dict): A dictionary where the keys are the names of the primitives
                 and the values are lists of primitive instances.
 
         Examples:
@@ -46,9 +46,7 @@ def comprehensive_primitives(fc_parameters=None):
             primitives[primitive.name].append(instance)
 
     for primitive in supported_primitives():
-        if primitive.name not in parameters: continue
-
-        else:
+        if primitive.name in parameters:
             assert issubclass(primitive, AggregationPrimitive)
             append(primitive, agg_primitives)
 
