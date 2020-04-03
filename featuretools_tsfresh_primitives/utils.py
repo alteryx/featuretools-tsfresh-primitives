@@ -5,6 +5,11 @@ import featuretools_tsfresh_primitives
 
 
 def supported_primitives():
+    """Generates the currenlty supported primitives.
+
+        Returns:
+            generator: primitive classes
+    """
     types = AggregationPrimitive, TransformPrimitive
     for key in dir(featuretools_tsfresh_primitives):
         value = getattr(featuretools_tsfresh_primitives, key)
@@ -23,7 +28,6 @@ def comprehensive_primitives(fc_parameters=None):
                 and the values are lists of primitive instances.
 
         Examples:
-
             >>> parameters = {'autocorrelation': [{'lag': 2}]}
             >>> primitives = comprehensive_primitives(parameters)
             >>> primitive = primitives['autocorrelation'][0]
