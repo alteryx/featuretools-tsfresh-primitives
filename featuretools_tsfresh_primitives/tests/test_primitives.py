@@ -118,9 +118,8 @@ def df(entityset):
 
 def _comprehensive_fc_prims():
     """Yield a tuple (fc_setting, primitive, id)"""
-    primitives, parameters = PRIMITIVES.values(), PARAMETERS.items()
-    supported = {primitive.name for primitive in primitives}
-    parameters = {key: value for key, value in parameters if key in supported}
+    supported = {primitive.name for primitive in PRIMITIVES.values()}
+    parameters = {key: value for key, value in PARAMETERS.items() if key in supported}
 
     # lag 0 on its own doesn't make sense
     parameters['partial_autocorrelation'] = [x for x in parameters['partial_autocorrelation'] if
