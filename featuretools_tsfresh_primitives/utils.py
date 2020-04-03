@@ -8,8 +8,7 @@ def supported_primitives():
     types = AggregationPrimitive, TransformPrimitive
     for key in dir(featuretools_tsfresh_primitives):
         value = getattr(featuretools_tsfresh_primitives, key)
-        is_object = isinstance(value, type)
-        is_primitive = is_object and issubclass(value, types)
+        is_primitive = isinstance(value, type) and issubclass(value, types)
         if is_primitive: yield value
 
 
