@@ -13,6 +13,23 @@ def supported_primitives():
 
 
 def comprehensive_primitives(fc_parameters=None):
+    """Creates a mapping for primitive instances from a dictionary list of parameters.
+
+        Args:
+            fc_parameters (ComprehensiveFCParameters): An instance of :class:`ComprehensiveFCParameters`
+
+        Returns:
+            dict: A dictionary where the keys are the names of the primitives
+                and the values are lists of primitive instances.
+
+        Examples:
+
+            >>> parameters = {'autocorrelation': [{'lag': 2}]}
+            >>> primitives = comprehensive_primitives(parameters)
+            >>> primitive = primitives['autocorrelation'][0]
+            >>> primitive(range(3))
+            -1.5
+    """
     parameters = fc_parameters or ComprehensiveFCParameters()
     agg_primitives = {}
 
