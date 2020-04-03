@@ -14,7 +14,7 @@ def supported_primitives():
 
 def comprehensive_primitives(fc_parameters=None):
     parameters = fc_parameters or ComprehensiveFCParameters()
-    agg_primitives, trans_primitives = {}, {}
+    agg_primitives = {}
 
     def append(primitive, primitives):
         inputs = parameters[primitive.name] or [{}]
@@ -27,11 +27,8 @@ def comprehensive_primitives(fc_parameters=None):
     for primitive in supported_primitives():
         if primitive.name not in parameters: continue
 
-        elif issubclass(primitive, AggregationPrimitive):
+        else:
+            assert issubclass(primitive, AggregationPrimitive)
             append(primitive, agg_primitives)
 
-        else:
-            assert issubclass(primitive, TransformPrimitive)
-            append(primitive, trans_primitives)
-
-    return agg_primitives, trans_primitives
+    return agg_primitives

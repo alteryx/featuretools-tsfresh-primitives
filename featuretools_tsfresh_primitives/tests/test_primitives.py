@@ -29,7 +29,7 @@ def entityset():
 def parameterize():
     values = {'argvalues': [], 'ids': []}
     fc_parameters = ComprehensiveFCParameters()
-    agg_primitives, _ = comprehensive_primitives(fc_parameters)
+    agg_primitives = comprehensive_primitives(fc_parameters)
     es = ft.demo.load_mock_customer(return_entityset=True)
 
     for key in agg_primitives:

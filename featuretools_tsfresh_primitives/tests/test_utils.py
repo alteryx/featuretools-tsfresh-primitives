@@ -6,7 +6,7 @@ from featuretools_tsfresh_primitives.utils import (comprehensive_primitives,
 
 def test_comprehensive_primitives():
     fc_parameters = ComprehensiveFCParameters()
-    agg_primitives, _ = comprehensive_primitives()
+    agg_primitives = comprehensive_primitives()
 
     for primitive in supported_primitives():
         instances = agg_primitives[primitive.name]
