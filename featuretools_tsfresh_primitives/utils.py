@@ -46,24 +46,32 @@ def to_array(x):
         return x.values
     return np.asarray(x)
 
-
-def is_primitive(value):
-    is_object = isinstance(value, type)
+def supported_primitives():
     types = AggregationPrimitive, TransformPrimitive
-    return is_object and issubclass(value, types)
-
-
-def comprehensive_primitives():
-    primitives, parameters = {}, ComprehensiveFCParameters()
-
     for key in dir(featuretools_tsfresh_primitives):
-        primitive = getattr(featuretools_tsfresh_primitives, key)
-        if not is_primitive(primitive): continue
+        value = getattr(featuretools_tsfresh_primitives, key)
+        is_object = isinstance(value, type)
+        is_primitive = is_object and issubclass(value, types)
+        if is_primitive: yield value
 
+
+def comprehensive_primitives(fc_parameters=None):
+    parameters = fc_parameters or ComprehensiveFCParameters()
+    agg_primitives, trans_primitives = {}, {}
+
+    def append(primitive, primitives):
         inputs = parameters[primitive.name] or [{}]
         primitives[primitive.name] = []
 
         for values in inputs:
-            primitives[primitive.name].append(primitive(**values))
+            instance = primitive(**values)
+            primitives[primitive.name].append(instance)
 
-    return primitives
+    for primitive in supported_primitives():
+        if issubclass(primitive, AggregationPrimitive):
+            append(primitive, agg_primitives)
+        else:
+            assert issubclass(primitive, TransformPrimitive)
+            append(primitive, trans_primitives)
+
+    return agg_primitives, trans_primitives
