@@ -77,6 +77,8 @@ PRIMITIVES = {
     "VarianceLargerThanStandardDeviation": featuretools_tsfresh_primitives.VarianceLargerThanStandardDeviation,
 }
 
+PARAMETERS = ComprehensiveFCParameters()
+
 
 @fixture(scope='session')
 def entityset():
@@ -116,14 +118,14 @@ def df(entityset):
 
 def _comprehensive_fc_prims():
     """Yield a tuple (fc_setting, primitive, id)"""
-    fc_params = ComprehensiveFCParameters()
-    # linear_trend_timewise not supported by featuretools-tsfresh-primitives atm
-    fc_params.pop('linear_trend_timewise')
-    # lag 0 on its own doesn't make sense
-    fc_params['partial_autocorrelation'] = [x for x in fc_params['partial_autocorrelation'] if
-                                            x['lag'] != 0]
+    supported = {primitive.name for primitive in PRIMITIVES.values()}
+    parameters = {key: value for key, value in PARAMETERS.items() if key in supported}
 
-    for fc_name, params_list in fc_params.items():
+    # lag 0 on its own doesn't make sense
+    parameters['partial_autocorrelation'] = [x for x in parameters['partial_autocorrelation'] if
+                                             x['lag'] != 0]
+
+    for fc_name, params_list in parameters.items():
         primitives = featuretools_tsfresh_primitives.primitives_from_fc_settings({fc_name: params_list})
         if not isinstance(params_list, list):
             params_list = [params_list]
