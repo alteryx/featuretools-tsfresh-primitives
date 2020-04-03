@@ -54,14 +54,16 @@ def is_primitive(value):
 
 
 def comprehensive_primitives():
-    primitives, parameters = [], ComprehensiveFCParameters()
+    primitives, parameters = {}, ComprehensiveFCParameters()
 
     for key in dir(featuretools_tsfresh_primitives):
         primitive = getattr(featuretools_tsfresh_primitives, key)
         if not is_primitive(primitive): continue
+
         inputs = parameters[primitive.name] or [{}]
+        primitives[primitive.name] = []
 
         for values in inputs:
-            primitives.append(primitive(**values))
+            primitives[primitive.name].append(primitive(**values))
 
     return primitives
