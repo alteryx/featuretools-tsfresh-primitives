@@ -11,6 +11,7 @@ from .primitives.binned_entropy import BinnedEntropy
 from .primitives.c3 import C3
 from .primitives.change_quantiles import ChangeQuantiles
 from .primitives.cid_ce import CidCe
+from .primitives.count_above import CountAbove
 from .primitives.count_above_mean import CountAboveMean
 from .primitives.count_below_mean import CountBelowMean
 from .primitives.cwt_coefficients import CwtCoefficients
