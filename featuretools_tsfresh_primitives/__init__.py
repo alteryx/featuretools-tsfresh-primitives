@@ -32,6 +32,7 @@ from .primitives.last_location_of_maximum import LastLocationOfMaximum
 from .primitives.last_location_of_minimum import LastLocationOfMinimum
 from .primitives.length import Length
 from .primitives.linear_trend import LinearTrend
+from .primitives.linear_trend_timewise import LinearTrendTimewise
 from .primitives.longest_strike_above_mean import LongestStrikeAboveMean
 from .primitives.longest_strike_below_mean import LongestStrikeBelowMean
 from .primitives.max_langevin_fixed_point import MaxLangevinFixedPoint

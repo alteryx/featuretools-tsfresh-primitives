@@ -18,6 +18,8 @@ BLACKLIST = [
 def df():
     df = ft.demo.load_mock_customer(return_single_table=True)
     df = df.filter(regex='session_id|transaction_time|amount')
+    df = df.set_index('transaction_time')
+    df.sort_index(inplace=True)
     return df
 
 
@@ -37,8 +39,13 @@ def parameterize():
         items = zip(parameters, agg_primitives[key])
 
         for parameters, primitive in items:
+            base = es['transactions']['amount']
+
+            if 'timewise' in primitive.name:
+                base = [base, es['transactions']['transaction_time']]
+
             feature = ft.Feature(
-                base=es['transactions']['amount'],
+                base=base,
                 parent_entity=es['sessions'],
                 primitive=primitive,
             )
@@ -59,7 +66,6 @@ def test_primitive(entityset, df, fc_parameters, feature):
     expected = extract_features(
         timeseries_container=df,
         column_id='session_id',
-        column_sort='transaction_time',
         default_fc_parameters=fc_parameters,
     )
 
