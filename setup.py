@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='featuretools_tsfresh_primitives',
-    version='0.2.1',
+    version='0.2.2',
     author='Feature Labs, Inc.',
     author_email='support@featurelabs.com',
     description='TSFresh primitives for featuretools',

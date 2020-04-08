@@ -74,4 +74,4 @@ from .primitives.variance_larger_than_standard_deviation import \
     VarianceLargerThanStandardDeviation
 from .utils import comprehensive_primitives
 
-__version__ = '0.2.1'
+__version__ = '0.2.2'
