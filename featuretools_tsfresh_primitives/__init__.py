@@ -72,6 +72,6 @@ from .primitives.value_count import ValueCount
 from .primitives.variance import Variance
 from .primitives.variance_larger_than_standard_deviation import \
     VarianceLargerThanStandardDeviation
-from .utils import comprehensive_primitives
+from .utils import primitives_from_fc_settings
 
 __version__ = '0.2.1'

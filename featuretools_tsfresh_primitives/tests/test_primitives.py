@@ -5,7 +5,8 @@ from pytest import fixture
 from tsfresh.feature_extraction import extract_features
 from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
-from featuretools_tsfresh_primitives import comprehensive_primitives
+from featuretools_tsfresh_primitives.utils import (primitives_from_fc_settings,
+                                                   supported_primitives)
 
 BLACKLIST = [
     # when a partial autocorrelation has a lag of zero,
@@ -28,15 +29,16 @@ def entityset():
     return ft.demo.load_mock_customer(return_entityset=True)
 
 
-def parameterize():
+def parametrize():
     values = {'argvalues': [], 'ids': []}
     fc_parameters = ComprehensiveFCParameters()
-    agg_primitives = comprehensive_primitives(fc_parameters)
     es = ft.demo.load_mock_customer(return_entityset=True)
 
-    for key in agg_primitives:
-        parameters = fc_parameters[key] or [{}]
-        items = zip(parameters, agg_primitives[key])
+    for primitive in supported_primitives():
+        parameters = fc_parameters[primitive.name] or [{}]
+        primitives = {primitive.name: parameters}
+        primitives = primitives_from_fc_settings(primitives)
+        items = zip(parameters, primitives)
 
         for parameters, primitive in items:
             base = es['transactions']['amount']
@@ -50,15 +52,15 @@ def parameterize():
                 primitive=primitive,
             )
 
+            item = {primitive.name: [parameters]}, feature
             name = feature.generate_name()
-            item = {key: [parameters]}, feature
             values['argvalues'].append(item)
             values['ids'].append(name)
 
     return values
 
 
-@pytest.mark.parametrize('fc_parameters,feature', **parameterize())
+@pytest.mark.parametrize('fc_parameters,feature', **parametrize())
 def test_primitive(entityset, df, fc_parameters, feature):
     name = feature.generate_name()
     if name in BLACKLIST: return
