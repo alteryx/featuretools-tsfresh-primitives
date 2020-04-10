@@ -27,10 +27,10 @@ def parametrize():
     es = ft.demo.load_mock_customer(return_entityset=True)
 
     for primitive in supported_primitives():
-        parameters = fc_parameters[primitive.name] or [{}]
-        primitives = {primitive.name: parameters}
-        primitives = primitives_from_fc_settings(primitives)
-        items = zip(parameters, primitives)
+        parameter_list = fc_parameters[primitive.name] or [{}]
+        primitive_settings = {primitive.name: parameter_list}
+        primitives = primitives_from_fc_settings(primitive_settings)
+        items = zip(parameter_list, primitives)
 
         for parameters, primitive in items:
             feature = ft.Feature(
@@ -47,13 +47,13 @@ def parametrize():
     return values
 
 
-@pytest.mark.parametrize('fc_parameters,feature', **parametrize())
-def test_primitive(entityset, df, fc_parameters, feature):
+@pytest.mark.parametrize('parameters,feature', **parametrize())
+def test_primitive(entityset, df, parameters, feature):
     expected = extract_features(
         timeseries_container=df,
         column_id='session_id',
         column_sort='transaction_time',
-        default_fc_parameters=fc_parameters,
+        default_fc_parameters=parameters,
     )
 
     actual = ft.calculate_feature_matrix(

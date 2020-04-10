@@ -10,8 +10,8 @@ def test_primitives_from_fc_settings():
 
     for primitive in supported_primitives():
         inputs = fc_parameters[primitive.name] or [{}]
-        paramters = {primitive.name: inputs}
-        instances = primitives_from_fc_settings(paramters)
+        parameters = {primitive.name: inputs}
+        instances = primitives_from_fc_settings(parameters)
 
         assert len(instances) == len(inputs)
         items = zip(instances, inputs)
