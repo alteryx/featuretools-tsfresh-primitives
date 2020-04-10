@@ -24,7 +24,6 @@ def entityset():
 def parametrize():
     values = {'argvalues': [], 'ids': []}
     fc_parameters = comprehensive_fc_parameters()
-    es = ft.demo.load_mock_customer(return_entityset=True)
 
     for primitive in supported_primitives():
         parameter_list = fc_parameters[primitive.name] or [{}]
@@ -33,27 +32,30 @@ def parametrize():
         items = zip(parameter_list, primitives)
 
         for parameters, primitive in items:
-            feature = ft.Feature(
-                base=es['transactions']['amount'],
-                parent_entity=es['sessions'],
-                primitive=primitive,
-            )
-
-            item = {primitive.name: [parameters]}, feature
-            name = feature.generate_name()
+            item = {primitive.name: [parameters]}, primitive
             values['argvalues'].append(item)
+
+            name = primitive.name.upper()
+            args = primitive.get_args_string()
+            name += '(%s)' % args.lstrip(',')
             values['ids'].append(name)
 
     return values
 
 
-@pytest.mark.parametrize('parameters,feature', **parametrize())
-def test_primitive(entityset, df, parameters, feature):
+@pytest.mark.parametrize('parameters,primitive', **parametrize())
+def test_primitive(entityset, df, parameters, primitive):
     expected = extract_features(
         timeseries_container=df,
         column_id='session_id',
         column_sort='transaction_time',
         default_fc_parameters=parameters,
+    )
+
+    feature = ft.Feature(
+        base=entityset['transactions']['amount'],
+        parent_entity=entityset['sessions'],
+        primitive=primitive,
     )
 
     actual = ft.calculate_feature_matrix(
