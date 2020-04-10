@@ -10,15 +10,15 @@ from featuretools_tsfresh_primitives.utils import (comprehensive_fc_parameters,
 
 
 @fixture(scope='session')
-def df():
-    df = ft.demo.load_mock_customer(return_single_table=True)
-    df = df.filter(regex='session_id|transaction_time|amount')
-    return df
+def entityset():
+    return ft.demo.load_mock_customer(return_entityset=True)
 
 
 @fixture(scope='session')
-def entityset():
-    return ft.demo.load_mock_customer(return_entityset=True)
+def df(entityset):
+    transactions = entityset['transactions'].df
+    regex = 'session_id|transaction_time|amount'
+    return transactions.filter(regex=regex)
 
 
 def parametrize():
@@ -37,7 +37,7 @@ def parametrize():
 
             name = primitive.name.upper()
             args = primitive.get_args_string()
-            name += '(%s)' % args.lstrip(',')
+            if args: name += '(%s)' % args.lstrip(' ,')
             values['ids'].append(name)
 
     return values
