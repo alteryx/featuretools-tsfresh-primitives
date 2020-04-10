@@ -1,6 +1,7 @@
 import featuretools as ft
 import pytest
 from numpy.testing import assert_almost_equal
+from pandas import merge
 from pytest import fixture
 from tsfresh.feature_extraction import extract_features
 
@@ -12,13 +13,6 @@ from featuretools_tsfresh_primitives.utils import (comprehensive_fc_parameters,
 @fixture(scope='session')
 def entityset():
     return ft.demo.load_mock_customer(return_entityset=True)
-
-
-@fixture(scope='session')
-def df(entityset):
-    transactions = entityset['transactions'].df
-    regex = 'session_id|transaction_time|amount'
-    return transactions.filter(regex=regex)
 
 
 def parametrize():
@@ -44,7 +38,10 @@ def parametrize():
 
 
 @pytest.mark.parametrize('parameters,primitive', **parametrize())
-def test_primitive(entityset, df, parameters, primitive):
+def test_primitive(entityset, parameters, primitive):
+    df = entityset['transactions'].df
+    df = df[['session_id', 'transaction_time', 'amount']]
+
     expected = extract_features(
         timeseries_container=df,
         column_id='session_id',
