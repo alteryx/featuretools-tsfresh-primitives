@@ -4,6 +4,26 @@ from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 import featuretools_tsfresh_primitives
 
 
+def comprehensive_fc_parameters():
+    """It is basically a dictionary, which is a mapping from string to a dictionary list of parameters.
+
+    Returns:
+        parameters (dict) : a dictionary list of parameters
+
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.settings.ComprehensiveFCParameters
+    """
+    parameters = ComprehensiveFCParameters()
+
+    # when a partial autocorrelation has a lag of zero,
+    # an error is raised from `tsfresh.feature_extraction.extract_features`
+    partial_autocorrelation = parameters['partial_autocorrelation']
+    for index, values in enumerate(partial_autocorrelation):
+        if values['lag'] == 0: del partial_autocorrelation[index]
+
+    return parameters
+
+
 def supported_primitives():
     """Generates the currently supported primitives.
 
@@ -37,7 +57,7 @@ def primitives_from_fc_settings(fc_settings=None):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#module-tsfresh.feature_extraction.settings
     """
-    parameters = fc_settings or ComprehensiveFCParameters()
+    parameters = fc_settings or comprehensive_fc_parameters()
     agg_primitives = []
 
     def append(primitive, primitives):

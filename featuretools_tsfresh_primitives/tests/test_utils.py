@@ -1,11 +1,12 @@
-from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
-from featuretools_tsfresh_primitives.utils import (primitives_from_fc_settings,
+
+from featuretools_tsfresh_primitives.utils import (comprehensive_fc_parameters,
+                                                   primitives_from_fc_settings,
                                                    supported_primitives)
 
 
-def test_comprehensive_primitives():
-    fc_parameters = ComprehensiveFCParameters()
+def test_primitives_from_fc_settings():
+    fc_parameters = comprehensive_fc_parameters()
 
     for primitive in supported_primitives():
         inputs = fc_parameters[primitive.name] or [{}]
