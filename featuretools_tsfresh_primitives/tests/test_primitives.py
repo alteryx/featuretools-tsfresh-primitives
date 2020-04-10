@@ -1,7 +1,6 @@
 import featuretools as ft
 import pytest
 from numpy.testing import assert_almost_equal
-from pandas import merge
 from pytest import fixture
 from tsfresh.feature_extraction import extract_features
 
