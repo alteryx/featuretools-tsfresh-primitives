@@ -5,7 +5,7 @@ import featuretools_tsfresh_primitives
 
 
 def comprehensive_fc_parameters():
-    """A wrapper around :class:`ComperehensiveFCParameters` to filter out unsupported parameter settings.
+    """A wrapper around the tsfresh function :class:`ComperehensiveFCParameters` to filter out unsupported parameter settings.
 
     Returns:
         parameters (dict) : a dictionary list of parameters
