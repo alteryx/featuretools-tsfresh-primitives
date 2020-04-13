@@ -103,7 +103,7 @@ jobs:
           name: "Run Unit Tests"
           command: |
             source env/bin/activate
-            make unit-tests
+            pytest -n 2 --cov=featuretools_tsfresh_primitives --cache-clear --show-capture=stderr -vv
 
       - when:
           condition: << parameters.codecov >>
