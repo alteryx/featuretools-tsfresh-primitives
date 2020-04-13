@@ -3,7 +3,7 @@ from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
 from featuretools_tsfresh_primitives.primitives import SUPPORTED_PRIMITIVES
 
-PRIMITIVE_NAMES = [primitive.name for primitive in SUPPORTED_PRIMITIVES]
+SUPPORTED_PRIMITIVES = {primitive.name: primitive for primitive in SUPPORTED_PRIMITIVES}
 
 
 def comprehensive_fc_parameters():
@@ -58,9 +58,8 @@ def primitives_from_fc_settings(fc_settings=None):
             primitives.append(instance)
 
     for key in parameters:
-        if key in PRIMITIVE_NAMES:
-            index = PRIMITIVE_NAMES.index(key)
-            primitive = SUPPORTED_PRIMITIVES[index]
+        if key in SUPPORTED_PRIMITIVES:
+            primitive = SUPPORTED_PRIMITIVES[key]
             assert issubclass(primitive, AggregationPrimitive)
             add_primitive_instances(primitive, agg_primitives)
 
