@@ -1,26 +1,13 @@
 import featuretools as ft
-import pytest
 from numpy.testing import assert_almost_equal
-from pytest import fixture
+from pytest import fixture, mark
 from tsfresh.feature_extraction import extract_features
-from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
-from featuretools_tsfresh_primitives import comprehensive_primitives
+from featuretools_tsfresh_primitives import (PRIMITIVES_SUPPORTED,
+                                             comprehensive_fc_parameters,
+                                             primitives_from_fc_settings)
 
-BLACKLIST = [
-    # when a partial autocorrelation has a lag of zero,
-    # an error is raised from `tsfresh.feature_extraction.extract_features`
-    'PARTIAL_AUTOCORRELATION(transactions.amount, lag=0)'
-]
-
-
-@fixture(scope='session')
-def df():
-    df = ft.demo.load_mock_customer(return_single_table=True)
-    df = df.filter(regex='session_id|transaction_time|amount')
-    df = df.set_index('transaction_time')
-    df.sort_index(inplace=True)
-    return df
+PARAMETERS = comprehensive_fc_parameters()
 
 
 @fixture(scope='session')
@@ -28,45 +15,51 @@ def entityset():
     return ft.demo.load_mock_customer(return_entityset=True)
 
 
-def parameterize():
-    values = {'argvalues': [], 'ids': []}
-    fc_parameters = ComprehensiveFCParameters()
-    agg_primitives = comprehensive_primitives(fc_parameters)
-    es = ft.demo.load_mock_customer(return_entityset=True)
+@fixture(scope='session')
+def df(entityset):
+    df = entityset['transactions'].df
+    df = df.filter(regex='session_id|transaction_time|amount')
+    df = df.set_index('transaction_time').sort_index()
+    return df
 
-    for key in agg_primitives:
-        parameters = fc_parameters[key] or [{}]
-        items = zip(parameters, agg_primitives[key])
+
+def parametrize():
+    values = {'argvalues': [], 'ids': []}
+    for primitive in PRIMITIVES_SUPPORTED.values():
+        parameter_list = PARAMETERS[primitive.name] or [{}]
+        primitive_settings = {primitive.name: parameter_list}
+        primitives = primitives_from_fc_settings(primitive_settings)
+        items = zip(parameter_list, primitives)
 
         for parameters, primitive in items:
-            base = es['transactions']['amount']
-
-            if 'timewise' in primitive.name:
-                base = [base, es['transactions']['transaction_time']]
-
-            feature = ft.Feature(
-                base=base,
-                parent_entity=es['sessions'],
-                primitive=primitive,
-            )
-
-            name = feature.generate_name()
-            item = {key: [parameters]}, feature
+            item = {primitive.name: [parameters]}, primitive
             values['argvalues'].append(item)
+
+            name = primitive.name.upper()
+            args = primitive.get_args_string()
+            if args: name += '(%s)' % args.lstrip(' ,')
             values['ids'].append(name)
 
     return values
 
 
-@pytest.mark.parametrize('fc_parameters,feature', **parameterize())
-def test_primitive(entityset, df, fc_parameters, feature):
-    name = feature.generate_name()
-    if name in BLACKLIST: return
-
+@mark.parametrize('parameters,primitive', **parametrize())
+def test_primitive(entityset, df, parameters, primitive):
     expected = extract_features(
         timeseries_container=df,
         column_id='session_id',
-        default_fc_parameters=fc_parameters,
+        default_fc_parameters=parameters,
+    )
+
+    base = entityset['transactions']['amount']
+
+    if primitive.name == 'linear_trend_timewise':
+        base = [base, entityset['transactions']['transaction_time']]
+
+    feature = ft.Feature(
+        base=base,
+        parent_entity=entityset['sessions'],
+        primitive=primitive,
     )
 
     actual = ft.calculate_feature_matrix(

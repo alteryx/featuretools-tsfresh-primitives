@@ -1,16 +1,16 @@
-from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
+from featuretools_tsfresh_primitives import (PRIMITIVES_SUPPORTED,
+                                             comprehensive_fc_parameters,
+                                             primitives_from_fc_settings)
 
-from featuretools_tsfresh_primitives.utils import (comprehensive_primitives,
-                                                   supported_primitives)
 
+def test_primitives_from_fc_settings():
+    fc_parameters = comprehensive_fc_parameters()
 
-def test_comprehensive_primitives():
-    fc_parameters = ComprehensiveFCParameters()
-    agg_primitives = comprehensive_primitives()
-
-    for primitive in supported_primitives():
-        instances = agg_primitives[primitive.name]
+    for primitive in PRIMITIVES_SUPPORTED.values():
         inputs = fc_parameters[primitive.name] or [{}]
+        parameters = {primitive.name: inputs}
+        instances = primitives_from_fc_settings(parameters)
+
         assert len(instances) == len(inputs)
         items = zip(instances, inputs)
 

@@ -99,19 +99,22 @@ jobs:
           test_requirements: true
           latest_featuretools: << parameters.latest_featuretools >>
 
-      - run:
-          name: "Run Unit Tests"
-          command: |
-            source env/bin/activate
-            make unit-tests
-
       - when:
+          name: "Run Unit Tests with Code Coverage"
           condition: << parameters.codecov >>
           steps:
             - run: |
                 source env/bin/activate
+                make unit-tests ADDOPTS="--cov=featuretools_tsfresh_primitives"
                 codecov
 
+      - unless:
+          name: "Run Unit Tests"
+          condition: << parameters.codecov >>
+          steps:
+            - run: |
+                source env/bin/activate
+                make unit-tests
 
   entry_point_test:
     working_directory: ~/featuretools-tsfresh-primitives
