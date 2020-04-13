@@ -19,6 +19,7 @@ def entityset():
 def df(entityset):
     df = entityset['transactions'].df
     df = df.filter(regex='session_id|transaction_time|amount')
+    df = df.set_index('transaction_time').sort_index()
     return df
 
 
@@ -47,12 +48,16 @@ def test_primitive(entityset, df, parameters, primitive):
     expected = extract_features(
         timeseries_container=df,
         column_id='session_id',
-        column_sort='transaction_time',
         default_fc_parameters=parameters,
     )
 
+    base = entityset['transactions']['amount']
+
+    if primitive.name == 'linear_trend_timewise':
+        base = [base, entityset['transactions']['transaction_time']]
+
     feature = ft.Feature(
-        base=entityset['transactions']['amount'],
+        base=base,
         parent_entity=entityset['sessions'],
         primitive=primitive,
     )
