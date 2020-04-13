@@ -1,4 +1,5 @@
 import featuretools as ft
+import pandas as pd
 import pytest
 from numpy.testing import assert_almost_equal
 from pytest import fixture
@@ -8,18 +9,26 @@ from featuretools_tsfresh_primitives.utils import (comprehensive_fc_parameters,
                                                    primitives_from_fc_settings,
                                                    supported_primitives)
 
+PRIMITIVES = supported_primitives()
+PARAMETERS = comprehensive_fc_parameters()
+
 
 @fixture(scope='session')
 def entityset():
     return ft.demo.load_mock_customer(return_entityset=True)
 
 
+@fixture(scope='session')
+def df(entityset):
+    df = pd.merge(entityset['sessions'].df, entityset['transactions'].df, on='session_id')
+    return df[['session_id', 'transaction_time', 'amount']]
+
+
 def parametrize():
     values = {'argvalues': [], 'ids': []}
-    fc_parameters = comprehensive_fc_parameters()
 
-    for primitive in supported_primitives():
-        parameter_list = fc_parameters[primitive.name] or [{}]
+    for primitive in PRIMITIVES:
+        parameter_list = PARAMETERS[primitive.name] or [{}]
         primitive_settings = {primitive.name: parameter_list}
         primitives = primitives_from_fc_settings(primitive_settings)
         items = zip(parameter_list, primitives)
@@ -36,11 +45,15 @@ def parametrize():
     return values
 
 
-@pytest.mark.parametrize('parameters,primitive', **parametrize())
-def test_primitive(entityset, parameters, primitive):
-    df = entityset['transactions'].df
-    df = df[['session_id', 'transaction_time', 'amount']]
+TEST_PRIMITIVE = parametrize()
 
+
+@pytest.mark.parametrize(
+    'parameters,primitive',
+    argvalues=TEST_PRIMITIVE['argvalues'],
+    ids=TEST_PRIMITIVE['ids'],
+)
+def test_primitive(entityset, df, parameters, primitive):
     expected = extract_features(
         timeseries_container=df,
         column_id='session_id',
