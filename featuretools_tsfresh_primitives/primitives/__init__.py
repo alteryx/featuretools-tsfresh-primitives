@@ -68,4 +68,4 @@ from .variance import Variance
 from .variance_larger_than_standard_deviation import \
     VarianceLargerThanStandardDeviation
 
-PRIMITIVES_SUPPORTED = {value.name: value for key, value in locals().items() if isinstance(value, type)}
+SUPPORTED_PRIMITIVES = [value for value in locals().values() if isinstance(value, type)]
