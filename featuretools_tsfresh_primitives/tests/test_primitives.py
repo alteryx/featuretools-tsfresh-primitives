@@ -26,9 +26,10 @@ def df(entityset):
 def parametrize():
     values = {'argvalues': [], 'ids': []}
 
-    for primitive in PRIMITIVES_SUPPORTED.values():
-        parameter_list = PARAMETERS[primitive.name] or [{}]
-        primitive_settings = {primitive.name: parameter_list}
+    for key in PARAMETERS:
+        if key not in PRIMITIVES_SUPPORTED: continue
+        parameter_list = PARAMETERS[key] or [{}]
+        primitive_settings = {key: parameter_list}
         primitives = primitives_from_fc_settings(primitive_settings)
         items = zip(parameter_list, primitives)
 
