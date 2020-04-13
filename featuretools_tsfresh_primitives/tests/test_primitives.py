@@ -1,8 +1,6 @@
 import featuretools as ft
-import pandas as pd
-import pytest
 from numpy.testing import assert_almost_equal
-from pytest import fixture
+from pytest import fixture, mark
 from tsfresh.feature_extraction import extract_features
 
 from featuretools_tsfresh_primitives import (PRIMITIVES_SUPPORTED,
@@ -19,13 +17,13 @@ def entityset():
 
 @fixture(scope='session')
 def df(entityset):
-    df = pd.merge(entityset['sessions'].df, entityset['transactions'].df, on='session_id')
-    return df[['session_id', 'transaction_time', 'amount']]
+    df = entityset['transactions'].df
+    df = df.filter(regex='session_id|transaction_time|amount')
+    return df
 
 
 def parametrize():
     values = {'argvalues': [], 'ids': []}
-
     for primitive in PRIMITIVES_SUPPORTED.values():
         parameter_list = PARAMETERS[primitive.name] or [{}]
         primitive_settings = {primitive.name: parameter_list}
@@ -44,7 +42,7 @@ def parametrize():
     return values
 
 
-@pytest.mark.parametrize('parameters,primitive', **parametrize())
+@mark.parametrize('parameters,primitive', **parametrize())
 def test_primitive(entityset, df, parameters, primitive):
     expected = extract_features(
         timeseries_container=df,
