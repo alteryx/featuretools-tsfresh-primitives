@@ -186,7 +186,7 @@ workflows:
           name: "Unit Tests - Python 3.7 - Featuretools Master"
           image_tag: "python:3.7"
           latest_featuretools: true
-          codecov: false
+          codecov: true
 
       - entry_point_test:
           name: "Entry Point Test - Python 3.5 - Featuretools Release"

@@ -8,4 +8,4 @@ lint-tests:
 	isort --check-only --recursive featuretools_tsfresh_primitives
 
 unit-tests:
-	pytest --cache-clear --show-capture=stderr -vv
+	pytest --cov=featuretools_tsfresh_primitives --cache-clear --show-capture=stderr -vv
