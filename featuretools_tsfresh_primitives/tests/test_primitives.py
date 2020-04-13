@@ -45,14 +45,7 @@ def parametrize():
     return values
 
 
-TEST_PRIMITIVE = parametrize()
-
-
-@pytest.mark.parametrize(
-    'parameters,primitive',
-    argvalues=TEST_PRIMITIVE['argvalues'],
-    ids=TEST_PRIMITIVE['ids'],
-)
+@pytest.mark.parametrize('parameters,primitive', **parametrize())
 def test_primitive(entityset, df, parameters, primitive):
     expected = extract_features(
         timeseries_container=df,
