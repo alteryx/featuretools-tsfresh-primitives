@@ -1,7 +1,7 @@
-from featuretools.primitives import AggregationPrimitive, TransformPrimitive
+from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
-import featuretools_tsfresh_primitives
+from featuretools_tsfresh_primitives.primitives import PRIMITIVES_SUPPORTED
 
 
 def comprehensive_fc_parameters():
@@ -22,19 +22,6 @@ def comprehensive_fc_parameters():
         if values['lag'] == 0: del partial_autocorrelation[index]
 
     return parameters
-
-
-def supported_primitives():
-    """Generates the currently supported primitives.
-
-        Returns:
-            generator: primitive classes
-    """
-    primitive_types = AggregationPrimitive, TransformPrimitive
-    for key in dir(featuretools_tsfresh_primitives):
-        value = getattr(featuretools_tsfresh_primitives, key)
-        is_primitive = isinstance(value, type) and issubclass(value, primitive_types)
-        if is_primitive: yield value
 
 
 def primitives_from_fc_settings(fc_settings=None):
@@ -68,8 +55,9 @@ def primitives_from_fc_settings(fc_settings=None):
             instance = primitive(**values)
             primitives.append(instance)
 
-    for primitive in supported_primitives():
-        if primitive.name in parameters:
+    for key in parameters:
+        if key in PRIMITIVES_SUPPORTED:
+            primitive = PRIMITIVES_SUPPORTED[key]
             assert issubclass(primitive, AggregationPrimitive)
             add_primitive_instances(primitive, agg_primitives)
 

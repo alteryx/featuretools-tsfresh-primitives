@@ -5,11 +5,10 @@ from numpy.testing import assert_almost_equal
 from pytest import fixture
 from tsfresh.feature_extraction import extract_features
 
-from featuretools_tsfresh_primitives.utils import (comprehensive_fc_parameters,
-                                                   primitives_from_fc_settings,
-                                                   supported_primitives)
+from featuretools_tsfresh_primitives import (PRIMITIVES_SUPPORTED,
+                                             comprehensive_fc_parameters,
+                                             primitives_from_fc_settings)
 
-PRIMITIVES = supported_primitives()
 PARAMETERS = comprehensive_fc_parameters()
 
 
@@ -27,7 +26,7 @@ def df(entityset):
 def parametrize():
     values = {'argvalues': [], 'ids': []}
 
-    for primitive in PRIMITIVES:
+    for primitive in PRIMITIVES_SUPPORTED.values():
         parameter_list = PARAMETERS[primitive.name] or [{}]
         primitive_settings = {primitive.name: parameter_list}
         primitives = primitives_from_fc_settings(primitive_settings)

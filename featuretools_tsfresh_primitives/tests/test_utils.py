@@ -1,14 +1,12 @@
-
-
-from featuretools_tsfresh_primitives.utils import (comprehensive_fc_parameters,
-                                                   primitives_from_fc_settings,
-                                                   supported_primitives)
+from featuretools_tsfresh_primitives import (PRIMITIVES_SUPPORTED,
+                                             comprehensive_fc_parameters,
+                                             primitives_from_fc_settings)
 
 
 def test_primitives_from_fc_settings():
     fc_parameters = comprehensive_fc_parameters()
 
-    for primitive in supported_primitives():
+    for primitive in PRIMITIVES_SUPPORTED.values():
         inputs = fc_parameters[primitive.name] or [{}]
         parameters = {primitive.name: inputs}
         instances = primitives_from_fc_settings(parameters)
