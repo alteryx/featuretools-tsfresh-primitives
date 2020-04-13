@@ -48,27 +48,16 @@ def test_primitive(entityset, parameters, primitive):
         default_fc_parameters=parameters,
     )
 
-    # feature = ft.Feature(
-    #     base=entityset['transactions']['amount'],
-    #     parent_entity=entityset['sessions'],
-    #     primitive=primitive,
-    # )
-
-    # actual = ft.calculate_feature_matrix(
-    #     features=[feature],
-    #     entityset=entityset,
-    # )
-
-    actual, _ = ft.dfs(
-        entityset=entityset,
-        max_depth=1,
-        target_entity='sessions',
-        trans_primitives=[],
-        where_primitives=[],
-        agg_primitives=[primitive],
+    feature = ft.Feature(
+        base=entityset['transactions']['amount'],
+        parent_entity=entityset['sessions'],
+        primitive=primitive,
     )
 
-    actual = actual.filter(regex='transactions.amount')
+    actual = ft.calculate_feature_matrix(
+        features=[feature],
+        entityset=entityset,
+    )
 
     assert_almost_equal(
         actual=actual.values,
