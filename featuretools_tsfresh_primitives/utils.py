@@ -1,45 +1,66 @@
-import numpy as np
-import pandas as pd
+from featuretools.primitives import AggregationPrimitive
+from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
-import featuretools_tsfresh_primitives
+from featuretools_tsfresh_primitives.primitives import SUPPORTED_PRIMITIVES
 
-
-def _pascal_case(snake_str):
-    words = snake_str.split('_')
-    titled_words = map(str.title, words)
-    return ''.join(titled_words)
+PRIMITIVES = {primitive.name: primitive for primitive in SUPPORTED_PRIMITIVES}
 
 
-def _tsfresh_to_featuretools(fc_name):
-    return getattr(featuretools_tsfresh_primitives, _pascal_case(fc_name))
+def comprehensive_fc_parameters():
+    """A wrapper around the tsfresh function :class:`ComperehensiveFCParameters` to filter out unsupported parameter settings.
 
+    Returns:
+        parameters (dict) : a dictionary list of parameters
 
-def primitives_from_fc_settings(fc_settings):
+    Docstring source:
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.settings.ComprehensiveFCParameters
     """
-    Return a list of :class:AggregationPrimitive from tsfresh settings.
-    The format is the same as the argument `default_fc_parameters` of
-    :func:`tsfresh.feature_extraction.extract_features`
+    parameters = ComprehensiveFCParameters()
+
+    # when a partial autocorrelation has a lag of zero,
+    # an error is raised from `tsfresh.feature_extraction.extract_features`
+    partial_autocorrelation = parameters['partial_autocorrelation']
+    for index, values in enumerate(partial_autocorrelation):
+        if values['lag'] == 0: del partial_autocorrelation[index]
+
+    return parameters
+
+
+def primitives_from_fc_settings(fc_settings=None):
+    """Returns a list of :class:`AggregationPrimitive` from tsfresh settings.
+    The format is the same as the argument `default_fc_parameters` of :func:`tsfresh.feature_extraction.extract_features`
 
     Args:
         fc_settings (dict): mapping from tsfresh feature calculator names (snake case) to parameters.
             Only those names which are keys in this dict will be calculated.
+            The default value is the dictionary of parameter settings from :class:`ComperehensiveFCParameters`.
+
+    Returns:
+        agg_primitives (list): A list of primitive instances.
+
+    Examples:
+        >>> parameters = {'autocorrelation': [{'lag': 2}]}
+        >>> primitive = primitives_from_fc_settings(parameters)[0]
+        >>> primitive(range(3))
+        -1.5
 
     Docstring source:
-    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#module-tsfresh
-    .feature_extraction.settings
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#module-tsfresh.feature_extraction.settings
     """
-    primitives = []
-    for fc_name, params_list in fc_settings.items():
-        if not isinstance(params_list, list):
-            params_list = [params_list]
-        primitive_cls = _tsfresh_to_featuretools(fc_name)
-        fc_primitives = [primitive_cls(**params or {}) for params in params_list]
-        primitives.extend(fc_primitives)
-    return primitives
+    parameters = fc_settings or comprehensive_fc_parameters()
+    agg_primitives = []
 
+    def add_primitive_instances(primitive, primitives):
+        inputs = parameters[primitive.name] or [{}]
 
-def to_array(x):
-    """Convert the input to a numpy array"""
-    if isinstance(x, pd.Series):
-        return x.values
-    return np.asarray(x)
+        for values in inputs:
+            instance = primitive(**values)
+            primitives.append(instance)
+
+    for key in parameters:
+        if key in PRIMITIVES:
+            primitive = PRIMITIVES[key]
+            assert issubclass(primitive, AggregationPrimitive)
+            add_primitive_instances(primitive, agg_primitives)
+
+    return agg_primitives

@@ -3,8 +3,6 @@ from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     first_location_of_maximum
 
-from .utils import to_array
-
 
 class FirstLocationOfMaximum(AggregationPrimitive):
     """Returns the first location of the maximum value of x. The position is
@@ -20,6 +18,6 @@ class FirstLocationOfMaximum(AggregationPrimitive):
 
     def get_function(self):
         def function(x):
-            return first_location_of_maximum(to_array(x))
+            return first_location_of_maximum(x.to_numpy())
 
         return function

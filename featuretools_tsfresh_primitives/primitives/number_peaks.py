@@ -10,12 +10,12 @@ class NumberPeaks(AggregationPrimitive):
 
     Hence in the sequence
 
-    >>> x = [3, 0, 0, 4, 0, 0, 13]
+    `x = [3, 0, 0, 4, 0, 0, 13]`
 
     4 is a peak of support 1 and 2 because in the subsequences
 
-    >>> [0, 4, 0]
-    >>> [0, 0, 4, 0, 0]
+    `[0, 4, 0]`
+    `[0, 0, 4, 0, 0]`
 
     4 is still the highest value. Here, 4 is not a peak of support 3 because 13
     is the 3th neighbour to the right of 4 and its bigger than 4.

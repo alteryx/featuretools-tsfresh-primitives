@@ -1,33 +1,22 @@
-import pytest
-
-from featuretools_tsfresh_primitives import (C3, CwtCoefficients, Minimum,
-                                             Quantile)
-from featuretools_tsfresh_primitives.utils import (_pascal_case,
-                                                   primitives_from_fc_settings)
-
-
-@pytest.mark.parametrize('x,expected',
-                         [('ab_ab_ab', 'AbAbAb'), ('c3', 'C3'), ('c_3', 'C3')])
-def test_pascal_case(x, expected):
-    assert _pascal_case(x) == expected
+from featuretools_tsfresh_primitives import (SUPPORTED_PRIMITIVES,
+                                             comprehensive_fc_parameters,
+                                             primitives_from_fc_settings)
 
 
 def test_primitives_from_fc_settings():
-    fc_settings = {'minimum': None,
-                   'quantile': {'q': 0.1},
-                   'C3': [{'lag': 1}, {'lag': 2}],
-                   'cwt_coefficients': [{'widths': (2, 5), 'coeff': 1, 'w': 2},
-                                        {'widths': (2, 5), 'coeff': 0, 'w': 5}]}
+    fc_parameters = comprehensive_fc_parameters()
 
-    actual = primitives_from_fc_settings(fc_settings)
-    expected = [Minimum(),
-                Quantile(q=0.1),
-                C3(lag=1),
-                C3(lag=2),
-                CwtCoefficients(widths=[2, 5], coeff=1, w=2),
-                CwtCoefficients(widths=[2, 5], coeff=0, w=5)]
+    for primitive in SUPPORTED_PRIMITIVES:
+        inputs = fc_parameters[primitive.name] or [{}]
+        parameters = {primitive.name: inputs}
+        instances = primitives_from_fc_settings(parameters)
 
-    actual = [(primitive.__class__, primitive.get_args_string()) for primitive in actual]
-    expected = [(primitive.__class__, primitive.get_args_string()) for primitive in expected]
+        assert len(instances) == len(inputs)
+        items = zip(instances, inputs)
 
-    assert actual == expected
+        for instance, inputs in items:
+            assert instance.name == primitive.name
+
+            for attribute, value in inputs.items():
+                assert hasattr(instance, attribute)
+                assert getattr(instance, attribute) == value

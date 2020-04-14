@@ -86,6 +86,10 @@ jobs:
         type: boolean
         default: false
 
+      codecov:
+        type: boolean
+        default: false
+
     executor:
       name: python
       image_tag: << parameters.image_tag >>
@@ -95,11 +99,22 @@ jobs:
           test_requirements: true
           latest_featuretools: << parameters.latest_featuretools >>
 
-      - run:
+      - when:
+          name: "Run Unit Tests with Code Coverage"
+          condition: << parameters.codecov >>
+          steps:
+            - run: |
+                source env/bin/activate
+                make unit-tests ADDOPTS="--cov=featuretools_tsfresh_primitives"
+                codecov
+
+      - unless:
           name: "Run Unit Tests"
-          command: |
-            source env/bin/activate
-            make unit-tests
+          condition: << parameters.codecov >>
+          steps:
+            - run: |
+                source env/bin/activate
+                make unit-tests
 
   entry_point_test:
     working_directory: ~/featuretools-tsfresh-primitives
@@ -174,6 +189,7 @@ workflows:
           name: "Unit Tests - Python 3.7 - Featuretools Master"
           image_tag: "python:3.7"
           latest_featuretools: true
+          codecov: true
 
       - entry_point_test:
           name: "Entry Point Test - Python 3.5 - Featuretools Release"
