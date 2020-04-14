@@ -3,7 +3,7 @@ from numpy.testing import assert_almost_equal
 from pytest import fixture, mark
 from tsfresh.feature_extraction import extract_features
 
-from featuretools_tsfresh_primitives import (PRIMITIVES_SUPPORTED,
+from featuretools_tsfresh_primitives import (SUPPORTED_PRIMITIVES,
                                              comprehensive_fc_parameters,
                                              primitives_from_fc_settings)
 
@@ -19,13 +19,12 @@ def entityset():
 def df(entityset):
     df = entityset['transactions'].df
     df = df.filter(regex='session_id|transaction_time|amount')
-    df = df.set_index('transaction_time').sort_index()
     return df
 
 
 def parametrize():
     values = {'argvalues': [], 'ids': []}
-    for primitive in PRIMITIVES_SUPPORTED.values():
+    for primitive in SUPPORTED_PRIMITIVES:
         parameter_list = PARAMETERS[primitive.name] or [{}]
         primitive_settings = {primitive.name: parameter_list}
         primitives = primitives_from_fc_settings(primitive_settings)
@@ -48,16 +47,12 @@ def test_primitive(entityset, df, parameters, primitive):
     expected = extract_features(
         timeseries_container=df,
         column_id='session_id',
+        column_sort='transaction_time',
         default_fc_parameters=parameters,
     )
 
-    base = entityset['transactions']['amount']
-
-    if primitive.name == 'linear_trend_timewise':
-        base = [base, entityset['transactions']['transaction_time']]
-
     feature = ft.Feature(
-        base=base,
+        base=entityset['transactions']['amount'],
         parent_entity=entityset['sessions'],
         primitive=primitive,
     )

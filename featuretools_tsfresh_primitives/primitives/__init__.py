@@ -12,9 +12,7 @@ from .binned_entropy import BinnedEntropy
 from .c3 import C3
 from .change_quantiles import ChangeQuantiles
 from .cid_ce import CidCe
-from .count_above import CountAbove
 from .count_above_mean import CountAboveMean
-from .count_below import CountBelow
 from .count_below_mean import CountBelowMean
 from .cwt_coefficients import CwtCoefficients
 from .energy_ratio_by_chunks import EnergyRatioByChunks
@@ -33,7 +31,6 @@ from .last_location_of_maximum import LastLocationOfMaximum
 from .last_location_of_minimum import LastLocationOfMinimum
 from .length import Length
 from .linear_trend import LinearTrend
-from .linear_trend_timewise import LinearTrendTimewise
 from .longest_strike_above_mean import LongestStrikeAboveMean
 from .longest_strike_below_mean import LongestStrikeBelowMean
 from .max_langevin_fixed_point import MaxLangevinFixedPoint
@@ -71,4 +68,4 @@ from .variance import Variance
 from .variance_larger_than_standard_deviation import \
     VarianceLargerThanStandardDeviation
 
-PRIMITIVES_SUPPORTED = {value.name: value for key, value in locals().items() if isinstance(value, type)}
+SUPPORTED_PRIMITIVES = [value for value in locals().values() if isinstance(value, type)]
