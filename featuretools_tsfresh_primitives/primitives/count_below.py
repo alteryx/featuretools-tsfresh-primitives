@@ -10,7 +10,7 @@ class CountBelow(AggregationPrimitive):
             t (float) : value used as threshold
 
     Docstring source:
-    https://tsfresh.readthedocs.io/en/v0.15.1/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.count_below
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.count_below
     """
     name = "count_below"
     input_types = [Numeric]

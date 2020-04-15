@@ -10,7 +10,7 @@ class CountAbove(AggregationPrimitive):
             t (float) : value used as threshold
 
     Docstring source:
-    https://tsfresh.readthedocs.io/en/v0.15.1/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.count_above
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.count_above
     """
     name = "count_above"
     input_types = [Numeric]
