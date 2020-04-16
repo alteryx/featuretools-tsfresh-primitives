@@ -27,7 +27,6 @@ class LinearTrendTimewise(AggregationPrimitive):
     def get_function(self):
         def function(numeric, time):
             numeric.index = time.values
-            numeric.sort_index(inplace=True)
             param = [{'attr': self.attr}]
             values = linear_trend_timewise(numeric, param)
             return values[0][1]
