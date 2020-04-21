@@ -176,11 +176,6 @@ workflows:
           image_tag: "python:3.7"
 
       - unit_tests:
-          name: "Unit Tests - Python 3.5 - Featuretools Master"
-          image_tag: "python:3.5"
-          latest_featuretools: true
-
-      - unit_tests:
           name: "Unit Tests - Python 3.6 - Featuretools Master"
           image_tag: "python:3.6"
           latest_featuretools: true
@@ -202,11 +197,6 @@ workflows:
       - entry_point_test:
           name: "Entry Point Test - Python 3.7 - Featuretools Release"
           image_tag: "python:3.7"
-
-      - entry_point_test:
-          name: "Entry Point Test - Python 3.5 - Featuretools Master"
-          image_tag: "python:3.5"
-          latest_featuretools: true
 
       - entry_point_test:
           name: "Entry Point Test - Python 3.6 - Featuretools Master"
