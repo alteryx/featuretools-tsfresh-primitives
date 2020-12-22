@@ -5,7 +5,7 @@ on:
 name: Tests
 jobs:
   entry_point_test:
-    name: Entry Point Test / Python ${{ matrix.python_version }} / Featuretools ${{ matrix.featuretools_version }}
+    name: Entry Point Test - Python ${{ matrix.python_version }} - Featuretools ${{ matrix.featuretools_version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -31,7 +31,7 @@ jobs:
         run: python -c "from featuretools import tsfresh"
 
   lint_tests:
-    name: Lint Tests / Python ${{ matrix.python_version }}
+    name: Lint Tests - Python ${{ matrix.python_version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -52,7 +52,7 @@ jobs:
         run: make lint-tests
 
   unit_tests:
-    name: Unit Tests / Python ${{ matrix.python_version }} / Featuretools ${{ matrix.featuretools_version }}
+    name: Unit Tests - Python ${{ matrix.python_version }} - Featuretools ${{ matrix.featuretools_version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
