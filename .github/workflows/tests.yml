@@ -73,7 +73,8 @@ jobs:
       - if: ${{ matrix.featuretools_version == 'Main' }}
         name: Install latest version of Featuretools from main branch
         run: pip install git+https://github.com/FeatureLabs/featuretools.git@main#egg=featuretools --upgrade
-      - name: Run unit tests (no code coverage)
+      - if: ${{ matrix.python_version != 3.8 || matrix.featuretools_version != 'Main' }}
+        name: Run unit tests (no code coverage)
         run: make unit-tests
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Run unit tests with code coverage
