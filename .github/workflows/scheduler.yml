@@ -59,8 +59,8 @@ jobs:
               print(info.format(message, relative))
               return recent
 
-          commit = circleci.latest_commit('alteryx/featuretools')
-          recent = circleci.is_recent_commit(commit, recent='hours=25')
+          commit = get_latest_commit('alteryx/featuretools')
+          recent = is_recent_commit(commit, recent='hours=25')
           print("::set-output name=value::%s" % recent)
 
       - if: ${{ steps.is_recent_commit.outputs.value == 'True' }}
