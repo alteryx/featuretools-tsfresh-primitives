@@ -9,6 +9,10 @@ jobs:
     name: Dispatch Tests
     runs-on: ubuntu-latest
     steps:
+      - name: Set up python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
       - name: Install requirements
         run: python -m pip install requests
       - name: Check for recent commit to Featuretools
