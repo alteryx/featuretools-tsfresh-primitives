@@ -152,8 +152,8 @@ workflows:
   "Integration Tests":
     jobs:
       - lint_tests:
-          name: "Lint Tests - Python 3.5"
-          image_tag: "python:3.5"
+          name: "Lint Tests - Python 3.8"
+          image_tag: "python:3.8"
 
       - lint_tests:
           name: "Lint Tests - Python 3.6"
@@ -164,8 +164,8 @@ workflows:
           image_tag: "python:3.7"
 
       - unit_tests:
-          name: "Unit Tests - Python 3.5 - Featuretools Release"
-          image_tag: "python:3.5"
+          name: "Unit Tests - Python 3.8 - Featuretools Release"
+          image_tag: "python:3.8"
 
       - unit_tests:
           name: "Unit Tests - Python 3.6 - Featuretools Release"
@@ -187,8 +187,8 @@ workflows:
           codecov: true
 
       - entry_point_test:
-          name: "Entry Point Test - Python 3.5 - Featuretools Release"
-          image_tag: "python:3.5"
+          name: "Entry Point Test - Python 3.8 - Featuretools Release"
+          image_tag: "python:3.8"
 
       - entry_point_test:
           name: "Entry Point Test - Python 3.6 - Featuretools Release"
