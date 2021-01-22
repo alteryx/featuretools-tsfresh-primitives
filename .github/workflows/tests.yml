@@ -22,9 +22,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-      - name: Install requirements
+      - name: Configure pip
         run: |
           pip config --site set global.progress_bar off
+          pip install pip --upgrade
+          pip install wheel
+      - name: Install requirements
+        run: |
           pip install .
       - if: ${{ matrix.featuretools_version == 'Main' }}
         name: Install latest version of Featuretools from main branch
@@ -50,9 +54,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-      - name: Install requirements
+      - name: Configure pip
         run: |
           pip config --site set global.progress_bar off
+          pip install pip --upgrade
+          pip install wheel
+      - name: Install requirements
+        run: |
           pip install .
           pip install -r test-requirements.txt
       - name: Run lint tests
@@ -75,9 +83,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-      - name: Install requirements
+      - name: Configure pip
         run: |
           pip config --site set global.progress_bar off
+          pip install pip --upgrade
+          pip install wheel
+      - name: Install requirements
+        run: |
           pip install .
           pip install -r test-requirements.txt
       - if: ${{ matrix.featuretools_version == 'Main' }}
