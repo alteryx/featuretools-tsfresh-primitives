@@ -1,4 +1,9 @@
 # Featuretools TSFresh Primitives
+
+[![Tests](https://github.com/alteryx/featuretools-tsfresh-primitives/workflows/Tests/badge.svg)](https://github.com/alteryx/featuretools-tsfresh-primitives/actions/workflows/tests.yml?query=branch%3Amain)
+[![Coverage Status](https://codecov.io/gh/alteryx/featuretools-tsfresh-primitives/branch/main/graph/badge.svg)](https://codecov.io/gh/alteryx/featuretools-tsfresh-primitives)
+[![PyPI version](https://badge.fury.io/py/featuretools-tsfresh-primitives.svg?maxAge=2592000)](https://badge.fury.io/py/featuretools-tsfresh-primitives)
+
 ### Installation
 ```python
 pip install 'featuretools[tsfresh]'
