@@ -25,7 +25,7 @@ jobs:
           with:
             task: is_recent_commit
             repository: alteryx/featuretools
-            recent: hours=25
+            recent: days=7
 
         - name: Run tests
           if: ${{ steps.is_recent_commit.outputs.value == 'True' }}
