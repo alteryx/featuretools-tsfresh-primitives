@@ -2,6 +2,7 @@ from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     ratio_value_number_to_time_series_length
+from woodwork.column_schema import ColumnSchema
 
 
 class RatioValueNumberToTimeSeriesLength(AggregationPrimitive):

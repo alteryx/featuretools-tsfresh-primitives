@@ -2,6 +2,7 @@ from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import DatetimeTimeIndex, Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     linear_trend_timewise
+from woodwork.column_schema import ColumnSchema
 
 
 class LinearTrendTimewise(AggregationPrimitive):

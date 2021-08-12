@@ -2,6 +2,8 @@ from featuretools.primitives import AggregationPrimitive
 from featuretools.variable_types import Boolean, Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     variance_larger_than_standard_deviation
+from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Boolean
 
 
 class VarianceLargerThanStandardDeviation(AggregationPrimitive):
