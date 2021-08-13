@@ -1,5 +1,4 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     percentage_of_reoccurring_values_to_all_values
 from woodwork.column_schema import ColumnSchema
@@ -19,8 +18,6 @@ class PercentageOfReoccurringValuesToAllValues(AggregationPrimitive):
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.percentage_of_reoccurring_values_to_all_values
     """
     name = "percentage_of_reoccurring_values_to_all_values"
-    input_types = [Numeric]
-    return_type = Numeric
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
     return_type = ColumnSchema(semantic_tags={'numeric'})
     stack_on_self = False

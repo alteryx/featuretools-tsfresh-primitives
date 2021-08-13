@@ -1,5 +1,4 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     max_langevin_fixed_point
 from woodwork.column_schema import ColumnSchema
@@ -28,8 +27,6 @@ class MaxLangevinFixedPoint(AggregationPrimitive):
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.max_langevin_fixed_point
     """
     name = "max_langevin_fixed_point"
-    input_types = [Numeric]
-    return_type = Numeric
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
     return_type = ColumnSchema(semantic_tags={'numeric'})
     stack_on_self = False
