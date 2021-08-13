@@ -17,6 +17,8 @@ class RatioValueNumberToTimeSeriesLength(AggregationPrimitive):
     name = "ratio_value_number_to_time_series_length"
     input_types = [Numeric]
     return_type = Numeric
+    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    return_type = ColumnSchema(semantic_tags={'numeric'})
     stack_on_self = False
 
     def get_function(self):

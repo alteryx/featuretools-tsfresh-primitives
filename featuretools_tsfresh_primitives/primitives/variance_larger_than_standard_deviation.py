@@ -3,7 +3,7 @@ from featuretools.variable_types import Boolean, Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     variance_larger_than_standard_deviation
 from woodwork.column_schema import ColumnSchema
-from woodwork.logical_types import Boolean
+from woodwork.logical_types import BooleanNullable
 
 
 class VarianceLargerThanStandardDeviation(AggregationPrimitive):
@@ -16,6 +16,8 @@ class VarianceLargerThanStandardDeviation(AggregationPrimitive):
     name = "variance_larger_than_standard_deviation"
     input_types = [Numeric]
     return_type = Boolean
+    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    return_type = ColumnSchema(logical_type=BooleanNullable)
     stack_on_self = False
 
     def get_function(self):

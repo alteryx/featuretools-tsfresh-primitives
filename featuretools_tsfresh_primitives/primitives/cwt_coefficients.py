@@ -29,6 +29,8 @@ class CwtCoefficients(AggregationPrimitive):
     name = "cwt_coefficients"
     input_types = [Numeric]
     return_type = Numeric
+    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    return_type = ColumnSchema(semantic_tags={'numeric'})
     stack_on_self = False
 
     def __init__(self, widths, coeff, w):
