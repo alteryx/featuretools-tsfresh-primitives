@@ -9,7 +9,7 @@ class PartialAutocorrelation(AggregationPrimitive):
     the given lag. The lag `k` partial autocorrelation of a time series
     :math:`\\lbrace x_t, t = 1 \\ldots T \\rbrace` equals the partial
     correlation of :math:`x_t` and :math:`x_{t-k}`, adjusted for the
-    intermediate variables
+    intermediate columns
     :math:`\\lbrace x_{t-1}, \\ldots, x_{t-k+1} \\rbrace` ([1]).
     Following [2], it can be defined as
 

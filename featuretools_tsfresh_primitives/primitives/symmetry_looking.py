@@ -5,7 +5,7 @@ from woodwork.logical_types import BooleanNullable
 
 
 class SymmetryLooking(AggregationPrimitive):
-    """Boolean variable denoting if the distribution looks symmetric.
+    """Boolean column denoting if the distribution looks symmetric.
 
     Args:
         r (float) : Percentage of the range to compare with.

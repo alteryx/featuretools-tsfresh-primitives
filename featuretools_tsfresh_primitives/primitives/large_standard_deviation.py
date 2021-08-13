@@ -6,7 +6,7 @@ from woodwork.logical_types import BooleanNullable
 
 
 class LargeStandardDeviation(AggregationPrimitive):
-    """Boolean variable denoting if the standard dev of x is higher than 'r'
+    """Boolean column denoting if the standard dev of x is higher than 'r'
     times the range = difference between max and min of x. Hence it checks if
 
     .. math::

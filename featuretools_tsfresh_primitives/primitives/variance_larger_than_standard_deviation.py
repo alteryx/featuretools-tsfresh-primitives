@@ -6,7 +6,7 @@ from woodwork.logical_types import BooleanNullable
 
 
 class VarianceLargerThanStandardDeviation(AggregationPrimitive):
-    """Boolean variable denoting if the variance of x is greater than its
+    """Boolean column denoting if the variance of x is greater than its
     standard deviation. Is equal to variance of x being larger than 1
 
     Docstring source:
