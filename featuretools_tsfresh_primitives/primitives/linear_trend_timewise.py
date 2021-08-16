@@ -20,6 +20,7 @@ class LinearTrendTimewise(AggregationPrimitive):
     name = "linear_trend_timewise"
     input_types = [ColumnSchema(semantic_tags={'numeric'}), ColumnSchema(semantic_tags={'time_index'}, logical_type=Datetime)]
     return_type = ColumnSchema(semantic_tags={'numeric'})
+    return_type = ColumnSchema(logical_type=Double)
     stack_on_self = False
 
     def __init__(self, attr):

@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import agg_linear_trend
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class AggLinearTrend(AggregationPrimitive):
@@ -22,6 +23,7 @@ class AggLinearTrend(AggregationPrimitive):
     name = "agg_linear_trend"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
     return_type = ColumnSchema(semantic_tags={'numeric'})
+    return_type = ColumnSchema(logical_type=Double)
     stack_on_self = False
 
     def __init__(self, attr, chunk_len, f_agg):

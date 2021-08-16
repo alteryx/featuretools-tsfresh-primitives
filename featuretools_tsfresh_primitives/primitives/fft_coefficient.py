@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import fft_coefficient
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class FftCoefficient(AggregationPrimitive):
@@ -26,6 +27,7 @@ class FftCoefficient(AggregationPrimitive):
     name = "fft_coefficient"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
     return_type = ColumnSchema(semantic_tags={'numeric'})
+    return_type = ColumnSchema(logical_type=Double)
     stack_on_self = False
 
     def __init__(self, coeff, attr):

@@ -13,6 +13,7 @@ class StandardDeviation(AggregationPrimitive):
     name = "standard_deviation"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
     return_type = ColumnSchema(semantic_tags={'numeric'})
+    return_type = ColumnSchema(logical_type=Double)
     stack_on_self = False
 
     def get_function(self):
