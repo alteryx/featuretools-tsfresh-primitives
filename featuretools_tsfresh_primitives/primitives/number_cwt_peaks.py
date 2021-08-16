@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import number_cwt_peaks
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import IntegerNullable
 
 
 class NumberCwtPeaks(AggregationPrimitive):

@@ -1,6 +1,8 @@
 from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import count_above_mean
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import IntegerNullable
+# --> docs say float but if its just counting it should be int?
 
 
 class CountAboveMean(AggregationPrimitive):

@@ -19,6 +19,7 @@ class AggLinearTrend(AggregationPrimitive):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.agg_linear_trend
     """
+    # --> says returns a seiries - not sure if int or float
     name = "agg_linear_trend"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
     return_type = ColumnSchema(semantic_tags={'numeric'})

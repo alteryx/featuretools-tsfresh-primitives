@@ -17,6 +17,7 @@ class LinearTrendTimewise(AggregationPrimitive):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.linear_trend_timewise
     """
+    # --> list
     name = "linear_trend_timewise"
     input_types = [ColumnSchema(semantic_tags={'numeric'}), ColumnSchema(semantic_tags={'time_index'}, logical_type=Datetime)]
     return_type = ColumnSchema(semantic_tags={'numeric'})

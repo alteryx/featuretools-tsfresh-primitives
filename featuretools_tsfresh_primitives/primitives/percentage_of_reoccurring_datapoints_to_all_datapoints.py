@@ -2,6 +2,7 @@ from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import \
     percentage_of_reoccurring_datapoints_to_all_datapoints
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class PercentageOfReoccurringDatapointsToAllDatapoints(AggregationPrimitive):

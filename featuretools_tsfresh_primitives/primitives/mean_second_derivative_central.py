@@ -2,6 +2,7 @@ from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import \
     mean_second_derivative_central
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class MeanSecondDerivativeCentral(AggregationPrimitive):

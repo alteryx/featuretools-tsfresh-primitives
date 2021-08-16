@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import c3
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class C3(AggregationPrimitive):

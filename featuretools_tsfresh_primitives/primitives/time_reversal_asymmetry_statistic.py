@@ -4,6 +4,7 @@ from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import \
     time_reversal_asymmetry_statistic
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class TimeReversalAsymmetryStatistic(AggregationPrimitive):

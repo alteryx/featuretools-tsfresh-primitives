@@ -14,6 +14,7 @@ class SpktWelchDensity(AggregationPrimitive):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.spkt_welch_density
     """
+    # --> series
     name = "spkt_welch_density"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
     return_type = ColumnSchema(semantic_tags={'numeric'})

@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import ratio_beyond_r_sigma
 from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class RatioBeyondRSigma(AggregationPrimitive):
