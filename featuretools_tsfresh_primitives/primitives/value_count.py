@@ -15,7 +15,6 @@ class ValueCount(AggregationPrimitive):
     """
     name = "value_count"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(semantic_tags={'numeric'})
     return_type = ColumnSchema(logical_type=IntegerNullable)
     stack_on_self = False
 

@@ -34,7 +34,6 @@ class C3(AggregationPrimitive):
     """
     name = "c3"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(semantic_tags={'numeric'})
     return_type = ColumnSchema(logical_type=Double)
     stack_on_self = False
 

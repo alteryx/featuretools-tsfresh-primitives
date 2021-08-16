@@ -12,7 +12,6 @@ class CountBelowMean(AggregationPrimitive):
     """
     name = "count_below_mean"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(semantic_tags={'numeric'})
     return_type = ColumnSchema(logical_type=IntegerNullable)
     stack_on_self = False
 

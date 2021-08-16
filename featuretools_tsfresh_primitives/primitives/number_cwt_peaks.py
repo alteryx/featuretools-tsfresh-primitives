@@ -18,7 +18,6 @@ class NumberCwtPeaks(AggregationPrimitive):
     """
     name = "number_cwt_peaks"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(semantic_tags={'numeric'})
     return_type = ColumnSchema(logical_type=IntegerNullable)
     stack_on_self = False
 

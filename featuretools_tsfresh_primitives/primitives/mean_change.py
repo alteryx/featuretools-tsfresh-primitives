@@ -17,7 +17,6 @@ class MeanChange(AggregationPrimitive):
     """
     name = "mean_change"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(semantic_tags={'numeric'})
     return_type = ColumnSchema(logical_type=Double)
     stack_on_self = False
 
