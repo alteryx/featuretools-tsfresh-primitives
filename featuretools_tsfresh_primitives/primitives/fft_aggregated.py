@@ -17,7 +17,7 @@ class FftAggregated(AggregationPrimitive):
     """
     name = "fft_aggregated"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(logical_type=Double)
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
     stack_on_self = False
 
     def __init__(self, aggtype):

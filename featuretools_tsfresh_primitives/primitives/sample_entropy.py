@@ -17,7 +17,7 @@ class SampleEntropy(AggregationPrimitive):
     """
     name = "sample_entropy"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(logical_type=Double)
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
     stack_on_self = False
 
     def get_function(self):
