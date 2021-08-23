@@ -1,7 +1,8 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     first_location_of_minimum
+from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class FirstLocationOfMinimum(AggregationPrimitive):
@@ -12,8 +13,8 @@ class FirstLocationOfMinimum(AggregationPrimitive):
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.first_location_of_minimum
     """
     name = "first_location_of_minimum"
-    input_types = [Numeric]
-    return_type = Numeric
+    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
     stack_on_self = False
 
     def get_function(self):

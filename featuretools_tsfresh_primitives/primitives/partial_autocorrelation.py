@@ -1,7 +1,8 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     partial_autocorrelation
+from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class PartialAutocorrelation(AggregationPrimitive):
@@ -9,7 +10,7 @@ class PartialAutocorrelation(AggregationPrimitive):
     the given lag. The lag `k` partial autocorrelation of a time series
     :math:`\\lbrace x_t, t = 1 \\ldots T \\rbrace` equals the partial
     correlation of :math:`x_t` and :math:`x_{t-k}`, adjusted for the
-    intermediate variables
+    intermediate columns
     :math:`\\lbrace x_{t-1}, \\ldots, x_{t-k+1} \\rbrace` ([1]).
     Following [2], it can be defined as
 
@@ -40,8 +41,8 @@ class PartialAutocorrelation(AggregationPrimitive):
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.partial_autocorrelation
     """
     name = "partial_autocorrelation"
-    input_types = [Numeric]
-    return_type = Numeric
+    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
     stack_on_self = False
 
     def __init__(self, lag):

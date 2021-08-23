@@ -1,7 +1,8 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import DatetimeTimeIndex, Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     linear_trend_timewise
+from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Datetime, Double
 
 
 class LinearTrendTimewise(AggregationPrimitive):
@@ -17,8 +18,8 @@ class LinearTrendTimewise(AggregationPrimitive):
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.linear_trend_timewise
     """
     name = "linear_trend_timewise"
-    input_types = [Numeric, DatetimeTimeIndex]
-    return_type = Numeric
+    input_types = [ColumnSchema(semantic_tags={'numeric'}), ColumnSchema(semantic_tags={'time_index'}, logical_type=Datetime)]
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
     stack_on_self = False
 
     def __init__(self, attr):
