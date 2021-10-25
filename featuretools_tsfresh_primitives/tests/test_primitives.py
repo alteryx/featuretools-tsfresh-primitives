@@ -51,10 +51,10 @@ def test_primitive(entityset, df, parameters, primitive):
         default_fc_parameters=parameters,
     )
 
-    base = ft.Feature(entityset, 'transactions', 'amount')
+    base = ft.Feature(entityset["transactions"].ww["amount"])
 
     if primitive.name == 'linear_trend_timewise':
-        base = [base, ft.Feature(entityset, 'transactions', 'transaction_time')]
+        base = [base, ft.Feature(entityset['transactions'].ww['transaction_time'])]
 
     feature = ft.Feature(
         base=base,
