@@ -2,7 +2,7 @@ from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.feature_calculators import \
     longest_strike_above_mean
 from woodwork.column_schema import ColumnSchema
-from woodwork.logical_types import IntegerNullable
+from woodwork.logical_types import Double
 
 
 class LongestStrikeAboveMean(AggregationPrimitive):
@@ -14,7 +14,7 @@ class LongestStrikeAboveMean(AggregationPrimitive):
     """
     name = "longest_strike_above_mean"
     input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(logical_type=IntegerNullable, semantic_tags={'numeric'})
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
     stack_on_self = False
 
     def get_function(self):
