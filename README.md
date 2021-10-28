@@ -38,7 +38,7 @@ from featuretools.tsfresh import AggAutocorrelation, Mean
 
 entityset = ft.demo.load_mock_customer(return_entityset=True)
 agg_primitives = [Mean, AggAutocorrelation(f_agg='mean', maxlag=5)]
-feature_matrix, features = ft.dfs(entityset=entityset, targer_dataframe_name='sessions', agg_primitives=agg_primitives)
+feature_matrix, features = ft.dfs(entityset=entityset, target_dataframe_name='sessions', agg_primitives=agg_primitives)
 
 feature_matrix[[
     'MEAN(transactions.amount)',
