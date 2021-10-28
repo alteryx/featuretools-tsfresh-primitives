@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import index_mass_quantile
+from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import Double
 
 
 class IndexMassQuantile(AggregationPrimitive):
@@ -15,8 +16,8 @@ class IndexMassQuantile(AggregationPrimitive):
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.index_mass_quantile
     """
     name = "index_mass_quantile"
-    input_types = [Numeric]
-    return_type = Numeric
+    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
     stack_on_self = False
 
     def __init__(self, q):

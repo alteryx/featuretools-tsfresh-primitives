@@ -30,12 +30,12 @@ jobs:
           pip config --site set global.progress_bar off
           pip install pip --upgrade
           pip install wheel
-      - name: Install requirements
-        run: |
-          pip install .
+      - if: ${{ matrix.featuretools_version != 'Main' }}
+        name: Install requirements
+        run: pip install .
       - if: ${{ matrix.featuretools_version == 'Main' }}
-        name: Install latest version of Featuretools from main branch
-        run: pip install git+https://github.com/alteryx/featuretools.git@main#egg=featuretools --force-reinstall
+        name: Install with latest version of Featuretools from main branch
+        run: pip install . git+https://github.com/alteryx/featuretools.git@main#egg=featuretools
       - name: Verify installed packages have compatible dependencies
         run: pip check
       - name: Test entry point
@@ -91,13 +91,14 @@ jobs:
           pip config --site set global.progress_bar off
           pip install pip --upgrade
           pip install wheel
-      - name: Install requirements
-        run: |
-          pip install .
-          pip install -r test-requirements.txt
+      - if: ${{ matrix.featuretools_version != 'Main' }}
+        name: Install requirements
+        run: pip install .
       - if: ${{ matrix.featuretools_version == 'Main' }}
-        name: Install latest version of Featuretools from main branch
-        run: pip install git+https://github.com/alteryx/featuretools.git@main#egg=featuretools --force-reinstall
+        name: Install with latest version of Featuretools from main branch
+        run: pip install . git+https://github.com/alteryx/featuretools.git@main#egg=featuretools
+      - name: Install test requirements
+        run: pip install -r test-requirements.txt
       - if: ${{ matrix.python_version != 3.8 || matrix.featuretools_version != 'Main' }}
         name: Run unit tests (no code coverage)
         run: make unit-tests

@@ -1,6 +1,7 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Numeric
 from tsfresh.feature_extraction.feature_calculators import range_count
+from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import IntegerNullable
 
 
 class RangeCount(AggregationPrimitive):
@@ -14,8 +15,8 @@ class RangeCount(AggregationPrimitive):
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.range_count
     """
     name = "range_count"
-    input_types = [Numeric]
-    return_type = Numeric
+    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    return_type = ColumnSchema(logical_type=IntegerNullable, semantic_tags={'numeric'})
     stack_on_self = False
 
     def __init__(self, min, max):

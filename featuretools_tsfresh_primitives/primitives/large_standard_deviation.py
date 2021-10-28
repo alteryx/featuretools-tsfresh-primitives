@@ -1,11 +1,12 @@
 from featuretools.primitives import AggregationPrimitive
-from featuretools.variable_types import Boolean, Numeric
 from tsfresh.feature_extraction.feature_calculators import \
     large_standard_deviation
+from woodwork.column_schema import ColumnSchema
+from woodwork.logical_types import BooleanNullable
 
 
 class LargeStandardDeviation(AggregationPrimitive):
-    """Boolean variable denoting if the standard dev of x is higher than 'r'
+    """Boolean column denoting if the standard dev of x is higher than 'r'
     times the range = difference between max and min of x. Hence it checks if
 
     .. math::
@@ -22,8 +23,8 @@ class LargeStandardDeviation(AggregationPrimitive):
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.large_standard_deviation
     """
     name = "large_standard_deviation"
-    input_types = [Numeric]
-    return_type = Boolean
+    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    return_type = ColumnSchema(logical_type=BooleanNullable)
     stack_on_self = False
 
     def __init__(self, r):
