@@ -40,10 +40,10 @@ jobs:
         run: pip install -r test-requirements.txt
       - if: ${{ matrix.python_version != 3.8 || matrix.featuretools_version != 'Main' }}
         name: Run unit tests (no code coverage)
-        run: make unit-tests
+        run: make tests
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Run unit tests with code coverage
-        run: make unit-tests ADDOPTS="--cov=featuretools_tsfresh_primitives"
+        run: make tests ADDOPTS="--cov=featuretools_tsfresh_primitives"
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
