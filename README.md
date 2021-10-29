@@ -1,15 +1,33 @@
-# Featuretools TSFresh Primitives
+# TSFresh Primitives
 
-[![Tests](https://github.com/alteryx/featuretools-tsfresh-primitives/workflows/Tests/badge.svg)](https://github.com/alteryx/featuretools-tsfresh-primitives/actions/workflows/tests.yml?query=branch%3Amain)
-[![Coverage Status](https://codecov.io/gh/alteryx/featuretools-tsfresh-primitives/branch/main/graph/badge.svg)](https://codecov.io/gh/alteryx/featuretools-tsfresh-primitives)
-[![PyPI version](https://badge.fury.io/py/featuretools-tsfresh-primitives.svg?maxAge=2592000)](https://badge.fury.io/py/featuretools-tsfresh-primitives)
+<p align="center">
+    <a href="https://github.com/alteryx/featuretools-tsfresh-primitives/actions?query=branch%3Amain+workflow%3ATests" target="_blank">
+        <img src="https://github.com/alteryx/featuretools-tsfresh-primitives/workflows/Tests/badge.svg?branch=main" alt="Tests" />
+    </a>
+    <a href="https://codecov.io/gh/alteryx/featuretools-tsfresh-primitives">
+        <img src="https://codecov.io/gh/alteryx/featuretools-tsfresh-primitives/branch/main/graph/badge.svg?token=FtcPOJLpjj"/>
+    </a>
+    <a href="https://badge.fury.io/py/featuretools-tsfresh-primitives" target="_blank">
+        <img src="https://badge.fury.io/py/featuretools-tsfresh-primitives.svg?maxAge=2592000" alt="PyPI Version" />
+    </a>
+    <a href="https://pepy.tech/project/featuretools-tsfresh-primitives" target="_blank">
+        <img src="https://pepy.tech/badge/featuretools-tsfresh-primitives/month" alt="PyPI Downloads" />
+    </a>
+</p>
+<hr>
 
 ### Installation
+
+Install with pip:
+
 ```python
-pip install 'featuretools[tsfresh]'
+python -m pip install "featuretools[tsfresh]"
 ```
+
 ## Calculating Features
-In `tsfresh`, this is how to calculate a feature.
+
+In `tsfresh`, this is how you can calculate a feature.
+
 ```python
 from tsfresh.feature_extraction.feature_calculators import agg_autocorrelation
 
@@ -17,20 +35,25 @@ data = list(range(10))
 param = [{'f_agg': 'mean', 'maxlag': 5}]
 agg_autocorrelation(data, param=param)
 ```
-```
+
+```bash
 [('f_agg_"mean"__maxlag_5', 0.1717171717171717)]
 ```
-With tsfresh primtives in `featuretools`, this is how to calculate the same feature.
+
+With tsfresh primtives in `featuretools`, this is how you can calculate the same feature.
 ```python
 from featuretools.tsfresh import AggAutocorrelation
 
 data = list(range(10))
 AggAutocorrelation(f_agg='mean', maxlag=5)(data)
 ```
-```
+
+```bash
 0.1717171717171717
 ```
+
 ## Combining Primitives
+
 In `featuretools`, this is how to combine tsfresh primitives with built-in or other installed primitives.
 ```python
 import featuretools as ft
@@ -68,3 +91,9 @@ session_id
 4                                                    0.011204
 5                                                   -0.010679
 ```
+
+## Built at Alteryx Innovation Labs
+
+<a href="https://www.alteryx.com/innovation-labs">
+    <img src="https://evalml-web-images.s3.amazonaws.com/alteryx_innovation_labs.png" alt="Alteryx Innovation Labs" />
+</a>
