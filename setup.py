@@ -26,8 +26,6 @@ setup(
     install_requires=open('requirements.txt').readlines(),
     tests_require=open('test-requirements.txt').readlines(),
     python_requires='>=3.7, <4',
-    long_description=open('README.md').read(),
-    long_description_content_type='text/markdown',
     include_package_data=True,
     entry_points={
         'featuretools_plugin': [
