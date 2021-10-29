@@ -19,9 +19,10 @@ class ChangeQuantiles(AggregationPrimitive):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.change_quantiles
     """
+
     name = "change_quantiles"
-    input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
+    input_types = [ColumnSchema(semantic_tags={"numeric"})]
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={"numeric"})
     stack_on_self = False
 
     def __init__(self, ql, qh, isabs, f_agg):
@@ -32,10 +33,8 @@ class ChangeQuantiles(AggregationPrimitive):
 
     def get_function(self):
         def function(x):
-            return change_quantiles(x,
-                                    ql=self.ql,
-                                    qh=self.qh,
-                                    isabs=self.isabs,
-                                    f_agg=self.f_agg)
+            return change_quantiles(
+                x, ql=self.ql, qh=self.qh, isabs=self.isabs, f_agg=self.f_agg
+            )
 
         return function

@@ -1,11 +1,28 @@
-lint-fix:
-	select="E225,E303,E302,E203,E128,E231,E251,E271,E127,E126,E301,W291,W293,E226,E306,E221"
-	autopep8 --in-place --recursive --max-line-length=100 --select=${select} featuretools_tsfresh_primitives
-	isort --recursive featuretools_tsfresh_primitives
+.PHONY: clean
+clean:
+	find . -name '*.pyo' -delete
+	find . -name '*.pyc' -delete
+	find . -name __pycache__ -delete
+	find . -name '*~' -delete
+	find . -name '.coverage.*' -delete
 
-lint-tests:
+.PHONY: lint
+lint:
+	isort --check-only featuretools_tsfresh_primitives
+	black featuretools_tsfresh_primitives -t py39 --check
 	flake8 featuretools_tsfresh_primitives
-	isort --check-only --recursive featuretools_tsfresh_primitives
 
-unit-tests:
+.PHONY: lint-fix
+lint-fix:
+	black -t py39 featuretools_tsfresh_primitives
+	isort featuretools_tsfresh_primitives
+
+.PHONY: tests
+tests:
 	pytest --cache-clear --show-capture=stderr -vv ${ADDOPTS}
+
+.PHONY: installdeps
+installdeps:
+	pip install --upgrade pip
+	pip install -e .
+	pip install -r dev-requirements.txt

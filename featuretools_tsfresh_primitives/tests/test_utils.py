@@ -1,6 +1,8 @@
-from featuretools_tsfresh_primitives import (SUPPORTED_PRIMITIVES,
-                                             comprehensive_fc_parameters,
-                                             primitives_from_fc_settings)
+from featuretools_tsfresh_primitives import (
+    SUPPORTED_PRIMITIVES,
+    comprehensive_fc_parameters,
+    primitives_from_fc_settings,
+)
 
 
 def test_primitives_from_fc_settings():

@@ -1,6 +1,5 @@
 from featuretools.primitives import AggregationPrimitive
-from tsfresh.feature_extraction.feature_calculators import \
-    energy_ratio_by_chunks
+from tsfresh.feature_extraction.feature_calculators import energy_ratio_by_chunks
 from woodwork.column_schema import ColumnSchema
 from woodwork.logical_types import Double
 
@@ -16,9 +15,10 @@ class EnergyRatioByChunks(AggregationPrimitive):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.energy_ratio_by_chunks
     """
+
     name = "energy_ratio_by_chunks"
-    input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
+    input_types = [ColumnSchema(semantic_tags={"numeric"})]
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={"numeric"})
     stack_on_self = False
 
     def __init__(self, num_segments, segment_focus):
@@ -27,7 +27,9 @@ class EnergyRatioByChunks(AggregationPrimitive):
 
     def get_function(self):
         def function(x):
-            param = [{'num_segments': self.num_segments, 'segment_focus': self.segment_focus}]
+            param = [
+                {"num_segments": self.num_segments, "segment_focus": self.segment_focus}
+            ]
             return energy_ratio_by_chunks(x, param)[0][1]
 
         return function

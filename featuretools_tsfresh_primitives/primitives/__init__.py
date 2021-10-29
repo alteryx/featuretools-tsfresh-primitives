@@ -1,4 +1,3 @@
-
 # flake8: noqa
 from .abs_energy import AbsEnergy
 from .absolute_sum_of_changes import AbsoluteSumOfChanges
@@ -48,15 +47,16 @@ from .number_crossing_m import NumberCrossingM
 from .number_cwt_peaks import NumberCwtPeaks
 from .number_peaks import NumberPeaks
 from .partial_autocorrelation import PartialAutocorrelation
-from .percentage_of_reoccurring_datapoints_to_all_datapoints import \
-    PercentageOfReoccurringDatapointsToAllDatapoints
-from .percentage_of_reoccurring_values_to_all_values import \
-    PercentageOfReoccurringValuesToAllValues
+from .percentage_of_reoccurring_datapoints_to_all_datapoints import (
+    PercentageOfReoccurringDatapointsToAllDatapoints,
+)
+from .percentage_of_reoccurring_values_to_all_values import (
+    PercentageOfReoccurringValuesToAllValues,
+)
 from .quantile import Quantile
 from .range_count import RangeCount
 from .ratio_beyond_r_sigma import RatioBeyondRSigma
-from .ratio_value_number_to_time_series_length import \
-    RatioValueNumberToTimeSeriesLength
+from .ratio_value_number_to_time_series_length import RatioValueNumberToTimeSeriesLength
 from .sample_entropy import SampleEntropy
 from .skewness import Skewness
 from .spkt_welch_density import SpktWelchDensity
@@ -68,7 +68,6 @@ from .symmetry_looking import SymmetryLooking
 from .time_reversal_asymmetry_statistic import TimeReversalAsymmetryStatistic
 from .value_count import ValueCount
 from .variance import Variance
-from .variance_larger_than_standard_deviation import \
-    VarianceLargerThanStandardDeviation
+from .variance_larger_than_standard_deviation import VarianceLargerThanStandardDeviation
 
 SUPPORTED_PRIMITIVES = [value for value in locals().values() if isinstance(value, type)]
