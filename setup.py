@@ -5,10 +5,10 @@ from setuptools import find_packages, setup
 dirname = path.abspath(path.dirname(__file__))
 with open(path.join(dirname, 'README.md')) as f:
     long_description = f.read()
-    
+
 setup(
     name='featuretools_tsfresh_primitives',
-    version='1.0.0',
+    version='1.0.1',
     author='Feature Labs, Inc.',
     author_email='support@featurelabs.com',
     license='MIT',
