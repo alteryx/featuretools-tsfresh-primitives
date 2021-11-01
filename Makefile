@@ -17,8 +17,8 @@ lint-fix:
 	black -t py39 featuretools_tsfresh_primitives
 	isort featuretools_tsfresh_primitives
 
-.PHONY: tests
-tests:
+.PHONY: test
+test:
 	pytest --cache-clear --show-capture=stderr -vv ${ADDOPTS}
 
 .PHONY: installdeps
