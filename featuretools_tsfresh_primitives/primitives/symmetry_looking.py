@@ -13,8 +13,9 @@ class SymmetryLooking(AggregationPrimitive):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.symmetry_looking
     """
+
     name = "symmetry_looking"
-    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    input_types = [ColumnSchema(semantic_tags={"numeric"})]
     return_type = ColumnSchema(logical_type=BooleanNullable)
     stack_on_self = False
 
@@ -23,7 +24,7 @@ class SymmetryLooking(AggregationPrimitive):
 
     def get_function(self):
         def function(x):
-            param = [{'r': self.r}]
+            param = [{"r": self.r}]
             return symmetry_looking(x, param)[0][1]
 
         return function

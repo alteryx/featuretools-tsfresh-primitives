@@ -10,8 +10,9 @@ class HasDuplicateMin(AggregationPrimitive):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.has_duplicate_min
     """
+
     name = "has_duplicate_min"
-    input_types = [ColumnSchema(semantic_tags={'numeric'})]
+    input_types = [ColumnSchema(semantic_tags={"numeric"})]
     return_type = ColumnSchema(logical_type=BooleanNullable)
     stack_on_self = False
 

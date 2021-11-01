@@ -19,9 +19,10 @@ def comprehensive_fc_parameters():
 
     # when a partial autocorrelation has a lag of zero,
     # an error is raised from `tsfresh.feature_extraction.extract_features`
-    partial_autocorrelation = parameters['partial_autocorrelation']
+    partial_autocorrelation = parameters["partial_autocorrelation"]
     for index, values in enumerate(partial_autocorrelation):
-        if values['lag'] == 0: del partial_autocorrelation[index]
+        if values["lag"] == 0:
+            del partial_autocorrelation[index]
 
     return parameters
 

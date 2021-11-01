@@ -20,9 +20,10 @@ class AggLinearTrend(AggregationPrimitive):
     Docstring source:
     https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.agg_linear_trend
     """
+
     name = "agg_linear_trend"
-    input_types = [ColumnSchema(semantic_tags={'numeric'})]
-    return_type = ColumnSchema(logical_type=Double, semantic_tags={'numeric'})
+    input_types = [ColumnSchema(semantic_tags={"numeric"})]
+    return_type = ColumnSchema(logical_type=Double, semantic_tags={"numeric"})
     stack_on_self = False
 
     def __init__(self, attr, chunk_len, f_agg):
@@ -32,7 +33,9 @@ class AggLinearTrend(AggregationPrimitive):
 
     def get_function(self):
         def function(x):
-            param = [{'attr': self.attr, 'f_agg': self.f_agg, 'chunk_len': self.chunk_len}]
+            param = [
+                {"attr": self.attr, "f_agg": self.f_agg, "chunk_len": self.chunk_len}
+            ]
             values = list(agg_linear_trend(x.to_numpy(), param))
             return values[0][1]
 
