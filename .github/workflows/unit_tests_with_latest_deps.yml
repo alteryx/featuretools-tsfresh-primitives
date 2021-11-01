@@ -40,7 +40,7 @@ jobs:
         run: pip install -r test-requirements.txt
       - if: ${{ matrix.python_version != 3.8 || matrix.featuretools_version != 'Main' }}
         name: Run unit tests (no code coverage)
-        run: make tests
+        run: make test
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Run unit tests with code coverage
         run: make tests ADDOPTS="--cov=featuretools_tsfresh_primitives"
