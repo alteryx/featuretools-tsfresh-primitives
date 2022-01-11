@@ -8,7 +8,7 @@ with open(path.join(dirname, 'README.md')) as f:
 
 setup(
     name='featuretools_tsfresh_primitives',
-    version='1.0.1',
+    version='1.0.2',
     author='Feature Labs, Inc.',
     author_email='support@featurelabs.com',
     license='MIT',
