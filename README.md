@@ -10,6 +10,9 @@
     <a href="https://badge.fury.io/py/featuretools-tsfresh-primitives" target="_blank">
         <img src="https://badge.fury.io/py/featuretools-tsfresh-primitives.svg?maxAge=2592000" alt="PyPI Version" />
     </a>
+    <a href="https://anaconda.org/conda-forge/featuretools-tsfresh-primitives" target="_blank">
+        <img src="https://anaconda.org/conda-forge/featuretools-tsfresh-primitives/badges/version.svg" alt="Anaconda Version" />
+    </a>
     <a href="https://pepy.tech/project/featuretools-tsfresh-primitives" target="_blank">
         <img src="https://pepy.tech/badge/featuretools-tsfresh-primitives/month" alt="PyPI Downloads" />
     </a>
