@@ -43,7 +43,7 @@ jobs:
         run: make test
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Run unit tests with code coverage
-        run: make testcoverage
+        run: pytest featuretools/ -n 2 --cov=featuretools_tsfresh_primitives --cov-config=../pyproject.toml --cov-report=xml:../coverage.xml
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3

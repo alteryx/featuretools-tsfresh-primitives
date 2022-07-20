@@ -27,9 +27,6 @@ target-version = ['py310']
 
 [tool.coverage.run]
 source = ["featuretools_tsfresh_primitives"]
-omit = [
-    "*/add-ons/**/*"
-]
 
 [tool.coverage.report]
 exclude_lines =[
