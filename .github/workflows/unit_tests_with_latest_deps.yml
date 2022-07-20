@@ -46,6 +46,8 @@ jobs:
         run: make test ADDOPTS="--cov=featuretools_tsfresh_primitives"
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
+          files: ${{ github.workspace }}/coverage.xml
+          verbose: true
