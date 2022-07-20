@@ -37,7 +37,7 @@ jobs:
         name: Install with latest version of Featuretools from main branch
         run: pip install . git+https://github.com/alteryx/featuretools.git@main#egg=featuretools
       - name: Install test requirements
-        run: pip install -r test-requirements.txt
+        run: pip install ".[test]"
       - if: ${{ matrix.python_version != 3.8 || matrix.featuretools_version != 'Main' }}
         name: Run unit tests (no code coverage)
         run: make test

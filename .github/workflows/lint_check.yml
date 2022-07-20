@@ -30,8 +30,6 @@ jobs:
           python -m pip install wheel
       - name: Install requirements
         run: |
-          pip install .
-          python -m pip install -r dev-requirements.txt
-          python -m pip install -r test-requirements.txt
+          python -m pip install ".[dev]"
       - name: Run lint tests
         run: make lint
