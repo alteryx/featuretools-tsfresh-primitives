@@ -19,6 +19,7 @@ filterwarnings = [
 profile = "black"
 forced_separate = "featuretools_tsfresh_primitives"
 known_first_party = "featuretools_tsfresh_primitives"
+known_third_party = "featuretools,woodwork,evalml,pandas,tsfresh,numpy"
 skip = "__init__.py"
 multi_line_output = 3
 
