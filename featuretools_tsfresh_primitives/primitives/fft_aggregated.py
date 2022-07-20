@@ -92,7 +92,7 @@ class ShortTermFftAggregated(TransformPrimitive):
         >>> import pandas as pd
         >>> datetimes = pd.date_range(start="2019-01-01", freq="1D", periods=10)
         >>> stffta = ShortTermFftAggregated(aggtype="centroid")
-        >>> stffta(times, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
+        >>> stffta(datetimes, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
         [0.0, 0.25, 0.2742918851774318, 0.2742918851774318, 0.2742918851774318, 0.22400923773979586, 0.24686170398244334, 0.27429188517743175, 0.27429188517743175, 0.27429188517743175]
 
         We can also control the gap before the rolling calculation.
