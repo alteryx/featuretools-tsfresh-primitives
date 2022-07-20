@@ -21,6 +21,10 @@ lint-fix:
 test:
 	pytest featuretools_tsfresh_primitives/
 
+.PHONY: testcoverage
+testcoverage:
+	pytest featuretools_tsfresh_primitives/ --cov=featuretools_tsfresh_primitives
+
 .PHONY: installdeps
 installdeps:
 	pip install --upgrade pip
