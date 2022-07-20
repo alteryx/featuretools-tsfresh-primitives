@@ -19,7 +19,7 @@ lint-fix:
 
 .PHONY: test
 test:
-	pytest --cache-clear --show-capture=stderr -vv ${ADDOPTS}
+	pytest featuretools_tsfresh_primitives/
 
 .PHONY: installdeps
 installdeps:
