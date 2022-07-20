@@ -102,20 +102,20 @@ class ShortTermFftCoefficient(TransformPrimitive):
     Examples:
         >>> import pandas as pd
         >>> datetimes = pd.date_range(start="2019-01-01", freq="1D", periods=10)
-        >>> stffta = ShortTermFftAggregated(1, "real")
-        >>> stffta(times, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
+        >>> stfftc = ShortTermFftCoefficient(1, "real")
+        >>> stfftc(datetimes, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
         [nan, -1.0, -2.0, -4.0, -8.0, -12.0, -20.0, -48.0, -96.0, -192.0]
 
         We can also control the gap before the rolling calculation.
 
-        >>> stffta = ShortTermFftAggregated(1, "real", gap=1)
-        >>> stffta(times, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
+        >>> stfftc = ShortTermFftCoefficient(1, "real", gap=1)
+        >>> stfftc(datetimes, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
         [nan, nan, nan, -2.0, -4.0, -8.0, -12.0, -20.0, -48.0, -96.0]
 
         We can also control the attribute type.
 
-        >>> stffta = ShortTermFftAggregated(1, "imag")
-        >>> stffta(times, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
+        >>> stfftc = ShortTermFftCoefficient(1, "imag")
+        >>> stfftc(datetimes, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
         [nan, 0.0, 1.7320508075688772, 3.4641016151377544, 6.928203230275509, 6.928203230275509, 20.784609690826528, 41.569219381653056, 83.13843876330611, 166.27687752661222]
 
     """

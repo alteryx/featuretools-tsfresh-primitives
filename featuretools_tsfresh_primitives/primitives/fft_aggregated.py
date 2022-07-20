@@ -97,12 +97,12 @@ class ShortTermFftAggregated(TransformPrimitive):
 
         We can also control the gap before the rolling calculation.
         >>> stffta = ShortTermFftAggregated(aggtype="centroid", gap=1)
-        >>> stffta(times, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
+        >>> stffta(datetimes, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
         [nan, nan, nan, 0.2742918851774318, 0.2742918851774318, 0.2742918851774318, 0.22400923773979586, 0.24686170398244334, 0.27429188517743175, 0.27429188517743175]
 
         We can also control the aggregation type.
         >>> stffta = ShortTermFftAggregated(aggtype="variance")
-        >>> stffta(times, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
+        >>> stffta(datetimes, [1, 2, 4, 8, 16, 24, 48, 96, 192, 384]).tolist()
         [0.0, 0.1875, 0.19905584690324235, 0.19905584690324235, 0.19905584690324235, 0.17382909914703149, 0.18592100308932785, 0.19905584690324235, 0.19905584690324235, 0.19905584690324235]
 
 
