@@ -1,4 +1,3 @@
-# flake8: noqa
 from .abs_energy import AbsEnergy
 from .absolute_sum_of_changes import AbsoluteSumOfChanges
 from .agg_autocorrelation import AggAutocorrelation
