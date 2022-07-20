@@ -45,7 +45,7 @@ jobs:
         name: Run unit tests with code coverage
         run: |
           coverage erase
-          make testcoverage
+          pytest featuretools_tsfresh_primitives/tests/primitive_tests --cov=featuretools_tsfresh_primitives --cov-config=pyproject.toml --cov-report=xml:coverage.xml
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
