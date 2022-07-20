@@ -23,7 +23,7 @@ test:
 
 .PHONY: testcoverage
 testcoverage:
-	pytest featuretools_tsfresh_primitives/ --cov=featuretools_tsfresh_primitives
+	pytest featuretools/ -n 2 --cov=featuretools_tsfresh_primitives --cov-config=../pyproject.toml --cov-report=xml:../coverage.xml
 
 .PHONY: installdeps
 installdeps:
