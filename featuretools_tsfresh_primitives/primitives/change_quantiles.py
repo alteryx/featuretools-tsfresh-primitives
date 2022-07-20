@@ -34,7 +34,11 @@ class ChangeQuantiles(AggregationPrimitive):
     def get_function(self):
         def function(x):
             return change_quantiles(
-                x, ql=self.ql, qh=self.qh, isabs=self.isabs, f_agg=self.f_agg
+                x,
+                ql=self.ql,
+                qh=self.qh,
+                isabs=self.isabs,
+                f_agg=self.f_agg,
             )
 
         return function

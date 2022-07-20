@@ -5,7 +5,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
+
 name: Unit Tests - Latest Dependencies
 jobs:
   unit_tests:
