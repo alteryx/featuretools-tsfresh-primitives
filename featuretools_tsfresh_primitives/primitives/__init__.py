@@ -17,8 +17,8 @@ from .count_below import CountBelow
 from .count_below_mean import CountBelowMean
 from .cwt_coefficients import CwtCoefficients
 from .energy_ratio_by_chunks import EnergyRatioByChunks
-from .fft_aggregated import FftAggregated
-from .fft_coefficient import FftCoefficient
+from .fft_aggregated import FftAggregated, ShortTermFftAggregated
+from .fft_coefficient import FftCoefficient, ShortTermFftCoefficient
 from .first_location_of_maximum import FirstLocationOfMaximum
 from .first_location_of_minimum import FirstLocationOfMinimum
 from .friedrich_coefficients import FriedrichCoefficients
@@ -70,4 +70,9 @@ from .value_count import ValueCount
 from .variance import Variance
 from .variance_larger_than_standard_deviation import VarianceLargerThanStandardDeviation
 
-SUPPORTED_PRIMITIVES = [value for value in locals().values() if isinstance(value, type)]
+SUPPORTED_PRIMITIVES = [
+    value
+    for value in locals().values()
+    if isinstance(value, type)
+    and value not in [ShortTermFftAggregated, ShortTermFftCoefficient]
+]
