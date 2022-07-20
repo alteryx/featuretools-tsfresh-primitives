@@ -92,20 +92,23 @@ class ShortTermFftAggregated(TransformPrimitive):
         >>> import pandas as pd
         >>> datetimes = pd.date_range(start="2019-01-01", freq="1D", periods=10)
         >>> stffta = ShortTermFftAggregated(aggtype="centroid")
-        >>> stffta(datetimes, [1, 2, 4, 8, 4, 2, 1, 2, 4, 8]).tolist()
-        [0.0, 0.25, 0.2742918851774318, 0.2742918851774318, 0.19999999999999998, 0.2742918851774318, 0.2742918851774318, 0.16666666666666666, 0.2742918851774318, 0.2742918851774318]
+        >>> output = stffta(datetimes, [1, 2, 4, 8, 4, 2, 1, 2, 4, 8]).tolist()
+        >>> [round(x, 5) for x in output]
+        [0.0, 0.25, 0.27429, 0.27429, 0.2, 0.27429, 0.27429, 0.16667, 0.27429, 0.27429]
 
         We can also control the gap before the rolling calculation.
+
         >>> stffta = ShortTermFftAggregated(aggtype="centroid", gap=1)
-        >>> stffta(datetimes, [1, 2, 4, 8, 4, 2, 1, 2, 4, 8]).tolist()
-        [nan, nan, nan, 0.2742918851774318, 0.2742918851774318, 0.19999999999999998, 0.2742918851774318, 0.2742918851774318, 0.16666666666666666, 0.2742918851774318]
+        >>> output = stffta(datetimes, [1, 2, 4, 8, 4, 2, 1, 2, 4, 8]).tolist()
+        >>> [round(x, 5) for x in output]
+        [nan, nan, nan, 0.27429, 0.27429, 0.2, 0.27429, 0.27429, 0.16667, 0.27429]
 
         We can also control the aggregation type.
 
         >>> stffta = ShortTermFftAggregated(aggtype="variance")
-        >>> stffta(datetimes, [1, 2, 4, 8, 4, 2, 1, 2, 4, 8]).tolist()
-        [0.0, 0.1875, 0.19905584690324235, 0.19905584690324235, 0.15999999999999998, 0.19905584690324235, 0.19905584690324235, 0.1388888888888889, 0.19905584690324235, 0.19905584690324235]
-
+        >>> output = stffta(datetimes, [1, 2, 4, 8, 4, 2, 1, 2, 4, 8]).tolist()
+        >>> [round(x, 5) for x in output]
+        [0.0, 0.1875, 0.19906, 0.19906, 0.16, 0.19906, 0.19906, 0.13889, 0.19906, 0.19906]
     """
 
     name = "short_term_fft_aggregated"
