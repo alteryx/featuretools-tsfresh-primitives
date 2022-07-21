@@ -28,7 +28,10 @@ class EnergyRatioByChunks(AggregationPrimitive):
     def get_function(self):
         def function(x):
             param = [
-                {"num_segments": self.num_segments, "segment_focus": self.segment_focus}
+                {
+                    "num_segments": self.num_segments,
+                    "segment_focus": self.segment_focus,
+                },
             ]
             return energy_ratio_by_chunks(x, param)[0][1]
 

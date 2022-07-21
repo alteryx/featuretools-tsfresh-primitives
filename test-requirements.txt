@@ -1,2 +1,0 @@
-pytest>=4.4.2
-pytest-cov>=2.6.1

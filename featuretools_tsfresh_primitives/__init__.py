@@ -1,5 +1,7 @@
 # flake8: noqa
-from .primitives import *
-from .utils import comprehensive_fc_parameters, primitives_from_fc_settings
-
-__version__ = "1.0.2"
+from featuretools_tsfresh_primitives.version import __version__
+from featuretools_tsfresh_primitives.primitives import *
+from featuretools_tsfresh_primitives.utils import (
+    comprehensive_fc_parameters,
+    primitives_from_fc_settings,
+)

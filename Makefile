@@ -9,20 +9,24 @@ clean:
 .PHONY: lint
 lint:
 	isort --check-only featuretools_tsfresh_primitives
-	black featuretools_tsfresh_primitives -t py39 --check
+	black featuretools_tsfresh_primitives -t py310 --check
 	flake8 featuretools_tsfresh_primitives
 
 .PHONY: lint-fix
 lint-fix:
-	black -t py39 featuretools_tsfresh_primitives
+	black -t py310 featuretools_tsfresh_primitives
 	isort featuretools_tsfresh_primitives
 
 .PHONY: test
 test:
-	pytest --cache-clear --show-capture=stderr -vv ${ADDOPTS}
+	pytest featuretools_tsfresh_primitives/
+
+.PHONY: testcoverage
+testcoverage:
+	pytest featuretools/ --cov=featuretools_tsfresh_primitives
 
 .PHONY: installdeps
 installdeps:
 	pip install --upgrade pip
-	pip install -e .
-	pip install -r dev-requirements.txt
+	pip install -e ".[dev]"
+	pre-commit install

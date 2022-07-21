@@ -1,0 +1,43 @@
+[build-system]
+requires = [
+    "setuptools >= 47",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules"
+testpaths = [
+    "featuretools_tsfresh_primitives/tests/*"
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning"
+]
+
+[tool.isort]
+profile = "black"
+forced_separate = "featuretools_tsfresh_primitives"
+known_first_party = "featuretools_tsfresh_primitives"
+known_third_party = "featuretools,woodwork,evalml,pandas,tsfresh,numpy"
+skip = "__init__.py"
+multi_line_output = 3
+
+[tool.black]
+target-version = ['py310']
+
+[tool.coverage.run]
+source = ["featuretools_tsfresh_primitives"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if self._verbose:",
+    "if verbose:",
+    "if profile:",
+    "pytest.skip"
+]
