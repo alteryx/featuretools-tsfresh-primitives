@@ -5,7 +5,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
+
 name: Unit Tests - Latest Dependencies
 jobs:
   unit_tests:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: ["3.7", "3.8", "3.9"]
+        python_version: ["3.8", "3.9"]
         featuretools_version: ["Release", "Main"]
     steps:
       - name: Set up python ${{ matrix.python_version }}
@@ -37,15 +37,19 @@ jobs:
         name: Install with latest version of Featuretools from main branch
         run: pip install . git+https://github.com/alteryx/featuretools.git@main#egg=featuretools
       - name: Install test requirements
-        run: pip install -r test-requirements.txt
+        run: pip install ".[test]"
       - if: ${{ matrix.python_version != 3.8 || matrix.featuretools_version != 'Main' }}
         name: Run unit tests (no code coverage)
         run: make test
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Run unit tests with code coverage
-        run: make test ADDOPTS="--cov=featuretools_tsfresh_primitives"
+        run: |
+          coverage erase
+          pytest featuretools_tsfresh_primitives/tests/ --cov=featuretools_tsfresh_primitives --cov-config=pyproject.toml --cov-report=xml:coverage.xml
       - if: ${{ matrix.python_version == 3.8 && matrix.featuretools_version == 'Main' }}
         name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
+          files: ${{ github.workspace }}/coverage.xml
+          verbose: true

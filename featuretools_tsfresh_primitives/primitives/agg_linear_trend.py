@@ -34,7 +34,7 @@ class AggLinearTrend(AggregationPrimitive):
     def get_function(self):
         def function(x):
             param = [
-                {"attr": self.attr, "f_agg": self.f_agg, "chunk_len": self.chunk_len}
+                {"attr": self.attr, "f_agg": self.f_agg, "chunk_len": self.chunk_len},
             ]
             values = list(agg_linear_trend(x.to_numpy(), param))
             return values[0][1]
