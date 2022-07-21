@@ -10,7 +10,7 @@ from woodwork.logical_types import Datetime, Double
 
 
 class FftAggregated(AggregationPrimitive):
-    """Returns the spectral centroid (mean), variance, skew, and kurtosis of
+    """Returns the spectral centroid (mean), variance, skew, or kurtosis of
     the absolute fourier transform spectrum.
 
     Args:
@@ -26,7 +26,7 @@ class FftAggregated(AggregationPrimitive):
     return_type = ColumnSchema(logical_type=Double, semantic_tags={"numeric"})
     stack_on_self = False
 
-    def __init__(self, aggtype):
+    def __init__(self, aggtype="centroid"):
         self.aggtype = aggtype
 
     def get_function(self):
@@ -38,7 +38,7 @@ class FftAggregated(AggregationPrimitive):
 
 
 class ShortTermFftAggregated(TransformPrimitive):
-    """Calculates the spectral centroid (mean), variance, skew, and kurtosis of
+    """Calculates the spectral centroid (mean), variance, skew, or kurtosis of
     the absolute fourier transform spectrum of entries over a given window.
 
     Description:
@@ -118,7 +118,7 @@ class ShortTermFftAggregated(TransformPrimitive):
     ]
     return_type = ColumnSchema(logical_type=Double, semantic_tags={"numeric"})
 
-    def __init__(self, aggtype, window_length=3, gap=0, min_periods=0):
+    def __init__(self, aggtype="centroid", window_length=3, gap=0, min_periods=0):
         self.aggtype = aggtype
         self.window_length = window_length
         self.gap = gap

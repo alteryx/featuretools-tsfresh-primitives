@@ -4,7 +4,7 @@ from pytest import fixture, mark
 from tsfresh.feature_extraction import extract_features
 
 from featuretools_tsfresh_primitives import (
-    SUPPORTED_PRIMITIVES,
+    TSF_AGG_PRIMITIVES,
     comprehensive_fc_parameters,
     primitives_from_fc_settings,
 )
@@ -27,7 +27,7 @@ def df(entityset):
 
 def parametrize():
     values = {"argvalues": [], "ids": []}
-    for primitive in SUPPORTED_PRIMITIVES:
+    for primitive in TSF_AGG_PRIMITIVES:
         parameter_list = PARAMETERS[primitive.name] or [{}]
         primitive_settings = {primitive.name: parameter_list}
         primitives = primitives_from_fc_settings(primitive_settings)

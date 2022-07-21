@@ -35,7 +35,7 @@ class FftCoefficient(AggregationPrimitive):
     return_type = ColumnSchema(logical_type=Double, semantic_tags={"numeric"})
     stack_on_self = False
 
-    def __init__(self, coeff, attr):
+    def __init__(self, coeff=1, attr="real"):
         self.coeff = coeff
         self.attr = attr
 
@@ -48,8 +48,16 @@ class FftCoefficient(AggregationPrimitive):
 
 
 class ShortTermFftCoefficient(TransformPrimitive):
-    """Calculates the spectral centroid (mean), variance, skew, and kurtosis of
-    the absolute fourier transform spectrum of entries over a given window.
+    """Calculates the the fourier coefficients of the one-dimensional discrete
+    Fourier Transform for real input by fast fourier transformation algorithm over a given window.
+
+    .. math::
+        A_k =  \\sum_{m=0}^{n-1} a_m \\exp \\left \\{ -2 \\pi i \\frac{m k}{n} \\right \\}, \\qquad k = 0,
+        \\ldots , n-1.
+
+    The resulting coefficients will be complex, this feature calculator can
+    return the real part (attr=="real"), the imaginary part (attr=="imag), the
+    absolute value (attr=""abs) and the angle in degrees (attr=="angle).
 
     Description:
         Given a list of numbers and a corresponding list of
@@ -97,7 +105,7 @@ class ShortTermFftCoefficient(TransformPrimitive):
         efficient.
 
     Docstring source:
-    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.fft_aggregated
+    https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#tsfresh.feature_extraction.feature_calculators.fft_coefficient
 
     Examples:
         >>> import pandas as pd
@@ -127,7 +135,7 @@ class ShortTermFftCoefficient(TransformPrimitive):
     ]
     return_type = ColumnSchema(logical_type=Double, semantic_tags={"numeric"})
 
-    def __init__(self, coeff, attr, window_length=3, gap=0, min_periods=0):
+    def __init__(self, coeff=1, attr="real", window_length=3, gap=0, min_periods=0):
         self.coeff = coeff
         self.attr = attr
         self.window_length = window_length

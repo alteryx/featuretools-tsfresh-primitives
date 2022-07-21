@@ -1,9 +1,9 @@
 from featuretools.primitives import AggregationPrimitive
 from tsfresh.feature_extraction.settings import ComprehensiveFCParameters
 
-from featuretools_tsfresh_primitives.primitives import SUPPORTED_PRIMITIVES
+from featuretools_tsfresh_primitives.primitives import TSF_AGG_PRIMITIVES
 
-PRIMITIVES = {primitive.name: primitive for primitive in SUPPORTED_PRIMITIVES}
+PRIMITIVES = {primitive.name: primitive for primitive in TSF_AGG_PRIMITIVES}
 
 
 def comprehensive_fc_parameters():
