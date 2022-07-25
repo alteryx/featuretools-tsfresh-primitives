@@ -43,7 +43,7 @@ class ShortTermFftAggregated(TransformPrimitive):
 
     Description:
         Given a list of numbers and a corresponding list of
-        datetimes, return the spectral centroid (mean), variance, skew, and kurtosis of
+        datetimes, return the spectral centroid (mean), variance, skew, or kurtosis of
         the absolute fourier transform spectrum of
         the numeric values, starting at the row `gap` rows away from the current row and
         looking backward over the specified time window
