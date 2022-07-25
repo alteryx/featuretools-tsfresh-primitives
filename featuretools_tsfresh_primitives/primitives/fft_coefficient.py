@@ -18,8 +18,8 @@ class FftCoefficient(AggregationPrimitive):
         \\ldots , n-1.
 
     The resulting coefficients will be complex, this feature calculator can
-    return the real part (attr=="real"), the imaginary part (attr=="imag), the
-    absolute value (attr=""abs) and the angle in degrees (attr=="angle).
+    return the real part (attr=="real"), the imaginary part (attr=="imag"), the
+    absolute value (attr="abs") and the angle in degrees (attr=="angle").
 
     Args:
         coeff (int) : The coefficient to return. Must be greater than or equal to zero.
@@ -48,7 +48,7 @@ class FftCoefficient(AggregationPrimitive):
 
 
 class ShortTermFftCoefficient(TransformPrimitive):
-    """Calculates the the fourier coefficients of the one-dimensional discrete
+    """Calculates the fourier coefficients of the one-dimensional discrete
     Fourier Transform for real input by fast fourier transformation algorithm over a given window.
 
     .. math::
@@ -56,14 +56,13 @@ class ShortTermFftCoefficient(TransformPrimitive):
         \\ldots , n-1.
 
     The resulting coefficients will be complex, this feature calculator can
-    return the real part (attr=="real"), the imaginary part (attr=="imag), the
-    absolute value (attr=""abs) and the angle in degrees (attr=="angle).
+    return the real part (attr=="real"), the imaginary part (attr=="imag"), the
+    absolute value (attr="abs") and the angle in degrees (attr=="angle").
 
     Description:
         Given a list of numbers and a corresponding list of
-        datetimes, return the spectral centroid (mean), variance, skew, and kurtosis of
-        the absolute fourier transform spectrum of
-        the numeric values, starting at the row `gap` rows away from the current row and
+        datetimes, return the fourier coefficients of the one-dimensional discrete
+        Fourier Transform of the numeric values, starting at the row `gap` rows away from the current row and
         looking backward over the specified time window
         (by `window_length` and `gap`).
 
