@@ -1,4 +1,3 @@
-# flake8: noqa
 from featuretools_tsfresh_primitives.primitives.abs_energy import AbsEnergy
 from featuretools_tsfresh_primitives.primitives.absolute_sum_of_changes import (
     AbsoluteSumOfChanges,
@@ -27,8 +26,14 @@ from featuretools_tsfresh_primitives.primitives.cwt_coefficients import CwtCoeff
 from featuretools_tsfresh_primitives.primitives.energy_ratio_by_chunks import (
     EnergyRatioByChunks,
 )
-from featuretools_tsfresh_primitives.primitives.fft_aggregated import FftAggregated
-from featuretools_tsfresh_primitives.primitives.fft_coefficient import FftCoefficient
+from featuretools_tsfresh_primitives.primitives.fft_aggregated import (
+    FftAggregated,
+    ShortTermFftAggregated,
+)
+from featuretools_tsfresh_primitives.primitives.fft_coefficient import (
+    FftCoefficient,
+    ShortTermFftCoefficient,
+)
 from featuretools_tsfresh_primitives.primitives.first_location_of_maximum import (
     FirstLocationOfMaximum,
 )
@@ -122,4 +127,9 @@ from featuretools_tsfresh_primitives.primitives.variance_larger_than_standard_de
     VarianceLargerThanStandardDeviation,
 )
 
-SUPPORTED_PRIMITIVES = [value for value in locals().values() if isinstance(value, type)]
+TSF_AGG_PRIMITIVES = [
+    value
+    for value in locals().values()
+    if isinstance(value, type)
+    and value not in [ShortTermFftAggregated, ShortTermFftCoefficient]
+]

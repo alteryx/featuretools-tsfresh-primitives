@@ -1,5 +1,5 @@
 from featuretools_tsfresh_primitives import (
-    SUPPORTED_PRIMITIVES,
+    TSF_AGG_PRIMITIVES,
     comprehensive_fc_parameters,
     primitives_from_fc_settings,
 )
@@ -8,7 +8,7 @@ from featuretools_tsfresh_primitives import (
 def test_primitives_from_fc_settings():
     fc_parameters = comprehensive_fc_parameters()
 
-    for primitive in SUPPORTED_PRIMITIVES:
+    for primitive in TSF_AGG_PRIMITIVES:
         inputs = fc_parameters[primitive.name] or [{}]
         parameters = {primitive.name: inputs}
         instances = primitives_from_fc_settings(parameters)
