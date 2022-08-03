@@ -1,9 +1,6 @@
 import pandas as pd
 from featuretools.primitives import AggregationPrimitive, TransformPrimitive
-from featuretools.primitives.rolling_primitive_utils import (
-    apply_roll_with_offset_gap,
-    roll_series_with_gap,
-)
+from featuretools.primitives.rolling_primitive_utils import apply_rolling_agg_to_series
 from tsfresh.feature_extraction.feature_calculators import fft_aggregated
 from woodwork.column_schema import ColumnSchema
 from woodwork.logical_types import Datetime, Double
@@ -127,20 +124,13 @@ class ShortTermFftAggregated(TransformPrimitive):
     def get_function(self):
         def short_term_fft_aggregated(datetime, numeric):
             x = pd.Series(numeric.values, index=datetime.values)
-            rolled_series = roll_series_with_gap(
-                x, self.window_length, gap=self.gap, min_periods=self.min_periods
+            return apply_rolling_agg_to_series(
+                x,
+                self.appliable_fft_aggregated,
+                self.window_length,
+                self.gap,
+                self.min_periods,
             )
-            if isinstance(self.gap, str):
-                additional_args = (
-                    self.gap,
-                    self.appliable_fft_aggregated,
-                    self.min_periods,
-                )
-                return rolled_series.apply(
-                    apply_roll_with_offset_gap,
-                    args=additional_args,
-                ).values
-            return rolled_series.apply(self.appliable_fft_aggregated).values
 
         return short_term_fft_aggregated
 
